@@ -1,0 +1,34 @@
+# Node
+node_modules/
+dist/
+*.local
+
+# Java / Maven
+target/
+*.class
+
+# Python
+__pycache__/
+*.pyc
+
+# 构建残留
+*.timestamp-*.mjs
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# 日志
+*.log
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 备份压缩包（体积大，不入库）
+backup/
+
+# 敏感信息（含明文凭据，不入库）
+docs/虚拟机各个镜像账号密码及下载地址.txt
+code/web/training-web/training-server/src/main/resources/application-dev.yml
