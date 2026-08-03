@@ -1,0 +1,99 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: 'iconfont';
+  /* Project id 4686403 */
+  src:
+    url('//at.alicdn.com/t/c/font_4686403_c6or1g82cju.woff2?t=1742736335126') format('woff2'),
+    url('//at.alicdn.com/t/c/font_4686403_c6or1g82cju.woff?t=1742736335126') format('woff'),
+    url('//at.alicdn.com/t/c/font_4686403_c6or1g82cju.ttf?t=1742736335126') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logo:before {
+  content: "\e602";
+}
+
+.icon-shopping-cart:before {
+  content: "\e617";
+}
+
+.icon-pay-by-wechat:before {
+  content: "\e650";
+}
+
+.icon-wechat:before {
+  content: "\e60f";
+}
+
+.icon-alipay:before {
+  content: "\e68a";
+}
+
+.icon-pay-success:before {
+  content: "\e676";
+}
+
+.icon-edit:before {
+  content: "\e6f1";
+}
+
+.icon-delete:before {
+  content: "\e852";
+}
+
+.icon-copy:before {
+  content: "\e62b";
+}
+
+.icon-delivery-checked:before {
+  content: "\e63d";
+}
+
+.icon-location:before {
+  content: "\e65f";
+}
+
+.icon-environment:before {
+  content: "\e61e";
+}
+
+// 全部订单
+.icon-all-order:before {
+  content: "\e604";
+}
+
+// 待支付订单
+.icon-wait-pay-order:before {
+  content: "\e603";
+}
+
+// 待接单订单
+.icon-wait-take-order:before {
+  content: "\e600";
+}
+
+// 已完成订单
+.icon-finish-order:before {
+  content: "\e608";
+}
+
+// 地址管理
+.icon-address-manage:before {
+  content: "\e687";
+}
+
+// 设置
+.icon-setting:before {
+  content: "\e63a";
+}
+
+// 微信支付
+.icon-wechat-pay:before {
+  content: "\e650";
+}

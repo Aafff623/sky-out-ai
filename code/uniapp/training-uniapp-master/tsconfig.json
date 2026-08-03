@@ -1,0 +1,48 @@
+{
+  // "extends": "@vue/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "ignoreDeprecations": "5.0",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    /* 未使用变量报错 */
+    "noUnusedLocals": true,
+    /* 未使用参数报错 */
+    "noUnusedParameters": true,
+    /* switch语句 case 之间缺少 break 或 return 语句，编译器报错 */
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "lib": ["esnext", "dom"],
+    "types": [
+      "vite/client",
+      "@dcloudio/types", // uni-app API 类型
+      "miniprogram-api-typings", // 原生微信小程序类型
+      "@uni-helper/uni-app-types" // uni-app 组件类型
+      // "@ttou/uview-typings/v3", // uview-plus 类型
+      // "@ttou/uview-typings/refs" // uview-plus 类型
+    ]
+    // "typeRoots": ["@/env.d.ts"]
+  },
+  // vue 编译器类型，校验标签类型
+  "vueCompilerOptions": {
+    "nativeTags": ["block", "component", "template", "slot"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite/client"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.js", "unpackage"]
+}

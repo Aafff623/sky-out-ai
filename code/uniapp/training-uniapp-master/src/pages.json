@@ -1,0 +1,184 @@
+{
+	"tabBar": {
+		"color": "#cdcdcd",
+		"selectedColor": "#d81e06",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tabbar/order.png",
+				"selectedIconPath": "static/tabbar/order-active.png",
+				"text": "点餐"
+			},
+			{
+				"pagePath": "pages/message/index",
+				"iconPath": "static/tabbar/message.png",
+				"selectedIconPath": "static/tabbar/message-active.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/user/index",
+				"iconPath": "static/tabbar/user.png",
+				"selectedIconPath": "static/tabbar/user-active.png",
+				"text": "我的"
+			}
+		]
+	},
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "点餐",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/index/components/DishDetail",
+			"style": {
+				"navigationBarTitleText": "菜品详情",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/comment/index",
+			"style": {
+				"navigationBarTitleText": "所有评论",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/comment/components/comment",
+			"style": {
+				"navigationBarTitleText": "写写评价，让更多用户喜欢",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/message/index",
+			"style": {
+				"navigationBarTitleText": "消息",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/message/customer-service",
+			"style": {
+				"navigationBarTitleText": "人工客服",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/message/ai-assistant",
+			"style": {
+				"navigationBarTitleText": "AI智能助手",
+				"navigationBarBackgroundColor": "#fff",
+				"usingComponents": {
+					"towxml": "/wxcomponents/towxml/towxml"
+				}
+			}
+		},
+		{
+			"path": "pages/message/comment-message",
+			"style": {
+				"navigationBarTitleText": "互动消息",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/order/pay-success",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "创建订单",
+				"navigationBarBackgroundColor": "#fff",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/order/order-detail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/order/order-list",
+			"style": {
+				"navigationBarTitleText": "订单列表",
+				"navigationBarBackgroundColor": "#fff",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/address/index",
+			"style": {
+				"navigationBarTitleText": "选择收货地址",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/address/create",
+			"style": {
+				"navigationBarTitleText": "新增收货地址",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/address/update",
+			"style": {
+				"navigationBarTitleText": "编辑收货地址"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "用户登录",
+				"navigationBarBackgroundColor": "#f5f5f5"
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/complete-user-info",
+			"style": {
+				"navigationBarTitleText": "账号与设置",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"easycom": {
+		"custom": {
+			"^u--(.*)": "uview-plus/components/u-$1/u-$1.vue",
+			"^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
+			"^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"
+		}
+	},
+	"condition": {
+		//模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
+}
