@@ -1,0 +1,80 @@
+// 样式重置文件
+@use "./reset";
+@use "./dark";
+@use "./element";
+@use "./transition.scss";
+@use "./stagger-animation.scss";
+
+::view-transition-new(root),
+::view-transition-old(root) {
+  animation: none;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 9999 !important;
+  pointer-events: none !important;
+}
+
+.card-title {
+  padding-left: 10px;
+  position: relative;
+  margin-bottom: 18px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 5px;
+    height: 65%;
+    border-radius: 2px;
+    transform: translateY(-50%);
+    background-color: var(--el-color-primary);
+  }
+}
+
+// 表单提示文字
+.form-item-help {
+  height: 25px;
+  line-height: 25px;
+
+  p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 12.5px;
+    line-height: 17px;
+    margin-top: 2px;
+  }
+}
+
+.dialog-alert-tip {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+/** ================== 注意以下两处样式仅适配一下之前没有封装组件的写法 ================== */
+.dialog-v1 {
+  @mixin dialog-content-border() {
+    @apply border-#eaeaea dark:border-[var(--el-border-color)];
+    border-style: solid;
+    border-bottom-width: 1px;
+  }
+
+  .el-dialog__header {
+    @include dialog-content-border();
+
+    .el-dialog__title {
+      font-size: 15px;
+    }
+  }
+
+  .el-dialog__body {
+    @include dialog-content-border();
+  }
+}
+
+.table-v1 {
+  .current-row .el-table__cell {
+    @apply dark:bg-[var(--el-border-color-dark)]!;
+  }
+}
+/** ================== 注意以上两处样式仅适配一下之前没有封装组件的写法 ================== */

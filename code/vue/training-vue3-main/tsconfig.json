@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "noLib": false,
+
+    /* Bundler mode */
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+
+    /* Linting */
+    "strict": true,
+    /* 未使用变量报错 */
+    "noUnusedLocals": true,
+    /* 未使用参数报错 */
+    "noUnusedParameters": true,
+    /* switch语句 case 之间缺少 break 或 return 语句，编译器报错 */
+    "noFallthroughCasesInSwitch": true,
+
+    /* 自定义配置 */
+    // 解析非相对模块的基地址，默认是当前目录
+    "baseUrl": ".",
+    // 路径映射，相对于baseUrl
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    // 允许默认导入
+    "allowSyntheticDefaultImports": true,
+    "types": ["vite/client", "unplugin-icons/types/vue", "element-plus/global"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "vite.config.ts",
+    "element-plus/global",
+    // TODO：报错Parsing error: ESLint was configured to run on `<tsconfigRootDir>/src\views\redirect\index.vue` using `parserOptions.project`: <tsconfigRootDir>/tsconfig.node.json
+    "commitlint.config.cjs"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.js"]
+  // 项目引用，类似import，允许用户为项目的不同部分使用不同的 TypeScript 配置
+  // "references": [{ "path": "./tsconfig.node.json" }]
+}

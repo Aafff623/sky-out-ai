@@ -1,0 +1,24 @@
+/* 这里修改我们自定义类名的暗夜模式 */
+html.dark {
+  .tags-container .tags-item {
+    border: 1px solid var(--el-border-color-light);
+  }
+
+  // 侧边栏容器
+  .sidebar-container {
+    border-right: none;
+
+    .el-menu-item:hover {
+      &:not(.is-active) {
+        background-color: #000;
+      }
+    }
+  }
+
+  // 暗黑模式下表单项底部tip
+  .form-item-help {
+    p {
+      color: var(--darkColor);
+    }
+  }
+}

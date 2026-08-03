@@ -1,0 +1,70 @@
+// 卡片
+.el-card {
+  --el-card-padding: 30px !important;
+
+  .el-button {
+    // height: 35px;
+    border-radius: 2px;
+    font-size: 12.5px;
+    // padding: 8px 12px;
+  }
+}
+
+.el-message-box {
+  --el-messagebox-padding-primary: 20px !important;
+
+  .el-button {
+    border-radius: 2px;
+    padding: 8px 20px;
+  }
+}
+
+.el-tabs {
+  .el-tabs__item.is-active {
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+}
+
+// dialog穿透(仅限dialog用作表单时的样式)
+.el-dialog {
+  .el-button {
+    padding: 8px 20px;
+    border-radius: 2px;
+  }
+
+  .el-form {
+    padding-right: 50px;
+
+    .el-form-item__content:has(.form-item-help) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .el-dialog__header {
+    border-bottom: 1px solid rgb(234, 234, 234);
+
+    .el-dialog__title {
+      font-size: 15px;
+    }
+  }
+
+  .el-dialog__body {
+    padding: 20px 0;
+    border-bottom: 1px solid rgb(234, 234, 234);
+  }
+
+  .el-alert {
+    padding: 8px 30px 8px 16px;
+  }
+
+  .el-collapse {
+    .el-collapse-item:last-child {
+      .el-collapse-item__wrap,
+      .el-collapse-item__header {
+        border-bottom: none;
+      }
+    }
+  }
+}

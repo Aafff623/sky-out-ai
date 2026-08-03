@@ -1,0 +1,132 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-color: currentcolor;
+  border-style: solid;
+  border-width: 0;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin scroll-bar($width: 10px) {
+  /*定义滚动条外层轨道的样式*/
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    // background-color: rgba(255,255,255,0);
+  }
+
+  /*定义滚动条整体的样式*/
+  &::-webkit-scrollbar {
+    width: $width;
+    // height: 100px;
+    background-color: rgba(255, 255, 255, 0);
+  }
+
+  /*滚动条里面可以拖动的那个*/
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes global-fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  line-height: 1.5;
+  tab-size: 4;
+  text-size-adjust: 100%;
+  // 限制最小12px，最大20px
+  // font-size: clamp(12px, calc(100vw / 37.5), 20px); 
+}
+
+
+// 定义媒体查询Mixin
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $breakpoint == tablet {
+    @media (min-width: 769px) and (max-width: 1024px) { @content; }
+  }
+}
+ 
+// 使用示例
+// .sidebar {
+//   width: 30%;
+//   @include responsive(mobile) { width: 100%; }
+// }
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: "JetBrains Mono", HYZhengYuan, "Helvetica Neue", Helvetica,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
+    sans-serif;
+  line-height: inherit;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  animation: global-fadeIn 1s ease-in-out 1; // 只播放一次
+}
+
+// 所有基于div元素产生的滚动条样式
+div {
+  @include scroll-bar(6px);
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+img,
+svg {
+  display: inline-block;
+}
+
+svg {
+  vertical-align: -0.15em; //因icon大小被设置为和字体大小一致，而span等标签的下边缘会和字体的基线对齐，故需设置一个往下的偏移比例，来纠正视觉上的未对齐效果
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a,
+a:focus,
+a:hover {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:focus,
+a:active,
+div:focus {
+  outline: none;
+}

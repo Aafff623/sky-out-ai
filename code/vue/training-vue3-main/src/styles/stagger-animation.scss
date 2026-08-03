@@ -1,0 +1,53 @@
+.stagger-item {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-delay: var(--stagger-delay, 0);
+  animation-duration: var(--stagger-duration, 0.6s);
+
+  // 淡入动画
+  &.stagger-fade {
+    animation-name: staggerFade;
+  }
+
+  // 滑动动画
+  &.stagger-slide {
+    animation-name: staggerSlide;
+  }
+
+  // 缩放动画
+  &.stagger-scale {
+    animation-name: staggerScale;
+  }
+}
+
+@keyframes staggerFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes staggerSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes staggerScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
