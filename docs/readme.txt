@@ -1,6 +1,6 @@
 前端：node.js >= 18 本人使用的是20
 后端：jdk17，其他内容都使用虚拟机里面的，MySQL和redis和minio都已经配置好了
-自己再看一下readme_img的图片进行操作
+自己再看一下 assets/images/deploy/ 的图片进行操作（原 docs/readme_img/）
 
 training-web 		后端服务器项目 --idea打开
 

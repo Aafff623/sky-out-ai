@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>README Preview · 锦食坊</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown-light.min.css"
+    />
+    <link rel="stylesheet" href="./preview-readme.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+  </head>
+  <body>
+    <header class="toolbar">
+      <div class="brand">锦食坊 · README Preview</div>
+      <div class="actions">
+        <span id="status" class="status">准备加载…</span>
+        <button type="button" id="reload">重新加载</button>
+      </div>
+    </header>
+    <main class="markdown-body" id="content">加载中…</main>
+    <footer class="footer">
+      用 <code>python -m http.server 8091</code> 打开本页 ·
+      配图见 <code>assets/images/readme/</code> · 治理见
+      <code>CONTEXT.md</code>
+    </footer>
+    <script>
+      window.__PREVIEW_README__ = {
+        title: "锦食坊 · sky-ai",
+        readmePath: "./README.md",
+        portHint: 8091,
+        fileProtocolTip:
+          "请使用 HTTP 打开（仓库根执行 python -m http.server 8091），不要用 file://",
+      };
+    </script>
+    <script src="./preview-readme.js"></script>
+  </body>
+</html>

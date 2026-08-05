@@ -1,0 +1,89 @@
+:root {
+  --ink: #1a1a1a;
+  --mute: #6b6b6b;
+  --paper: #f7f5f2;
+  --brand: #d81e06;
+  --line: #e6e2dc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(247, 245, 242, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status {
+  color: var(--mute);
+  font-size: 0.875rem;
+}
+
+button {
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+button:hover {
+  filter: brightness(0.95);
+}
+
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 1.5rem auto 3rem;
+  padding: 2rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.footer {
+  text-align: center;
+  color: var(--mute);
+  font-size: 0.85rem;
+  padding: 0 1rem 2rem;
+}
+
+.footer code {
+  font-size: 0.8rem;
+}
+
+.error {
+  color: #a40000;
+  white-space: pre-wrap;
+}

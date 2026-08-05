@@ -28,7 +28,26 @@ Thumbs.db
 
 # 备份压缩包（体积大，不入库）
 backup/
+assets/backup/
+
+# 本地 Issue / 草稿（project-init）
+.scratch/
 
 # 敏感信息（含明文凭据，不入库）
 docs/虚拟机各个镜像账号密码及下载地址.txt
 code/web/training-web/training-server/src/main/resources/application-dev.yml
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+secrets/
+credentials/
+**/chrome-cache/
+# 阿里云 / 百炼控制台导出的密钥表
+*AccessKey*.csv
+*access-key*.csv
+*-apiKey-*.csv
+*apiKey*.csv
+*业务空间*apiKey*.csv
+credentials*.csv
