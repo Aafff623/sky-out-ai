@@ -131,7 +131,8 @@
 											text="选择规格"
 											size="mini"
 											shape="circle"
-											color="#ca4545" />
+											color="#ca4545"
+											@click="handleDishFlavors(item)" />
 
 										<up-badge
 											absolute
@@ -272,7 +273,8 @@
 										text="选择规格"
 										size="mini"
 										shape="circle"
-										color="#ca4545" />
+										color="#ca4545"
+										@click="handleDishFlavors(dish)" />
 
 									<up-badge
 										absolute
