@@ -132,10 +132,10 @@ MySQL `cq_take_out`（18 表）· MongoDB `training-comment`（评论体系，`M
 
 ## 测试
 
-- **后端**：`src/test` 仅 3 个集成测试（`EmbeddingTest` / `MinioTest` / `testMongoDB`），均 `@SpringBootTest` 且依赖外部中间件与阿里云（大部分已注释），本地运行需先起好依赖；无独立单元测试套件。
+- **后端**：`src/test` 分四层——`base/`（基类，`BaseIntegrationTest` 提供 MockMvc + token 获取 + 断言工具）、`integration/`（42 个接口集成测试，真实中间件，`@ActiveProfiles("local")`）、`ai/`（5 个 AI 接口测试，真实调百炼）、`mock/`（18 个边界测试，JWT 拦截 + 参数校验）。另有 3 个历史集成测试（`EmbeddingTest` / `MinioTest` / `testMongoDB`，大部分已注释）。运行：`mvn test -pl training-server -am`，需先起本机中间件。
 - **商家端**：无单元测试脚本；质量门禁为 `npm run build:prod`（含 vue-tsc 类型检查）+ lint 三件套 + husky/lint-staged 提交钩子。
 - **小程序**：无测试脚本；用 `npm run type-check`（vue-tsc --noEmit）做静态校验，真机 / 微信开发者工具手动验证。
-- 验证改动时：后端以能编译启动 + 对应接口手工联调为准；前端以 type-check / lint / 构建通过为准。
+- 验证改动时：后端跑 `mvn test`；前端以 type-check / lint / 构建通过为准。
 
 ## 任务流门禁（摘要）
 
