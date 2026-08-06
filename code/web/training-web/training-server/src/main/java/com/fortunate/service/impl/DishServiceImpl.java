@@ -133,6 +133,9 @@ public class DishServiceImpl implements DishService {
     public DishVO getByIdWithFlavor(Long id) {
         // 根据菜品id查询菜品数据
         Dish dish = dishMapper.getDishById(id);
+        if (dish == null) {
+            return null;
+        }
 
         // 查询该菜品所属分类名称
         String categoryName = categoryMapper.getCategoryNameById(dish.getCategoryId());

@@ -12,6 +12,7 @@
 			<if test="businessHours != null">business_hours = #{businessHours},</if>
 			<if test="contactPhone != null">contact_phone = #{contactPhone},</if>
 			<if test="status != null">status = #{status},</if>
+			id = #{id}
 		</set>
 		WHERE id = #{id}
 	</update>

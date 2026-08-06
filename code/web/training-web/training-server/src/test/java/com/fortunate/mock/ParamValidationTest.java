@@ -106,7 +106,7 @@ class ParamValidationTest extends BaseIntegrationTest {
     }
 
     @Test
-    @DisplayName("GET /store/dish - 不存在 id 时 Service 层 NPE（已知 bug）")
+    @DisplayName("GET /store/dish - 不存在 id 返回 200 但 data 为 null")
     void dish_notFound() throws Exception {
         MvcResult result = mockMvc.perform(get("/store/dish")
                         .param("id", "999999")
@@ -114,8 +114,9 @@ class ParamValidationTest extends BaseIntegrationTest {
                 .andExpect(status().isOk())
                 .andReturn();
         JsonNode node = parseResult(result);
-        // 当前代码对不存在 id 会 NPE（dish.getCategoryId()），返回 code=0
-        // 这是已知 bug，测试记录实际行为
-        assertError(node);
+        assertSuccess(node);
+        org.junit.jupiter.api.Assertions.assertTrue(
+                node.path("data").isNull() || node.path("data").isEmpty(),
+                "Expected null or empty data for non-existent dish");
     }
 }
