@@ -63,6 +63,31 @@
 | 边界 | `mock/*Test`（2 个，18 用例） | `JwtInterceptorTest`（store/client 双侧无 token、错 token → 401）、`ParamValidationTest`（缺参 / 非法参数） | local 中间件 |
 | 历史 | 根包 `EmbeddingTest` / `MinioTest` / `testMongoDB` | 早期集成测试，大部分已注释 | — |
 
+**接口覆盖矩阵**（按测试类，改某接口时按此找对应测试类同步更新）：
+
+| 测试类 | 业务域 | 用例 | 覆盖接口 |
+|---|---|---|---|
+| `EmployeeApiTest` | 员工 | 6 | login（正 / 错密码）· logout · me（带 / 无 token）· page |
+| `DishApiTest` | 菜品 | 4 | page（全量 / 按名）· 详情 · status 起停售 |
+| `CategoryApiTest` | 分类 | 2 | page · list |
+| `SetmealApiTest` | 套餐 | 2 | page · 详情 |
+| `OrderApiTest` | 订单 | 2 | conditionSearch · details |
+| `WorkspaceAndShopApiTest` | 工作台 + 店铺 | 7 | businessData · overview（订单/菜品/套餐）· shop status（切换 / 恢复）· shopInfo |
+| `ReportApiTest` | 报表 | 4 | turnover · user · orders · top10 |
+| `CommentApiTest` | 评论 | 2 | page · 详情 |
+| `CustomerServiceApiTest` | 客服 | 2 | sessions/active · sessions/staff |
+| `KnowledgeBaseApiTest` | 知识库 | 1 | page |
+| `ClientPublicApiTest` | 用户端公开查询 | 7 | category/list · dish（list/{id}/recommend）· setmeal/list · shop(status)/shopInfo |
+| `SensitiveApiTest` | 敏感词 | 2 | `/sensitive`（无 store 前缀） |
+| `HealthAndUploadApiTest` | 健康检查 | 1 | `/`（上传依赖 MinIO，未测） |
+| `AiChatApiTest` | AI 客服 | 1 | ai-assistant/chat（SSE） |
+| `AiRecommendApiTest` | AI 推荐 | 2 | ai-assistant/recommend |
+| `AiCommentExpandApiTest` | AI 扩写 | 2 | ai-comment/expand |
+| `JwtInterceptorTest` | JWT 边界 | 10 | store / client 双侧无 token、错 token → 401 |
+| `ParamValidationTest` | 参数校验 | 8 | 缺参 / 空 body / 格式错 |
+
+**认证口径**（易混点）：用户端**公开查询**接口（分类 / 菜品列表 / 推荐 / 套餐 / 店铺状态，即 `ClientPublicApiTest` 覆盖集）免 `authentication`；而购物车 / 订单 / 地址等**受保护** `/client/**` 仍需 `authentication` 头——它们的 401 边界由 `JwtInterceptorTest` 覆盖，不在 `ClientPublicApiTest` 内。
+
 **运行**：`mvn test -pl training-server -am`（无 `mvnw`，需系统 Maven）。排除 AI（省百炼配额 / 提速）：`mvn test -pl training-server -am -Dtest='!com.fortunate.ai.*' -Dsurefire.failIfNoSpecifiedTests=false`。
 
 **测试配置**：`test/resources/application-test.yml` 仅设 `spring.profiles.active=local` + 调低日志级别；实际中间件连接走 `application-local.yml`。
