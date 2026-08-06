@@ -1,0 +1,46 @@
+# 本机原生中间件（MySQL80 + Scoop Redis/Mongo/MinIO），无 SSH 隧道
+# 启动: --spring.profiles.active=local
+# 中间件: powershell -File deploy\local\up-native.ps1
+spring:
+  autoconfigure:
+    exclude:
+      # Windows 普通 Redis 无 RediSearch；向量库走 InMemoryEmbeddingStore
+      - dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreAutoConfiguration
+
+training:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: 127.0.0.1
+    port: 3306
+    database: cq_take_out
+    username: root
+    # 本机 MySQL；可用环境变量覆盖
+    password: ${TRAINING_DATASOURCE_PASSWORD:123456}
+  mongodb:
+    host: 127.0.0.1
+    port: 27017
+    database: training-comment
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+    embedding-prefix: "training-embedding:"
+  alioss:
+    access-key-id: ${ALIBABA_CLOUD_ACCESS_KEY_ID}
+    access-key-secret: ${ALIBABA_CLOUD_ACCESS_KEY_SECRET}
+  aliyun:
+    scenes: terrorism
+  alibailian:
+    chat-model-name: ${ALIBABA_CLOUD_BAILIAN_CHAT_MODEL:qwen3.7-plus}
+    embedding-model-name: ${ALIBABA_CLOUD_BAILIAN_EMBED_MODEL:text-embedding-v4}
+    base-url: ${ALIBABA_CLOUD_BAILIAN_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+    key: ${ALIBABA_CLOUD_BAILIAN_ACCESS_KEY}
+  minio:
+    endpoint: http://127.0.0.1:9005
+    accessKey: minioadmin
+    secretKey: minioadmin
+    bucket-name: training-take-out
+  wechat:
+    appid: ${Wechat_APP_ID}
+    secret: ${Wechat_SECRET}

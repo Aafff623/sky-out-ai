@@ -1,0 +1,119 @@
+server:
+  port: 8848
+spring:
+  application:
+    name: training-server
+  banner:
+    location: classpath:banner.txt
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      initial-size: 5
+      max-active: 10
+    driver-class-name: ${training.datasource.driver-class-name}
+    url: jdbc:mysql://${training.datasource.host}:${training.datasource.port}/${training.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${training.datasource.username}
+    password: ${training.datasource.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000 # 缓存过期时间1小时（单位毫秒）
+      key-prefix: CACHE_
+      use-key-prefix: true
+  data:
+    mongodb:
+      host: ${training.mongodb.host}
+      port: ${training.mongodb.port}
+      database: ${training.mongodb.database}
+    redis:
+      host: ${training.redis.host}
+      port: ${training.redis.port}
+#      password: ${training.redis.password}
+      database: ${training.redis.database}
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.fortunate.entity
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰命名规则
+
+logging:
+  level:
+    dev.langchain4j: debug
+    com:
+      fortunate:
+        mapper: debug
+        service: info
+        controller: info
+
+training:
+  jwt:
+    # 后台管理端
+    store-secret-key: training
+    store-ttl: 86400000
+    store-token-name: token
+    # 客户端
+    client-secret-key: training
+    client-ttl: 86400000
+    client-token-name: authentication
+  alioss:
+    access-key-id: ${training.alioss.access-key-id}
+    access-key-secret: ${training.alioss.access-key-secret}
+  aliyun:
+    accessKeyId: ${training.alioss.access-key-id}
+    secret: ${training.alioss.access-key-secret}
+    scenes: ${training.aliyun.scenes}
+  wechat:
+    appid: ${training.wechat.appid} #wxc079e0129b427ea2
+    secret: ${training.wechat.secret}
+  baidu:
+    baidu-map-api-key: ${training.baidu.baidu-map-api-key}
+
+langchain4j:
+  open-ai:
+    streaming-chat-model:
+      base-url: ${training.alibailian.base-url}
+      api-key: ${training.alibailian.key}
+      model-name: ${training.alibailian.chat-model-name}
+      log-requests: true
+      log-responses: true
+    chat-model:
+      base-url: ${training.alibailian.base-url}
+      api-key: ${training.alibailian.key}
+      model-name: ${training.alibailian.chat-model-name}
+      log-requests: true
+      log-responses: true
+    embedding-model:
+      base-url: ${training.alibailian.base-url}
+      api-key: ${training.alibailian.key}
+      model-name: ${training.alibailian.embedding-model-name}
+      log-requests: true
+      log-responses: true
+      max-segments-per-batch: 10
+  community:
+    dashscope:
+      streaming-chat-model:
+        model-name: ${training.alibailian.model-name}
+        api-key: ${training.alibailian.key}
+    redis:
+      host: ${training.redis.host}
+      port: ${training.redis.port}
+#      password: ${training.redis.password}
+      prefix: ${training.redis.embedding-prefix}
+
+minio:
+  endpoint: ${training.minio.endpoint}
+  access-key: ${training.minio.accessKey}
+  secret-key: ${training.minio.secretKey}
+  bucket-name: ${training.minio.bucket-name}

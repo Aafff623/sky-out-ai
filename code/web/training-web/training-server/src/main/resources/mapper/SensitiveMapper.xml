@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fortunate.mapper.SensitiveMapper">
+    <sql id="initSql">
+        select id, `sensitives`, `created_time`, `updated_time`
+        from cq_take_out.`sensitive`
+    </sql>
+    <update id="update">
+        update cq_take_out.`sensitive`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sensitives != null">
+                `sensitives` = #{sensitives},
+            </if>
+            <if test="updatedTime != null">
+                `updated_time` = #{updatedTime},
+            </if>
+        </trim>
+        where
+        `id` = #{id}
+    </update>
+    <delete id="batchDeleteByIds">
+        delete from cq_take_out.`sensitive` where `id` in
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="pageQuery" resultType="com.fortunate.entity.Sensitive">
+        <include refid="initSql"/>
+        <where>
+            <if test="sensitive != null">
+                and `sensitives` like concat('%',#{sensitive},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>WebSocket</title>
+</head>
+<body>
+	<input type="text" id="text" />
+	<button onclick="openWebSocket()">建立连接</button>
+	<button onclick="send()">发送消息</button>
+	<button onclick="closeWebSocket()">关闭连接</button>
+	<div id="message"></div>
+	
+	<script type="text/javascript">
+		let socket = null;
+		// 生成随机连接客户端id
+		const clientId = Math.random().toString(36).substr(2);
+		
+		// 建立连接
+		function openWebSocket() {
+			// 判断当前浏览器是否支持WebSocket
+			if (!("WebSocket" in window)) {
+				return alert("当前浏览器不支持WebSocket");
+			}
+			setMessageInnerHTML("正在尝试建立WebSocket连接...");
+			// 建立连接
+			socket = new WebSocket("ws://localhost:8080/ws/" + clientId);
+			
+			// 连接发生错误时触发
+			socket.onerror = () => setMessageInnerHTML("WebSocket连接发生错误");
+			
+			// 连接成功建立时触发
+			socket.onopen = () => setMessageInnerHTML("WebSocket连接成功");
+			
+			// 接收到消息时触发
+			socket.onmessage = (event) => setMessageInnerHTML(event.data);
+			
+			// 连接关闭时触发
+			socket.onclose = () => setMessageInnerHTML("WebSocket连接已关闭");
+		}
+		
+		// 浏览器窗口关闭时关闭连接
+		window.onbeforeunload = () => {
+			if (socket) socket.close();
+		}
+		
+		// 设置消息内容
+		function setMessageInnerHTML(message) {
+			document.getElementById("message").innerHTML += message + "<br>";
+			
+			// regoin 模拟来单提醒使用以下代码
+			// try {
+			// 	const data = JSON.parse(message);
+			// 	let html = "来单提醒==> " + '<span style="color: red">'+ data.content +'</span>';
+			// 	document.getElementById("message").innerHTML += html + "<br>";
+			// 	console.log(JSON.parse(message));
+			// } catch (e) {
+			// 	document.getElementById("message").innerHTML += message + "<br>";
+			// }
+			// endregoin
+		}
+		
+		// 发送消息
+		function send() {
+			if (!(socket && socket.readyState === WebSocket.OPEN)) {
+				return setMessageInnerHTML("WebSocket连接未打开");
+			}
+			
+			let message = document.getElementById("text").value;
+			socket.send(message);
+		}
+		
+		// 关闭连接
+		function closeWebSocket() {
+			if (socket) socket.close();
+		}
+	</script>
+</body>
+</html>

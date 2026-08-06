@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fortunate.mapper.OrderMapper">
+	
+	<!-- 插入订单数据 -->
+	<insert id="insert" parameterType="Orders" useGeneratedKeys="true" keyProperty="id">
+		insert into `orders` (`number`, `status`, `user_id`, `address_book_id`, `order_time`, `checkout_time`, `pay_method`,
+		                      `pay_status`,
+		                      `amount`, `remark`, `phone`, `address`, `consignee`, `estimated_delivery_time`,
+		                      `delivery_status`,
+		                      `pack_amount`, `tableware_number`, `tableware_status`, `order_type`, `pickup_number`)
+		values (#{number}, #{status}, #{userId}, #{addressBookId}, #{orderTime}, #{checkoutTime}, #{payMethod},
+		        #{payStatus}, #{amount}, #{remark}, #{phone}, #{address}, #{consignee}, #{estimatedDeliveryTime},
+		        #{deliveryStatus}, #{packAmount}, #{tablewareNumber}, #{tablewareStatus}, #{orderType}, #{pickupNumber})
+	</insert>
+	
+	<!-- 分页条件查询并按下单时间排序 -->
+	<select id="pageQuery" resultType="Orders">
+		select * from `orders`
+		<where>
+			<if test="number != null and number!=''">
+				and `number` like concat('%',#{number},'%')
+			</if>
+			<if test="phone != null and phone!=''">
+				and `phone` like concat('%',#{phone},'%')
+			</if>
+			<if test="userId != null">
+				and `user_id` = #{userId}
+			</if>
+			<if test="status != null">
+				and `status` = #{status}
+			</if>
+			<if test="beginTime != null">
+				and `order_time` &gt;= #{beginTime}
+			</if>
+			<if test="endTime != null">
+				and `order_time` &lt;= #{endTime}
+			</if>
+		</where>
+		order by `order_time` desc
+	</select>
+	
+	<!-- 更新订单数据 -->
+	<update id="update" parameterType="Orders">
+		update `orders`
+		<set>
+			<if test="cancelReason != null and cancelReason!='' ">
+				`cancel_reason`=#{cancelReason},
+			</if>
+			<if test="rejectionReason != null and rejectionReason!='' ">
+				`rejection_reason`=#{rejectionReason},
+			</if>
+			<if test="cancelTime != null">
+				`cancel_time`=#{cancelTime},
+			</if>
+			<if test="payStatus != null">
+				`pay_status`=#{payStatus},
+			</if>
+			<if test="payMethod != null">
+				`pay_method`=#{payMethod},
+			</if>
+			<if test="checkoutTime != null">
+				`checkout_time`=#{checkoutTime},
+			</if>
+			<if test="status != null">
+				`status` = #{status},
+			</if>
+			<if test="deliveryTime != null">
+				`delivery_time` = #{deliveryTime}
+			</if>
+			<if test="isComment != null">
+				`is_comment` = #{isComment}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- 根据动态条件统计订单数量 -->
+	<select id="countByMap" resultType="java.lang.Integer">
+		select count(`id`) from `orders`
+		<where>
+			<if test="begin != null">
+				and `order_time` &gt;= #{begin}
+			</if>
+			<if test="end != null">
+				and `order_time` &lt;= #{end}
+			</if>
+			<if test="status != null">
+				and `status` = #{status}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据动态条件统计营业额数据 -->
+	<select id="sumByMap" resultType="java.lang.Double">
+		select sum(`amount`) from `orders`
+		<where>
+			<if test="begin != null">
+				and `order_time` &gt;= #{begin}
+			</if>
+			<if test="end != null">
+				and `order_time` &lt;= #{end}
+			</if>
+			<if test="status != null">
+				and `status` = #{status}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据日期范围获取订单列表 -->
+	<select id="findOrdersByMap" resultType="com.fortunate.entity.Orders">
+		select * from `orders`
+		<where>
+			<if test="begin != null">
+				and `order_time` &gt;= #{begin}
+			</if>
+			<if test="end != null">
+				and `order_time` &lt;= #{end}
+			</if>
+			<if test="status != null">
+				and `status` = #{status}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 统计指定时间区间内的销量排名前10 -->
+	<select id="getSalesTop10" resultType="com.fortunate.dto.GoodsSalesDTO">
+		select od.name, sum(od.number) as `number`
+		from `orders` o
+		join `order_detail` od
+		on od.order_id = o.id
+		where o.status = 5
+		<if test="begin != null">
+			and o.order_time &gt;= #{begin}
+		</if>
+		<if test="end != null">
+			and o.order_time &lt;= #{end}
+		</if>
+		group by od.name
+		order by `number` desc
+		limit 0, 10
+	</select>
+	
+	<!-- 批量更新订单状态 -->
+	<update id="updateOrdersStatus">
+		update `orders`
+		<set>
+			<if test="order.cancelReason != null and order.cancelReason!='' ">
+				`cancel_reason`=#{order.cancelReason},
+			</if>
+			<if test="order.cancelTime != null">
+				`cancel_time`=#{order.cancelTime},
+			</if>
+			<if test="order.status != null">
+				`status` = #{order.status}
+			</if>
+		</set>
+		where `id` in
+		<foreach collection="orderList" item="o" open="(" separator="," close=")">
+			#{o.id}
+		</foreach>
+	</update>
+	<update id="updateByNumber" parameterType="com.fortunate.dto.OrdersPaymentDTO">
+		update `orders`
+		<set>
+			<if test="payMethod != null">
+				`pay_method`= #{payMethod},
+			</if>
+		</set>
+		where `number` = #{orderNumber}
+	</update>
+
+</mapper>

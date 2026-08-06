@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fortunate.mapper.DishMapper">
+	
+	<!-- 新增菜品 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		insert into `dish` (`name`, `category_id`, `price`, `image`, `description`, `status`, `create_time`, `update_time`,
+		                    `create_user`, `update_user`)
+		values (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{status}, #{createTime}, #{updateTime},
+		        #{createUser},
+		        #{updateUser})
+	</insert>
+	
+	<!-- 分页根据条件查询菜品 -->
+	<select id="pageQuery" resultType="com.fortunate.vo.DishVO">
+		select
+		d.*,
+		c.name categoryName
+		from `dish` d
+		left outer join `category` c on d.category_id = c.id
+		<where>
+			<if test="name != null and name!= ''">
+				and d.name like concat('%', #{name}, '%')
+			</if>
+			<if test="categoryId != null">
+				and d.category_id = #{categoryId}
+			</if>
+			<if test="status != null">
+				and d.status = #{status}
+			</if>
+		</where>
+		order by d.create_time desc
+	</select>
+	
+	<!-- 根据id集合查询菜品 -->
+	<select id="getDishByIds" resultType="com.fortunate.entity.Dish">
+		select *
+		from `dish`
+		where `id` in
+		<foreach collection="dishIds" item="dishId" open="(" separator="," close=")">
+			#{dishId}
+		</foreach>
+	</select>
+	
+	<!-- 根据id集合删除菜品 -->
+	<delete id="deleteByIds">
+		delete
+		from `dish`
+		where `id` in
+		<foreach collection="dishIds" item="dishId" open="(" separator="," close=")">
+			#{dishId}
+		</foreach>
+	</delete>
+	
+	<!-- 根据id更新菜品数据 -->
+	<update id="update" parameterType="Dish">
+		update `dish`
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="categoryId != null">category_id = #{categoryId},</if>
+			<if test="price != null">price = #{price},</if>
+			<if test="image != null">image = #{image},</if>
+			<if test="description != null">description = #{description},</if>
+			<if test="status != null">status = #{status},</if>
+		    <if test="hotSpot != null">hot_spot = #{hotSpot},</if>
+			<if test="updateTime != null">update_time = #{updateTime},</if>
+			<if test="updateUser != null">update_user = #{updateUser},</if>
+		</set>
+		where `id` = #{id}
+	</update>
+
+	<update id="updateHotDish">
+		update `dish`
+		set `hot_spot` = `hot_spot` + 1
+		where `id` = #{dishId}
+	</update>
+
+	<!-- 动态条件查询菜品 -->
+	<select id="list" resultType="Dish" parameterType="Dish">
+		select * from `dish`
+		<where>
+			<if test="name != null and name!= ''">
+				and name like concat('%', #{name}, '%')
+			</if>
+			<if test="categoryId != null">
+				and category_id = #{categoryId}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+		</where>
+		order by `create_time` desc
+	</select>
+</mapper>

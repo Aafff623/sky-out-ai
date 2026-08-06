@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fortunate.mapper.SetmealMapper">
+	
+	<!-- 套餐以及套餐包含的菜品结果map -->
+	<resultMap id="setmealAndDishMap" type="com.fortunate.vo.SetmealVO" autoMapping="true">
+		<!-- 套餐id -->
+		<result property="id" column="id" />
+		<result property="categoryName" column="categoryName" />
+		<!-- 套餐和菜品的关联关系 -->
+		<collection property="setmealDishes" ofType="SetmealDish">
+			<!-- sermeal_dish表中的id -->
+			<result property="id" column="sd_id" />
+			<result property="setmealId" column="setmeal_id" />
+			<result property="dishId" column="dish_id" />
+			<result property="name" column="sd_name" />
+			<result property="price" column="sd_price" />
+			<result property="copies" column="copies" />
+			<result property="image" column="sd_image" />
+		</collection>
+	</resultMap>
+	
+	<!-- 动态条件查询套餐 -->
+	<select id="list" parameterType="Setmeal" resultType="Setmeal">
+		select * from `setmeal`
+		<where>
+			<if test="name != null">
+				and `name` like concat('%',#{name},'%')
+			</if>
+			<if test="categoryId != null">
+				and `category_id` = #{categoryId}
+			</if>
+			<if test="status != null">
+				and `status` = #{status}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 新增套餐 -->
+	<insert id="insert" parameterType="Setmeal" useGeneratedKeys="true" keyProperty="id">
+		insert into `setmeal`
+		(`category_id`, `name`, `price`, `status`, `description`, `image`, `create_time`, `update_time`, `create_user`,
+		 `update_user`)
+		values (#{categoryId}, #{name}, #{price}, #{status}, #{description}, #{image}, #{createTime}, #{updateTime},
+		        #{createUser}, #{updateUser})
+	</insert>
+	
+	<!-- 分页查询套餐 -->
+	<select id="pageQuery" resultType="com.fortunate.vo.SetmealVO">
+		select s.*,
+		c.name categoryName
+		from `setmeal` s
+		left join `category` c
+		on s.category_id = c.id
+		<where>
+			<if test="name != null">
+				and s.`name` like concat('%',#{name},'%')
+			</if>
+			<if test="status != null">
+				and s.`status` = #{status}
+			</if>
+			<if test="categoryId != null">
+				and s.`category_id` = #{categoryId}
+			</if>
+		</where>
+		order by s.create_time desc
+	</select>
+	
+	<!-- 根据套餐id集合查询套餐列表 -->
+	<select id="getSetmealByIds" resultType="com.fortunate.entity.Setmeal">
+		select * from `setmeal` where `id` in
+		<foreach collection="setmealIds" item="setmealId" open="(" separator="," close=")">
+			#{setmealId}
+		</foreach>
+	</select>
+	
+	<!-- 根据套餐ids集合批量删除套餐 -->
+	<delete id="deleteBatchByIds">
+		delete from `setmeal` where `id` in
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<!-- 根据id查询套餐和套餐菜品关系 -->
+	<select id="getSetmealByIdWithDish" parameterType="long" resultMap="setmealAndDishMap">
+		select a.*,
+		       c.name  categoryName,
+		       b.id    sd_id,
+		       b.setmeal_id,
+		       b.dish_id,
+		       b.name  sd_name,
+		       b.price sd_price,
+		       b.copies,
+		       b.image sd_image
+		from `setmeal` a
+			     left join `setmeal_dish` b on a.id = b.setmeal_id
+			     left join `category` c on c.id = a.category_id
+		where a.id = #{id}
+	</select>
+	
+	<!-- 根据id更新套餐 -->
+	<update id="update" parameterType="Setmeal">
+		update `setmeal`
+		<set>
+			<if test="name != null">`name` = #{name},</if>
+			<if test="categoryId != null">`category_id` = #{categoryId},</if>
+			<if test="price != null">`price` = #{price},</if>
+			<if test="status != null">`status` = #{status},</if>
+			<if test="description != null">`description` = #{description},</if>
+			<if test="image != null">`image` = #{image},</if>
+		    <if test="hotSpot != null">hot_spot = #{hotSpot},</if>
+			<if test="updateTime != null">`update_time` = #{updateTime},</if>
+			<if test="updateUser != null">`update_user` = #{updateUser}</if>
+		</set>
+		where `id` = #{id}
+	</update>
+	
+	<!-- 批量更新套餐起售停售状态（原因：当一个菜品停售时，包含这个菜品的套餐也需要被停售） -->
+	<update id="batchUpdateStatus">
+		update `setmeal`
+		set `status` = #{status}
+		where `id` in
+		<foreach collection="setmealIds" item="setmealId" open="(" separator="," close=")">
+			#{setmealId}
+		</foreach>
+	</update>
+	<update id="updateHotSetmeal">
+        update `setmeal`
+        set `hot_spot` = `hot_spot` + 1
+        where `id` = #{setmealId}
+    </update>
+</mapper>

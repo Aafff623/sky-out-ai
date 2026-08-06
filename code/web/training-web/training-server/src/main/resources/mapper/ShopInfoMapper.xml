@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fortunate.mapper.ShopInfoMapper">
+	
+	<update id="update" parameterType="ShopInfo">
+		UPDATE `shop_info`
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="logo != null">logo = #{logo},</if>
+			<if test="address != null">address = #{address},</if>
+			<if test="businessHours != null">business_hours = #{businessHours},</if>
+			<if test="contactPhone != null">contact_phone = #{contactPhone},</if>
+			<if test="status != null">status = #{status},</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+</mapper>

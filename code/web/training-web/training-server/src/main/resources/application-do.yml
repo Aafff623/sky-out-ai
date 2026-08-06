@@ -1,0 +1,54 @@
+# 模式 A：本机经 SSH 隧道访问 DO 中间件（host 一律 127.0.0.1）
+# 启动: --spring.profiles.active=do
+# 隧道: .scratch/startup/local-ssh-tunnel.ps1
+spring:
+  autoconfigure:
+    exclude:
+      # 避免启动期调用 embedding 探测维度（未开通模型时 403）
+      - dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreAutoConfiguration
+
+langchain4j:
+  community:
+    redis:
+      # text-embedding-v4 默认维度；与 DoRedisEmbeddingStoreConfig 一致
+      dimension: 1024
+
+training:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: 127.0.0.1
+    # 本机常见占用 3306，隧道映射为 13306（见 local-ssh-tunnel.ps1）
+    port: 13306
+    database: cq_take_out
+    username: root
+    password: root
+  mongodb:
+    host: 127.0.0.1
+    port: 27017
+    database: training-comment
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+    embedding-prefix: "training-embedding:"
+  alioss:
+    access-key-id: ${ALIBABA_CLOUD_ACCESS_KEY_ID}
+    access-key-secret: ${ALIBABA_CLOUD_ACCESS_KEY_SECRET}
+  aliyun:
+    scenes: terrorism
+  alibailian:
+    # 与百炼「免费额度」已开启模型对齐；降级链后续可做：qwen3.7-plus → qwen3.7-flash → qwen-turbo
+    chat-model-name: ${ALIBABA_CLOUD_BAILIAN_CHAT_MODEL:qwen3.7-plus}
+    embedding-model-name: ${ALIBABA_CLOUD_BAILIAN_EMBED_MODEL:text-embedding-v4}
+    # 百炼「业务空间」CSV 的 openAiCompatible；未设则回落公共 DashScope
+    base-url: ${ALIBABA_CLOUD_BAILIAN_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+    key: ${ALIBABA_CLOUD_BAILIAN_ACCESS_KEY}
+  minio:
+    endpoint: http://127.0.0.1:9005
+    accessKey: minioadmin
+    secretKey: minioadmin
+    bucket-name: training-take-out
+  wechat:
+    appid: ${Wechat_APP_ID}
+    secret: ${Wechat_SECRET}

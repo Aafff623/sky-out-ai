@@ -1,0 +1,5 @@
+spring.profiles.active=local
+
+# 测试时不启动 WebSocket 定时任务等
+logging.level.com.fortunate=WARN
+logging.level.org.springframework=WARN

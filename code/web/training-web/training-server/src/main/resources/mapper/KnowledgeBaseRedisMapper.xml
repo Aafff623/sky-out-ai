@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fortunate.mapper.KnowledgeBaseRedisMapper">
+
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into `knowledge_base_redis` (`knowledge_base_id`, `redis_id`,`created_time`) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.knowledgeBaseId}, #{item.redisId},#{item.createdTime})
+        </foreach>
+    </insert>
+
+    <delete id="batchDeleteRedisIdByKnowledgeBaseIds" parameterType="java.util.List">
+        delete from `knowledge_base_redis` where knowledge_base_id in
+        <foreach collection="knowledgeBaseIds" item="id" open="(" close=")" separator=",">
+              #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectRedisIdByKnowledgeBaseId" resultType="java.lang.String" parameterType="java.lang.Integer">
+           select redis_id from `knowledge_base_redis` where knowledge_base_id = #{knowledgeBaseId}
+    </select>
+</mapper>
