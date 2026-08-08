@@ -13,7 +13,7 @@
 | `agents/` | workflow / deliver / archive / domain / issue-tracker / triage-labels / voice | Agent 任务流 |
 | `adr/` | 架构决策记录 | ADR-0000 起 |
 | `contexts/` | api / admin / weapp 分端 CONTEXT | 经根 `CONTEXT-MAP.md` 索引 |
-| `glossary/` · `knowledge/` | 术语库 / 可迁移知识 | 按需填充 |
+| `glossary/` · `knowledge/` | 术语库 / 可迁移知识（含 `wiki-page-map.md`、`project-init-notes.md`） | 按需填充；Wiki 正文不进主仓 |
 | `outputs/` | report / prd / handoff / commit-history | **有产物再建子目录** |
 
 > 菜品图与部署截图已迁至 `assets/images/dishes/`、`assets/images/deploy/`（见 `assets/README.md`）。
