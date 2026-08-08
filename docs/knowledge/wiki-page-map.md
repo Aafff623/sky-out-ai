@@ -1,8 +1,8 @@
 # Wiki 页图（锦食坊 / sky-out-ai）
 
 > 对照 [fork-Firefly Wiki](https://github.com/Aafff623/fork-Firefly/wiki/) 与全局 skill `wiki-post`。  
-> **正文草稿**在本地 `.scratch/wiki-draft/`（gitignore）；推送到 `*.wiki.git` 须用户明确「发布 / 推送 Wiki」。  
-> 远程 Wiki 需先在 GitHub 点一次 Create the first page（当前 `sky-out-ai.wiki.git` 可能尚不存在）。
+> **线上**：https://github.com/Aafff623/sky-out-ai/wiki （已推送 Home / Sidebar / P0–P2）  
+> 本地工作副本：仓库旁 `D:\OneDrive\Desktop\sky-ai.wiki`；草稿备份仍可在 `.scratch/wiki-draft/`。
 
 ## 受众
 

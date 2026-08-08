@@ -9,4 +9,4 @@
 - Phase B（README Polish）：**已完成**（结构 / 配图 / Showcase / 快速开始 / 测试节）；路线图改为作者·Agent 内部待办（非对外宣传板）
 - GitHub About：description + topics 已对齐 Firefly 句式（remote `sky-out-ai`）
 - Release `v1.0.0`：notes 草稿在 `.scratch/startup/release-v1.0.0-notes.md`；**待用户说「发布」**
-- Wiki 手册：页图见 [`wiki-page-map.md`](wiki-page-map.md)；正文草稿 `.scratch/wiki-draft/`；**待「推送 Wiki」且远程 Wiki 已初始化**
+- Wiki 手册：已推送 https://github.com/Aafff623/sky-out-ai/wiki ；页图 [`wiki-page-map.md`](wiki-page-map.md)；旁挂工作副本 `sky-ai.wiki`
