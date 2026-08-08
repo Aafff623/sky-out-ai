@@ -289,16 +289,18 @@ sky-ai/
 
 ## 路线图
 
-| 状态 | 事项 |
-| --- | --- |
-| ✅ | 三端源码与文档资产完整入库 |
-| ✅ | project-init Phase A（治理骨架 · CONTEXT 单一事实源） |
-| ✅ | AI 补充稿与代码实现对齐润色 |
-| ✅ | README Polish 结构 + 配图 Prompt 契约 |
-| ✅ | 说明图：banner（MiniMax 生成）+ features / architecture / tech-stack / workflow（脚本精确绘制） |
-| ✅ | Showcase 真机截图（小程序 3 张 + 商家端 3 张） |
-| ✅ | README 信息补全（三端一览 · 测试 · local 限制） |
-| ⬜ | 首个业务 theme 开发（待 Gate 审批后启动） |
+> **受众**：作者与 Agent 的内部里程碑 / 待办，不是给外部访客看的产品宣传板。进度以本表 + `docs/outputs/handoff/` 为准；对外叙事看上文功能与 Showcase。
+
+| 状态 | 事项 | 备注 |
+| --- | --- | --- |
+| ✅ | 三端可跑 + `local` 本机中间件 | `deploy/local`；profile `local` |
+| ✅ | project-init 治理骨架 | `CONTEXT` / `AGENTS` / `LANGUAGES` / ADR / outputs |
+| ✅ | AI 叙事与代码对齐 | `_conv/AI模块设计.md`；已知边界写进 CONTEXT |
+| ✅ | README / 配图 / Showcase 骨架 | 说明图 + 真机截图已落盘，后续只修漂移 |
+| ⬜ | 首个业务 theme | PRD Gate 批准前不写功能代码 |
+| ⬜ | `AI模块设计.md` 实测占位补齐 | 截图「待补充」、测试结果「待验证」 |
+| ⬜ | 演示债清理 | 客服页硬编码 `localhost`；`local` 向量重启需重 embed |
+| ⬜ | 后端工作区脏改动确认 | `code/web/training-web` 若有未提交修改，先判定再入库 |
 
 ---
 
