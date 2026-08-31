@@ -38,8 +38,8 @@ training:
     key: ${ALIBABA_CLOUD_BAILIAN_ACCESS_KEY}
   minio:
     endpoint: http://127.0.0.1:9005
-    accessKey: minioadmin
-    secretKey: minioadmin
+    accessKey: ${TRAINING_MINIO_ACCESS_KEY:minioadmin}
+    secretKey: ${TRAINING_MINIO_SECRET_KEY:minioadmin}
     bucket-name: training-take-out
   wechat:
     appid: ${Wechat_APP_ID}
