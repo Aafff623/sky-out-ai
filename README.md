@@ -201,9 +201,19 @@ npm run dev:mp-weixin
 | --- | --- | --- |
 | Clients | 用户点餐 / 商家运营 | `training-uniapp-master`（微信小程序）· `training-vue3-main`（Vue3 管理端） |
 | Access | JWT 双头认证、SSE 流式、WebSocket、RESTful | `authentication` / `token` 头 · `/ws/customer-service/**` |
-| Application | 外卖业务逻辑 + AI 编排 | `training-server`（32 个 REST Controller：`/client` · `/store` · `/upload` · `/sensitive`）· `LangChain4jConfiguration` |
-| Data | 关系数据 / 文档 / 缓存向量 / 对象存储 | MySQL 18 表 · MongoDB 评论文档 · Redis · MinIO |
+| Application | 外卖业务逻辑 + AI 编排 | `training-server`（32 个 REST Controller：`client` 16 · `store` 14 · `upload` / `health` 各 1）· `LangChain4jConfiguration` |
+| Data | 关系数据 / 文档 / 缓存向量 / 对象存储 | MySQL 18 表（传统 11 + AI 5 + 履约辅助 2）· MongoDB 评论文档 · Redis · MinIO |
 | External | 大模型与内容审核、微信登录 | 阿里云百炼 Qwen · Green · WeChat |
+
+### 关键机制
+
+**双头认证与双面 Controller**。`WebMvcConfiguration` 注册两个 JWT 拦截器：`JwtTokenStoreInterceptor` 读 `token` 头守护 `/store/**`，`JwtTokenClientInterceptor` 读 `authentication` 头守护 `/client/**`，各自维护登录与公开浏览白名单。Controller 同步按受众分区，同一资源（菜品、订单）在两侧各有入口，互不串权限。已知例外：`/store/customer-service/**` 当前临时排除在 JWT 校验之外（WebSocket 通道）。
+
+**SSE 事件协议与工具结果带外传输**。AI 客服将 `TokenStream` 包装为 Reactor `Flux` 输出三类事件：`DATA(1001)` 流式文本、`PARAM(1003)` 结构化数据、`STOP(1002)` 结束信号。Tools 执行时，菜品等结构化结果不经过模型文本，而是按 `requestId` 写入 `ToolResultHolder`，回答完成时随 `PARAM` 事件推送——前端文本渲染与推荐卡片渲染因此解耦。
+
+**推荐降级链**。`AiAssistantServiceImpl` 为每一步大模型调用配了回落：无偏好直接走传统规则（避免空提示白等）；有偏好时压缩候选（前 10 道菜、极简提示词）并以 12 秒超时包裹百炼调用；超时、解析失败、异常三种情况均回落到关键词 / 热度规则，推荐能力不因大模型不可用而中断。
+
+**向量库按 profile 切换**。`local` 为 `InMemoryEmbeddingStore`（重启即失，需在商家端重新 embed）；`do` 为 Redis Stack（RediSearch）。RAG 检索统一配置 `maxResults=2`、`minScore=0.6`。会话记忆由自研 `RedisChatMemoryStore` 持久化，窗口 20 条。
 
 ### 设计原则
 
@@ -272,7 +282,7 @@ sky-ai/
 ├── preview-readme.html · preview-readme.css · preview-readme.js
 ├── .cursor/rules/                 # Windows 路径 / Shell 纪律 / 输出格式 / commit-history
 ├── code/
-│   ├── web/training-web/          # 后端 Spring Boot（端口 8848）
+│   ├── web/training-web/          # 后端 Spring Boot（端口 8848；Maven 三模块 common / pojo / server）
 │   ├── vue/training-vue3-main/    # 商家管理端（端口 9527）
 │   └── uniapp/training-uniapp-master/  # 用户小程序（编译至微信开发者工具）
 ├── deploy/local/                  # 本机中间件脚本（up-native.ps1 / README）
