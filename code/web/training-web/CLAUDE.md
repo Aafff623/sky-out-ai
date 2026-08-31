@@ -35,7 +35,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 定时任务 `task/OrderTask`：每分钟取消超 15 分钟未付款订单；每天 1 点把派送超 24h 订单置为已完成。`WebSocketTask` 每 5 秒广播在线状态。
 
 ## 测试
-`src/test` 有 3 个集成测试（EmbeddingTest / MinioTest / testMongoDB），均 `@SpringBootTest` 且依赖虚拟机外部服务与阿里云（基本已注释），本地运行需先起好依赖。
+`src/test` 分四层：`base/`（`BaseIntegrationTest`，MockMvc + token 工具）、`integration/`（13 个接口集成测试，真实中间件）、`ai/`（3 个 AI 接口测试，真实调百炼）、`mock/`（2 个边界测试，JWT 拦截 + 参数校验）。另有 3 个历史集成测试留在根包（`EmbeddingTest` / `MinioTest` / `testMongoDB`，依赖外部服务与阿里云，基本已注释）。运行 `mvn test -pl training-server -am`，需先起本机中间件。
 
 ## 部署依赖（必填）
 - 虚拟机 `192.168.64.100`（MySQL/Redis/MongoDB/MinIO），账号密码见工作区 `docs/虚拟机各个镜像账号密码及下载地址.txt`。
