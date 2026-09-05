@@ -52,3 +52,15 @@ credentials/
 *apiKey*.csv
 *业务空间*apiKey*.csv
 credentials*.csv
+
+# CodeGraph / GitNexus 本地索引
+.codegraph/
+.gitnexus/
+
+# 本地工作区与临时文件
+temp/
+logs/
+
+# 含连接信息的本地 profile 配置（本地保留可跑，不入库；新人按需仿造）
+code/web/training-web/training-server/src/main/resources/application-local.yml
+code/web/training-web/training-server/src/main/resources/application-do.yml

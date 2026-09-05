@@ -83,16 +83,6 @@ Merchant Admin (Vue3) ───────JWT token─────────�
 
 本仓库是可运行的三端完整产品，不单独维护资产 Gallery Preview 站。
 
-本地预览 README 渲染效果：
-
-```bash
-# 仓库根目录执行
-python -m http.server 8091
-# 浏览器访问 http://127.0.0.1:8091/preview-readme.html
-```
-
-> 必须通过 HTTP 打开；`file://` 协议无法 `fetch` README 内容。
-
 ---
 
 ## 演示 / Showcase
@@ -184,7 +174,7 @@ npm run dev:mp-weixin
 # 微信开发者工具导入该目录即可运行
 ```
 
-部署成功后要在商家端重新上传 `assets/images/dishes/` 中的 28 张菜品图。部署步骤截图见 `assets/images/deploy/`，文字说明见 `docs/readme.txt`。
+部署成功后要在商家端重新上传 `assets/images/dishes/` 中的 28 张菜品图。部署步骤截图见 `assets/images/deploy/`，本机中间件启动说明见 `deploy/local/README.md`。
 
 > **local 环境注意**
 >
@@ -278,18 +268,15 @@ mvn test -pl training-server -am   # 需先起本机中间件
 
 ```text
 sky-ai/
-├── AGENTS.md · CONTEXT.md · CONTEXT-MAP.md · LANGUAGES.md · README.md
-├── preview-readme.html · preview-readme.css · preview-readme.js
-├── .cursor/rules/                 # Windows 路径 / Shell 纪律 / 输出格式 / commit-history
+├── AGENTS.md · CLAUDE.md · CONTEXT.md · README.md
 ├── code/
 │   ├── web/training-web/          # 后端 Spring Boot（端口 8848；Maven 三模块 common / pojo / server）
 │   ├── vue/training-vue3-main/    # 商家管理端（端口 9527）
 │   └── uniapp/training-uniapp-master/  # 用户小程序（编译至微信开发者工具）
 ├── deploy/local/                  # 本机中间件脚本（up-native.ps1 / README）
 ├── docs/
-│   ├── agents/ · adr/ · contexts/ · outputs/
-│   ├── 苍穹外卖文档/              # 毕设母版（「满香宜」传统版）+ AI 补充稿
-│   └── readme.txt
+│   ├── adr/ · knowledge/
+│   └── 苍穹外卖文档/              # 毕设母版（「满香宜」传统版）+ AI 补充稿（只读保留）
 └── assets/
     ├── backup/                    # 上游源码压缩包（gitignore，不入库）
     └── images/{dishes,deploy,readme}/  # 菜品图 / 部署截图 / README 配图
@@ -299,12 +286,12 @@ sky-ai/
 
 ## 路线图
 
-> **受众**：作者与 Agent 的内部里程碑 / 待办，不是给外部访客看的产品宣传板。进度以本表 + `docs/outputs/handoff/` 为准；对外叙事看上文功能与 Showcase。
+> **受众**：作者与 Agent 的内部里程碑 / 待办，不是给外部访客看的产品宣传板。对外叙事看上文功能与 Showcase。
 
 | 状态 | 事项 | 备注 |
 | --- | --- | --- |
 | ✅ | 三端可跑 + `local` 本机中间件 | `deploy/local`；profile `local` |
-| ✅ | project-init 治理骨架 | `CONTEXT` / `AGENTS` / `LANGUAGES` / ADR / outputs |
+| ✅ | project-init 治理骨架 | `CONTEXT` / `AGENTS` / ADR |
 | ✅ | AI 叙事与代码对齐 | `_conv/AI模块设计.md`；已知边界写进 CONTEXT |
 | ✅ | README / 配图 / Showcase 骨架 | 说明图 + 真机截图已落盘，后续只修漂移 |
 | ⬜ | 首个业务 theme | PRD Gate 批准前不写功能代码 |
@@ -316,21 +303,15 @@ sky-ai/
 
 ## 文档
 
-推荐阅读顺序：`README` → `CONTEXT` → `AGENTS` → 分端 `docs/contexts/*` → `code/`。
+推荐阅读顺序：`README` → `CONTEXT` → `AGENTS` → `code/`。
 
 | 文档 | 说明 |
 | --- | --- |
-| [CONTEXT.md](CONTEXT.md) · [CONTEXT-MAP.md](CONTEXT-MAP.md) | 领域事实与硬约束单一事实源 · 分端索引 |
-| [docs/contexts/api/CONTEXT.md](docs/contexts/api/CONTEXT.md) | 后端 API 分端 CONTEXT |
-| [docs/contexts/admin/CONTEXT.md](docs/contexts/admin/CONTEXT.md) | 商家管理端分端 CONTEXT |
-| [docs/contexts/weapp/CONTEXT.md](docs/contexts/weapp/CONTEXT.md) | 用户小程序分端 CONTEXT |
-| [AGENTS.md](AGENTS.md) · [LANGUAGES.md](LANGUAGES.md) | Agent 硬约束、任务流门禁 · 共享用词规范 |
+| [CONTEXT.md](CONTEXT.md) | 领域事实、架构、AI 模块与已知 backlog 单一事实源 |
+| [AGENTS.md](AGENTS.md) | Agent 硬约束、构建验证命令与约定 |
 | [deploy/local/README.md](deploy/local/README.md) | 本机中间件启动与 `local` profile 说明 |
 | [docs/adr/](docs/adr/) | 架构决策记录 |
-| [docs/README.md](docs/README.md) | docs 目录资产索引与维护说明 |
 | [AI模块设计.md](docs/苍穹外卖文档/_conv/AI模块设计.md) | AI 功能论文补充稿（需求 / 总体设计 / 详细设计 / 测试） |
-| [readme-diagram-brief.md](docs/outputs/prd/readme-diagrams/readme-diagram-brief.md) | README 配图设计契约 |
-| [readme-image-prompts.md](docs/outputs/prd/readme-diagrams/readme-image-prompts.md) | 配图生成 Prompt 记录 |
 | [assets/README.md](assets/README.md) | 媒体资产目录约定与迁移说明 |
 | [assets/images/readme/](assets/images/readme/) | README 配图与 Showcase 截图 |
 
