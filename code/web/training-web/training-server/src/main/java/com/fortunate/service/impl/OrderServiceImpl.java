@@ -629,6 +629,12 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
         }
 
+        // 校验订单归属：用户（或 AI 工具）只能取消自己的订单
+        Long currentUserId = BaseContext.getUserId() != null ? BaseContext.getUserId() : (Long) ToolContext.get(ToolContext.USER_ID);
+        if (currentUserId == null || !orderDB.getUserId().equals(currentUserId)) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
+
         // 订单状态 1待付款 2待接单 3已接单 4派送中 5已完成 6已取消
         if (orderDB.getStatus() > 2) {
             // 只有处于`待付款`和`待接单`状态的订单才能取消
@@ -654,12 +660,8 @@ public class OrderServiceImpl implements OrderService {
                 .trim());
         orders.setCancelTime(LocalDateTime.now());
 
-        // 清理用户订单缓存
-        Long userId = BaseContext.getUserId() != null ? BaseContext.getUserId() : (Long) ToolContext.get(ToolContext.USER_ID);
-        //用户ID不为空再清理缓存 因为可能会是AI调用
-        if (userId != null) {
-            clearUserOrderCache(userId);
-        }
+        // 清理用户订单缓存（可能是 AI 调用，userId 已在上方归属校验处获取，必不为 null）
+        clearUserOrderCache(currentUserId);
 
         orderMapper.update(orders);
     }
@@ -667,6 +669,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void repetition(Long id) {
         Long userId = BaseContext.getUserId();
+
+        // 校验订单归属：只能对自己的订单"再来一单"
+        Orders order = orderMapper.getOrderById(id);
+        if (order == null || userId == null || !order.getUserId().equals(userId)) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
 
         // 根据订单id查询需要再来一单的订单它包含的商品信息
         List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(id);

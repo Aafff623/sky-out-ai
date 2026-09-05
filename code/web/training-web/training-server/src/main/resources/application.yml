@@ -59,12 +59,12 @@ logging:
 
 training:
   jwt:
-    # 后台管理端
-    store-secret-key: training
+    # 后台管理端（生产环境必须通过环境变量注入真实密钥，缺省仅供本地开发启动）
+    store-secret-key: ${JWT_STORE_SECRET:training-dev-only}
     store-ttl: 86400000
     store-token-name: token
-    # 客户端
-    client-secret-key: training
+    # 客户端（生产环境必须通过环境变量注入真实密钥，缺省仅供本地开发启动）
+    client-secret-key: ${JWT_CLIENT_SECRET:training-dev-only}
     client-ttl: 86400000
     client-token-name: authentication
   alioss:
@@ -75,7 +75,7 @@ training:
     secret: ${training.alioss.access-key-secret}
     scenes: ${training.aliyun.scenes}
   wechat:
-    appid: ${training.wechat.appid} #wxc079e0129b427ea2
+    appid: ${training.wechat.appid}
     secret: ${training.wechat.secret}
   baidu:
     baidu-map-api-key: ${training.baidu.baidu-map-api-key}

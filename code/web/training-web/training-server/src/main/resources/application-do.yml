@@ -21,7 +21,8 @@ training:
     port: 13306
     database: cq_take_out
     username: root
-    password: root
+    # 隧道内网 MySQL 口令；可用环境变量覆盖
+    password: ${TRAINING_DATASOURCE_PASSWORD:root}
   mongodb:
     host: 127.0.0.1
     port: 27017

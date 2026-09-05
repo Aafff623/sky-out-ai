@@ -122,8 +122,13 @@ public class AiAssistantServiceImpl implements AiAssistantService {
                             }
                         })
                         .onError(error -> {
-                            error.printStackTrace();
                             log.error("AI处理通用问题失败", error);
+                            // 异常时也必须结束流，否则 SSE 连接悬挂不释放
+                            sink.next(STOP_EVENT);
+                            sink.complete();
+                            //清理工具上下文与工具结果缓存，防止静态 Map 条目泄漏
+                            ToolResultHolder.remove(requestId);
+                            ToolContext.clear();
                         })
                         .start();
             });
