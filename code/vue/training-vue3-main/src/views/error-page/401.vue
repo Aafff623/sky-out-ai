@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { IMG_401 } from "@/constants/minio";
 
 defineOptions({
   name: "Page401",
@@ -8,7 +9,7 @@ defineOptions({
 const router = useRouter();
 
 const state = reactive({
-  errGif: new URL(`../../assets/images/401.gif`, import.meta.url).href,
+  errGif: IMG_401,
   ewizardClap:
     "https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646",
   dialogVisible: false,

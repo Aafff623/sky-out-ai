@@ -1,0 +1,1214 @@
+{
+ "animals": [
+  {
+   "name": "Capybara",
+   "slug": "capybara",
+   "file": "bd01baf4db5b130f-capybara.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/bd01baf4db5b130f-capybara.webp"
+  },
+  {
+   "name": "Pelican",
+   "slug": "pelican",
+   "file": "8f964b3ce7009fe6-pelican.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/8f964b3ce7009fe6-pelican.webp"
+  },
+  {
+   "name": "Ram",
+   "slug": "ram",
+   "file": "b886920f366da0ba-ram.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/b886920f366da0ba-ram.webp"
+  },
+  {
+   "name": "Whale",
+   "slug": "whale",
+   "file": "56f80edbac2e43e6-whale.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/56f80edbac2e43e6-whale.webp"
+  },
+  {
+   "name": "Frog",
+   "slug": "frog",
+   "file": "9f7546cd7eeec682-frog.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/9f7546cd7eeec682-frog.webp"
+  },
+  {
+   "name": "Bear",
+   "slug": "bear",
+   "file": "117bc2ce5f1da1e2-bear.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/117bc2ce5f1da1e2-bear.webp"
+  },
+  {
+   "name": "Seal",
+   "slug": "seal",
+   "file": "987db8805fcf8406-seal.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/987db8805fcf8406-seal.webp"
+  },
+  {
+   "name": "Meerkat",
+   "slug": "meerkat",
+   "file": "2d8cfc6d1190c578-meerkat.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/2d8cfc6d1190c578-meerkat.webp"
+  },
+  {
+   "name": "Pangolin",
+   "slug": "pangolin",
+   "file": "3a222404e4ea5256-pangolin.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/3a222404e4ea5256-pangolin.webp"
+  },
+  {
+   "name": "Bison",
+   "slug": "bison",
+   "file": "db92787197705c6f-bison.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/db92787197705c6f-bison.webp"
+  },
+  {
+   "name": "Raccoon",
+   "slug": "raccoon",
+   "file": "56b7b3cb22a6d1af-raccoon.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/56b7b3cb22a6d1af-raccoon.webp"
+  },
+  {
+   "name": "Narwhal",
+   "slug": "narwhal",
+   "file": "2736ffd89f05a435-narwhal.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/2736ffd89f05a435-narwhal.webp"
+  },
+  {
+   "name": "Mole",
+   "slug": "mole",
+   "file": "b833a788416a9264-mole.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/b833a788416a9264-mole.webp"
+  },
+  {
+   "name": "Koi",
+   "slug": "koi",
+   "file": "cab7503248b5a755-koi.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/cab7503248b5a755-koi.webp"
+  },
+  {
+   "name": "Badger",
+   "slug": "badger",
+   "file": "6befb03602593bcc-badger.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/6befb03602593bcc-badger.webp"
+  },
+  {
+   "name": "Flamingo",
+   "slug": "flamingo",
+   "file": "90aeda766431bd5e-flamingo.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/90aeda766431bd5e-flamingo.webp"
+  },
+  {
+   "name": "Tapir",
+   "slug": "tapir",
+   "file": "94397b83aab4c351-tapir.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/94397b83aab4c351-tapir.webp"
+  },
+  {
+   "name": "Hermit Crab",
+   "slug": "hermit-crab",
+   "file": "fa3c9716d0e4f909-hermit-crab.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/fa3c9716d0e4f909-hermit-crab.webp"
+  },
+  {
+   "name": "Lemur",
+   "slug": "lemur",
+   "file": "c36715110466c98f-lemur.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/c36715110466c98f-lemur.webp"
+  },
+  {
+   "name": "Seahorse",
+   "slug": "seahorse",
+   "file": "bb2dc8d1d39cb171-seahorse.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/bb2dc8d1d39cb171-seahorse.webp"
+  },
+  {
+   "name": "Armadillo",
+   "slug": "armadillo",
+   "file": "3f68cab65031d8aa-armadillo.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/3f68cab65031d8aa-armadillo.webp"
+  },
+  {
+   "name": "Orca",
+   "slug": "orca",
+   "file": "19e527e676b0099f-orca.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/19e527e676b0099f-orca.webp"
+  },
+  {
+   "name": "Ibex",
+   "slug": "ibex",
+   "file": "f9c370d9ed6dbe6e-ibex.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/f9c370d9ed6dbe6e-ibex.webp"
+  },
+  {
+   "name": "Swan",
+   "slug": "swan",
+   "file": "0bc1931630d9898c-swan.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/0bc1931630d9898c-swan.webp"
+  },
+  {
+   "name": "Firefly",
+   "slug": "firefly",
+   "file": "44d2a46b927d1f5e-firefly.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/44d2a46b927d1f5e-firefly.webp"
+  },
+  {
+   "name": "Manta Ray",
+   "slug": "manta-ray",
+   "file": "77063d8fe4ca0280-manta-ray.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/77063d8fe4ca0280-manta-ray.webp"
+  },
+  {
+   "name": "Boar",
+   "slug": "boar",
+   "file": "012a83c92a5de8c7-boar.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/012a83c92a5de8c7-boar.webp"
+  },
+  {
+   "name": "Kiwi Bird",
+   "slug": "kiwi-bird",
+   "file": "b166449ecfd72806-kiwi-bird.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/b166449ecfd72806-kiwi-bird.webp"
+  },
+  {
+   "name": "Sugar Glider",
+   "slug": "sugar-glider",
+   "file": "83535bd5caf7af6b-sugar-glider.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/83535bd5caf7af6b-sugar-glider.webp"
+  },
+  {
+   "name": "Pelican",
+   "slug": "pelican-2",
+   "file": "047d57fafa46bead-pelican-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/047d57fafa46bead-pelican-2.webp"
+  },
+  {
+   "name": "Ram",
+   "slug": "ram-2",
+   "file": "28bd5bb1554e3b3f-ram-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/28bd5bb1554e3b3f-ram-2.webp"
+  },
+  {
+   "name": "Capybara",
+   "slug": "capybara-2",
+   "file": "85f6627a9ecb1c84-capybara-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/85f6627a9ecb1c84-capybara-2.webp"
+  },
+  {
+   "name": "Manta Ray",
+   "slug": "manta-ray-2",
+   "file": "34efda81550b71b9-manta-ray-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/animals/34efda81550b71b9-manta-ray-2.webp"
+  }
+ ],
+ "nature": [
+  {
+   "name": "Mushroom",
+   "slug": "mushroom",
+   "file": "179aa605869493b2-mushroom.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/179aa605869493b2-mushroom.webp"
+  },
+  {
+   "name": "Comet",
+   "slug": "comet",
+   "file": "ac09a4522437dcb4-comet.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/ac09a4522437dcb4-comet.webp"
+  },
+  {
+   "name": "Sunflower",
+   "slug": "sunflower",
+   "file": "accaa94e815677ef-sunflower.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/accaa94e815677ef-sunflower.webp"
+  },
+  {
+   "name": "Bonsai",
+   "slug": "bonsai",
+   "file": "4dec512cc120ab76-bonsai.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/4dec512cc120ab76-bonsai.webp"
+  },
+  {
+   "name": "Coral",
+   "slug": "coral",
+   "file": "cf2799ac4d1c7527-coral.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/cf2799ac4d1c7527-coral.webp"
+  },
+  {
+   "name": "Pumpkin",
+   "slug": "pumpkin",
+   "file": "bdb75ec7033a5095-pumpkin.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/bdb75ec7033a5095-pumpkin.webp"
+  },
+  {
+   "name": "Pear",
+   "slug": "pear",
+   "file": "1c9371c9fc0d7a6c-pear.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/1c9371c9fc0d7a6c-pear.webp"
+  },
+  {
+   "name": "Pinecone",
+   "slug": "pinecone",
+   "file": "283bf5fd4d2a9380-pinecone.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/283bf5fd4d2a9380-pinecone.webp"
+  },
+  {
+   "name": "Bamboo",
+   "slug": "bamboo",
+   "file": "413a77f3d1776aa4-bamboo.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/413a77f3d1776aa4-bamboo.webp"
+  },
+  {
+   "name": "Coconut",
+   "slug": "coconut",
+   "file": "31299af771f32443-coconut.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/31299af771f32443-coconut.webp"
+  },
+  {
+   "name": "Tulip",
+   "slug": "tulip",
+   "file": "29623f494a0a5dcf-tulip.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/29623f494a0a5dcf-tulip.webp"
+  },
+  {
+   "name": "Strawberry",
+   "slug": "strawberry",
+   "file": "2f20f68c6803d33c-strawberry.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/2f20f68c6803d33c-strawberry.webp"
+  },
+  {
+   "name": "Artichoke",
+   "slug": "artichoke",
+   "file": "def0049904d69bd4-artichoke.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/def0049904d69bd4-artichoke.webp"
+  },
+  {
+   "name": "Watermelon",
+   "slug": "watermelon",
+   "file": "70b09fa7ecca9345-watermelon.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/70b09fa7ecca9345-watermelon.webp"
+  },
+  {
+   "name": "Ginkgo Leaf",
+   "slug": "ginkgo-leaf",
+   "file": "bbfcdfef963bd29b-ginkgo-leaf.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/bbfcdfef963bd29b-ginkgo-leaf.webp"
+  },
+  {
+   "name": "Cloud",
+   "slug": "cloud",
+   "file": "e07b23719623bdef-cloud.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/e07b23719623bdef-cloud.webp"
+  },
+  {
+   "name": "Moon",
+   "slug": "moon",
+   "file": "95e71ebc45a7747d-moon.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/95e71ebc45a7747d-moon.webp"
+  },
+  {
+   "name": "Sun",
+   "slug": "sun",
+   "file": "5c6f6168e9afabf1-sun.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/5c6f6168e9afabf1-sun.webp"
+  },
+  {
+   "name": "Rainbow",
+   "slug": "rainbow",
+   "file": "208fcedc6615fbe7-rainbow.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/208fcedc6615fbe7-rainbow.webp"
+  },
+  {
+   "name": "Snowflake",
+   "slug": "snowflake",
+   "file": "acb2ef56b3c52f16-snowflake.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/acb2ef56b3c52f16-snowflake.webp"
+  },
+  {
+   "name": "Star",
+   "slug": "star",
+   "file": "75399d315ff38c3c-star.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/75399d315ff38c3c-star.webp"
+  },
+  {
+   "name": "Cactus",
+   "slug": "cactus",
+   "file": "98b34f5769839ab7-cactus.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/98b34f5769839ab7-cactus.webp"
+  },
+  {
+   "name": "Mushroom",
+   "slug": "mushroom-2",
+   "file": "eaac3d64f6b56994-mushroom-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/eaac3d64f6b56994-mushroom-2.webp"
+  },
+  {
+   "name": "Mushroom",
+   "slug": "mushroom-3",
+   "file": "ec2d05955fe17cc8-mushroom-3.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/ec2d05955fe17cc8-mushroom-3.webp"
+  },
+  {
+   "name": "Ginkgo Leaf",
+   "slug": "ginkgo-leaf-2",
+   "file": "54be393586830ad6-ginkgo-leaf-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/54be393586830ad6-ginkgo-leaf-2.webp"
+  },
+  {
+   "name": "Monstera Leaf",
+   "slug": "monstera-leaf",
+   "file": "fffa34ef5a9b69b4-monstera-leaf.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/fffa34ef5a9b69b4-monstera-leaf.webp"
+  },
+  {
+   "name": "Cactus",
+   "slug": "cactus-2",
+   "file": "df8ce1d349db25c7-cactus-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/df8ce1d349db25c7-cactus-2.webp"
+  },
+  {
+   "name": "Protea Flower",
+   "slug": "protea-flower",
+   "file": "609254562bee27ab-protea-flower.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/609254562bee27ab-protea-flower.webp"
+  },
+  {
+   "name": "Artichoke",
+   "slug": "artichoke-2",
+   "file": "e8567c804d3dcc2c-artichoke-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/e8567c804d3dcc2c-artichoke-2.webp"
+  },
+  {
+   "name": "Coral Polyp",
+   "slug": "coral-polyp",
+   "file": "292d4a8119e1c44b-coral-polyp.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/292d4a8119e1c44b-coral-polyp.webp"
+  },
+  {
+   "name": "Comet Scooter",
+   "slug": "comet-scooter",
+   "file": "d1670a2ce30c6ade-comet-scooter.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/d1670a2ce30c6ade-comet-scooter.webp"
+  },
+  {
+   "name": "Cloud Forge",
+   "slug": "cloud-forge",
+   "file": "7fb25b03cfcd03ff-cloud-forge.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/7fb25b03cfcd03ff-cloud-forge.webp"
+  },
+  {
+   "name": "Moon Gate",
+   "slug": "moon-gate",
+   "file": "5387da0d46be765e-moon-gate.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/nature/5387da0d46be765e-moon-gate.webp"
+  }
+ ],
+ "food": [
+  {
+   "name": "Coffee Bean",
+   "slug": "coffee-bean",
+   "file": "27471b7ba9cfe8a9-coffee-bean.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/27471b7ba9cfe8a9-coffee-bean.webp"
+  },
+  {
+   "name": "Peanut",
+   "slug": "peanut",
+   "file": "096fb7202a126560-peanut.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/096fb7202a126560-peanut.webp"
+  },
+  {
+   "name": "Bell Pepper",
+   "slug": "bell-pepper",
+   "file": "16a63ec36c38665b-bell-pepper.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/16a63ec36c38665b-bell-pepper.webp"
+  },
+  {
+   "name": "Croissant",
+   "slug": "croissant",
+   "file": "d687294160e3e725-croissant.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/d687294160e3e725-croissant.webp"
+  },
+  {
+   "name": "Cupcake",
+   "slug": "cupcake",
+   "file": "81095a5861211df1-cupcake.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/81095a5861211df1-cupcake.webp"
+  },
+  {
+   "name": "Sushi Roll",
+   "slug": "sushi-roll",
+   "file": "48a9450e42e43a89-sushi-roll.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/48a9450e42e43a89-sushi-roll.webp"
+  },
+  {
+   "name": "Taco",
+   "slug": "taco",
+   "file": "419b1675fd626c41-taco.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/419b1675fd626c41-taco.webp"
+  },
+  {
+   "name": "Bread Loaf",
+   "slug": "bread-loaf",
+   "file": "e071684c5d9098fb-bread-loaf.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/e071684c5d9098fb-bread-loaf.webp"
+  },
+  {
+   "name": "Popcorn",
+   "slug": "popcorn",
+   "file": "1f5c2b60d0de76b0-popcorn.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/1f5c2b60d0de76b0-popcorn.webp"
+  },
+  {
+   "name": "Croissant",
+   "slug": "croissant-2",
+   "file": "174f1a0e44ed0716-croissant-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/174f1a0e44ed0716-croissant-2.webp"
+  },
+  {
+   "name": "Cupcake",
+   "slug": "cupcake-2",
+   "file": "a3aff2748e5aa7fa-cupcake-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/a3aff2748e5aa7fa-cupcake-2.webp"
+  },
+  {
+   "name": "Sushi Roll",
+   "slug": "sushi-roll-2",
+   "file": "ccc16208773c5122-sushi-roll-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/ccc16208773c5122-sushi-roll-2.webp"
+  },
+  {
+   "name": "Coffee Grinder",
+   "slug": "coffee-grinder",
+   "file": "118ca52057721884-coffee-grinder.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/118ca52057721884-coffee-grinder.webp"
+  },
+  {
+   "name": "Donut",
+   "slug": "donut",
+   "file": "fca683ed87a065f6-donut.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/fca683ed87a065f6-donut.webp"
+  },
+  {
+   "name": "Taco",
+   "slug": "taco-2",
+   "file": "7333423d33328811-taco-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/7333423d33328811-taco-2.webp"
+  },
+  {
+   "name": "Coffee Mug",
+   "slug": "coffee-mug",
+   "file": "9289b7949f54e287-coffee-mug.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/9289b7949f54e287-coffee-mug.webp"
+  },
+  {
+   "name": "Teapot",
+   "slug": "teapot",
+   "file": "f006f4208a467c2f-teapot.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/f006f4208a467c2f-teapot.webp"
+  },
+  {
+   "name": "Teapot",
+   "slug": "teapot-2",
+   "file": "1dbe19a8f14f5ffa-teapot-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/1dbe19a8f14f5ffa-teapot-2.webp"
+  },
+  {
+   "name": "Teapot",
+   "slug": "teapot-3",
+   "file": "0e673008d54e0050-teapot-3.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/0e673008d54e0050-teapot-3.webp"
+  },
+  {
+   "name": "Teapot",
+   "slug": "teapot-4",
+   "file": "67bbbc0cfca57307-teapot-4.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/67bbbc0cfca57307-teapot-4.webp"
+  },
+  {
+   "name": "Coffee Mug",
+   "slug": "coffee-mug-2",
+   "file": "5ac7d7a91d0be6bc-coffee-mug-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/5ac7d7a91d0be6bc-coffee-mug-2.webp"
+  },
+  {
+   "name": "Teapot",
+   "slug": "teapot-5",
+   "file": "1f413c1a2459f336-teapot-5.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/1f413c1a2459f336-teapot-5.webp"
+  },
+  {
+   "name": "Teapot",
+   "slug": "teapot-6",
+   "file": "a1756ce2fd379ec9-teapot-6.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/a1756ce2fd379ec9-teapot-6.webp"
+  },
+  {
+   "name": "Teapot",
+   "slug": "teapot-7",
+   "file": "67ca9b85da8421b1-teapot-7.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/67ca9b85da8421b1-teapot-7.webp"
+  },
+  {
+   "name": "Coffee Bean",
+   "slug": "coffee-bean-2",
+   "file": "0b14e8c031917782-coffee-bean-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/0b14e8c031917782-coffee-bean-2.webp"
+  },
+  {
+   "name": "Croissant",
+   "slug": "croissant-3",
+   "file": "fb43a24d4c561251-croissant-3.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/fb43a24d4c561251-croissant-3.webp"
+  },
+  {
+   "name": "Warm Service Teapot",
+   "slug": "warm-service-teapot",
+   "file": "05dc2f56d12c27d0-warm-service-teapot.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/05dc2f56d12c27d0-warm-service-teapot.webp"
+  },
+  {
+   "name": "Teapot Charcoal",
+   "slug": "teapot-charcoal",
+   "file": "f3f865df10fad73a-teapot-charcoal.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/f3f865df10fad73a-teapot-charcoal.webp"
+  },
+  {
+   "name": "Croissant Forest Green",
+   "slug": "croissant-forest-green",
+   "file": "aeedfa64d4714ccc-croissant-forest-green.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/aeedfa64d4714ccc-croissant-forest-green.webp"
+  },
+  {
+   "name": "Teapot",
+   "slug": "teapot-8",
+   "file": "777e11a3572a9089-teapot-8.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/777e11a3572a9089-teapot-8.webp"
+  },
+  {
+   "name": "Coffee Mug",
+   "slug": "coffee-mug-3",
+   "file": "b9cbb1b15eae5443-coffee-mug-3.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/b9cbb1b15eae5443-coffee-mug-3.webp"
+  },
+  {
+   "name": "Croissant",
+   "slug": "croissant-4",
+   "file": "b0550e3f6f08f8cc-croissant-4.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/b0550e3f6f08f8cc-croissant-4.webp"
+  },
+  {
+   "name": "Cupcake",
+   "slug": "cupcake-3",
+   "file": "c7bdc30cabb9af97-cupcake-3.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/c7bdc30cabb9af97-cupcake-3.webp"
+  },
+  {
+   "name": "Donut",
+   "slug": "donut-2",
+   "file": "988758580d784440-donut-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/food/988758580d784440-donut-2.webp"
+  }
+ ],
+ "objects": [
+  {
+   "name": "Robot",
+   "slug": "robot",
+   "file": "31065822e6033754-robot.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/31065822e6033754-robot.webp"
+  },
+  {
+   "name": "Camera",
+   "slug": "camera",
+   "file": "bab1079ae17dc20d-camera.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/bab1079ae17dc20d-camera.webp"
+  },
+  {
+   "name": "Headphones",
+   "slug": "headphones",
+   "file": "940876afedc13e82-headphones.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/940876afedc13e82-headphones.webp"
+  },
+  {
+   "name": "Lightbulb",
+   "slug": "lightbulb",
+   "file": "3276ceb07612e574-lightbulb.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/3276ceb07612e574-lightbulb.webp"
+  },
+  {
+   "name": "Backpack",
+   "slug": "backpack",
+   "file": "a40c4671a23acf25-backpack.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/a40c4671a23acf25-backpack.webp"
+  },
+  {
+   "name": "Umbrella",
+   "slug": "umbrella",
+   "file": "e89c5e97f430d28c-umbrella.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/e89c5e97f430d28c-umbrella.webp"
+  },
+  {
+   "name": "Key",
+   "slug": "key",
+   "file": "f78b89199c6d517e-key.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/f78b89199c6d517e-key.webp"
+  },
+  {
+   "name": "Binoculars",
+   "slug": "binoculars",
+   "file": "9ebbb2c5c515474f-binoculars.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/9ebbb2c5c515474f-binoculars.webp"
+  },
+  {
+   "name": "Microphone",
+   "slug": "microphone",
+   "file": "3179619208767666-microphone.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/3179619208767666-microphone.webp"
+  },
+  {
+   "name": "Hourglass",
+   "slug": "hourglass",
+   "file": "c91b7e868ddf7f26-hourglass.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/c91b7e868ddf7f26-hourglass.webp"
+  },
+  {
+   "name": "Game Controller",
+   "slug": "game-controller",
+   "file": "8e8b061ada7479d6-game-controller.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/8e8b061ada7479d6-game-controller.webp"
+  },
+  {
+   "name": "Paintbrush",
+   "slug": "paintbrush",
+   "file": "51f08322a146ddb3-paintbrush.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/51f08322a146ddb3-paintbrush.webp"
+  },
+  {
+   "name": "Pencil",
+   "slug": "pencil",
+   "file": "1e58d78eb5c52fe9-pencil.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/1e58d78eb5c52fe9-pencil.webp"
+  },
+  {
+   "name": "Book",
+   "slug": "book",
+   "file": "334171ba0a2602c4-book.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/334171ba0a2602c4-book.webp"
+  },
+  {
+   "name": "Envelope",
+   "slug": "envelope",
+   "file": "be3af56c91e009d4-envelope.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/be3af56c91e009d4-envelope.webp"
+  },
+  {
+   "name": "Bicycle",
+   "slug": "bicycle",
+   "file": "ebac2085402242de-bicycle.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/ebac2085402242de-bicycle.webp"
+  },
+  {
+   "name": "Scooter",
+   "slug": "scooter",
+   "file": "90ff7e6315b03214-scooter.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/90ff7e6315b03214-scooter.webp"
+  },
+  {
+   "name": "Sailboat",
+   "slug": "sailboat",
+   "file": "9475a7a24a9257f6-sailboat.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/9475a7a24a9257f6-sailboat.webp"
+  },
+  {
+   "name": "Airplane",
+   "slug": "airplane",
+   "file": "37d6f69718e49735-airplane.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/37d6f69718e49735-airplane.webp"
+  },
+  {
+   "name": "Helicopter",
+   "slug": "helicopter",
+   "file": "4b598714e98c6c48-helicopter.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/4b598714e98c6c48-helicopter.webp"
+  },
+  {
+   "name": "Tractor",
+   "slug": "tractor",
+   "file": "f928b47dcc573b27-tractor.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/f928b47dcc573b27-tractor.webp"
+  },
+  {
+   "name": "Skateboard",
+   "slug": "skateboard",
+   "file": "57ccd3e64afdd385-skateboard.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/57ccd3e64afdd385-skateboard.webp"
+  },
+  {
+   "name": "Roller Skate",
+   "slug": "roller-skate",
+   "file": "b20e0d1d494e00f4-roller-skate.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/b20e0d1d494e00f4-roller-skate.webp"
+  },
+  {
+   "name": "Wrench",
+   "slug": "wrench",
+   "file": "be6435f260ea2a25-wrench.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/be6435f260ea2a25-wrench.webp"
+  },
+  {
+   "name": "Hammer",
+   "slug": "hammer",
+   "file": "80a4a0807a464771-hammer.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/80a4a0807a464771-hammer.webp"
+  },
+  {
+   "name": "Scissors",
+   "slug": "scissors",
+   "file": "642bc140e81a9dc6-scissors.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/642bc140e81a9dc6-scissors.webp"
+  },
+  {
+   "name": "Flask",
+   "slug": "flask",
+   "file": "d0078a0f90a175d9-flask.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/d0078a0f90a175d9-flask.webp"
+  },
+  {
+   "name": "Robot",
+   "slug": "robot-2",
+   "file": "24cde589d652a054-robot-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/24cde589d652a054-robot-2.webp"
+  },
+  {
+   "name": "Pencil Sharpener",
+   "slug": "pencil-sharpener",
+   "file": "81f297243b11a807-pencil-sharpener.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/81f297243b11a807-pencil-sharpener.webp"
+  },
+  {
+   "name": "Umbrella",
+   "slug": "umbrella-2",
+   "file": "9ec045283b8fc51f-umbrella-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/9ec045283b8fc51f-umbrella-2.webp"
+  },
+  {
+   "name": "Backpack",
+   "slug": "backpack-2",
+   "file": "78b02b8e172f6bfa-backpack-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/78b02b8e172f6bfa-backpack-2.webp"
+  },
+  {
+   "name": "Camera",
+   "slug": "camera-2",
+   "file": "d9e9df2fe0b9b37e-camera-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/d9e9df2fe0b9b37e-camera-2.webp"
+  },
+  {
+   "name": "Headphones",
+   "slug": "headphones-2",
+   "file": "0587431e21244ceb-headphones-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/objects/0587431e21244ceb-headphones-2.webp"
+  }
+ ],
+ "symbols": [
+  {
+   "name": "Ghost",
+   "slug": "ghost",
+   "file": "16c57050e0453ba3-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/16c57050e0453ba3-ghost.webp"
+  },
+  {
+   "name": "Map Pin",
+   "slug": "map-pin",
+   "file": "61bb16d96879f95a-map-pin.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/61bb16d96879f95a-map-pin.webp"
+  },
+  {
+   "name": "Bell",
+   "slug": "bell",
+   "file": "9b4cb24a305365c3-bell.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/9b4cb24a305365c3-bell.webp"
+  },
+  {
+   "name": "Shield",
+   "slug": "shield",
+   "file": "fb16b278d213dc44-shield.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/fb16b278d213dc44-shield.webp"
+  },
+  {
+   "name": "Atom",
+   "slug": "atom",
+   "file": "88a44a1f7eaa341c-atom.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/88a44a1f7eaa341c-atom.webp"
+  },
+  {
+   "name": "Diamond",
+   "slug": "diamond",
+   "file": "cc986dd2a40269cf-diamond.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/cc986dd2a40269cf-diamond.webp"
+  },
+  {
+   "name": "Heart",
+   "slug": "heart",
+   "file": "d8bce64a9f7d7ff7-heart.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/d8bce64a9f7d7ff7-heart.webp"
+  },
+  {
+   "name": "Music Note",
+   "slug": "music-note",
+   "file": "d2a2d2d4fcc47451-music-note.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/d2a2d2d4fcc47451-music-note.webp"
+  },
+  {
+   "name": "Speech Bubble",
+   "slug": "speech-bubble",
+   "file": "8e77d83c86162cc9-speech-bubble.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/8e77d83c86162cc9-speech-bubble.webp"
+  },
+  {
+   "name": "Ghost",
+   "slug": "ghost-2",
+   "file": "9b0ccd6e4eac10ef-ghost-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/9b0ccd6e4eac10ef-ghost-2.webp"
+  },
+  {
+   "name": "Portal Key",
+   "slug": "portal-key",
+   "file": "88cc30e86297ef4f-portal-key.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/88cc30e86297ef4f-portal-key.webp"
+  },
+  {
+   "name": "Heart Reactor",
+   "slug": "heart-reactor",
+   "file": "c9d69c00ffb5e1b3-heart-reactor.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/c9d69c00ffb5e1b3-heart-reactor.webp"
+  },
+  {
+   "name": "Heart Glider",
+   "slug": "heart-glider",
+   "file": "7c80f00aadc4b3c0-heart-glider.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/7c80f00aadc4b3c0-heart-glider.webp"
+  },
+  {
+   "name": "Resilience Shield",
+   "slug": "resilience-shield",
+   "file": "ec7241dfec11b464-resilience-shield.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/ec7241dfec11b464-resilience-shield.webp"
+  },
+  {
+   "name": "Ghost",
+   "slug": "ghost-3",
+   "file": "74e6ccacb36e66a7-ghost-3.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/74e6ccacb36e66a7-ghost-3.webp"
+  },
+  {
+   "name": "Ghost",
+   "slug": "ghost-6",
+   "file": "6bee9c934e42cc15-ghost-6.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/6bee9c934e42cc15-ghost-6.webp"
+  },
+  {
+   "name": "Ghost Mug",
+   "slug": "ghost-mug",
+   "file": "f98014bbcb4fc3c3-ghost-mug.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/f98014bbcb4fc3c3-ghost-mug.webp"
+  },
+  {
+   "name": "A6 Friendly Ghost",
+   "slug": "a6-friendly-ghost",
+   "file": "8552bcf081569df1-a6-friendly-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/8552bcf081569df1-a6-friendly-ghost.webp"
+  },
+  {
+   "name": "Ghost Deep Twilight",
+   "slug": "ghost-deep-twilight",
+   "file": "5076c7a4341104b2-ghost-deep-twilight.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/5076c7a4341104b2-ghost-deep-twilight.webp"
+  },
+  {
+   "name": "Ghost Plum",
+   "slug": "ghost-plum",
+   "file": "1b2689307f673865-ghost-plum.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/1b2689307f673865-ghost-plum.webp"
+  },
+  {
+   "name": "Ghost",
+   "slug": "ghost-7",
+   "file": "4ab06f6c35f5ab49-ghost-7.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/4ab06f6c35f5ab49-ghost-7.webp"
+  },
+  {
+   "name": "Ghost",
+   "slug": "ghost-8",
+   "file": "ff97b758187805bb-ghost-8.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/ff97b758187805bb-ghost-8.webp"
+  },
+  {
+   "name": "Portal Robot",
+   "slug": "portal-robot",
+   "file": "d092d6719e051bf5-portal-robot.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/d092d6719e051bf5-portal-robot.webp"
+  },
+  {
+   "name": "Tab Ghost",
+   "slug": "tab-ghost",
+   "file": "aef17e0b87b9c770-tab-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/aef17e0b87b9c770-tab-ghost.webp"
+  },
+  {
+   "name": "Ghost",
+   "slug": "ghost-9",
+   "file": "66b348e6b8391e44-ghost-9.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/66b348e6b8391e44-ghost-9.webp"
+  },
+  {
+   "name": "Bubble Ghost",
+   "slug": "bubble-ghost",
+   "file": "cda8fd0544134a02-bubble-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/cda8fd0544134a02-bubble-ghost.webp"
+  },
+  {
+   "name": "Mountain Mist Ghost",
+   "slug": "mountain-mist-ghost",
+   "file": "338dc94c0bd7b13d-mountain-mist-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/338dc94c0bd7b13d-mountain-mist-ghost.webp"
+  },
+  {
+   "name": "Sleepy Forest Ghost",
+   "slug": "sleepy-forest-ghost",
+   "file": "2281e8ade958e067-sleepy-forest-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/2281e8ade958e067-sleepy-forest-ghost.webp"
+  },
+  {
+   "name": "Dandelion Ghost",
+   "slug": "dandelion-ghost",
+   "file": "1fcba03e58a62e80-dandelion-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/1fcba03e58a62e80-dandelion-ghost.webp"
+  },
+  {
+   "name": "Friendly Ghost",
+   "slug": "friendly-ghost",
+   "file": "70f48ce3751f3022-friendly-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/70f48ce3751f3022-friendly-ghost.webp"
+  },
+  {
+   "name": "Ghost Orchid",
+   "slug": "ghost-orchid",
+   "file": "77cea79a17733c45-ghost-orchid.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/77cea79a17733c45-ghost-orchid.webp"
+  },
+  {
+   "name": "Dandelion Ghost",
+   "slug": "dandelion-ghost-2",
+   "file": "d2bd870ff0daac6d-dandelion-ghost-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/d2bd870ff0daac6d-dandelion-ghost-2.webp"
+  },
+  {
+   "name": "Round Ghost",
+   "slug": "round-ghost",
+   "file": "a2bd1531513a131b-round-ghost.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/symbols/a2bd1531513a131b-round-ghost.webp"
+  }
+ ],
+ "other": [
+  {
+   "name": "Toucan",
+   "slug": "toucan",
+   "file": "0d525022dfb795d6-toucan.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/0d525022dfb795d6-toucan.webp"
+  },
+  {
+   "name": "Gecko",
+   "slug": "gecko",
+   "file": "6ffc889a7aea8e68-gecko.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/6ffc889a7aea8e68-gecko.webp"
+  },
+  {
+   "name": "Platypus",
+   "slug": "platypus",
+   "file": "ec79217ea4bddb9c-platypus.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/ec79217ea4bddb9c-platypus.webp"
+  },
+  {
+   "name": "Lotus",
+   "slug": "lotus",
+   "file": "d5f7667dd1c5dd31-lotus.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/d5f7667dd1c5dd31-lotus.webp"
+  },
+  {
+   "name": "Fern",
+   "slug": "fern",
+   "file": "71ea8060161054b9-fern.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/71ea8060161054b9-fern.webp"
+  },
+  {
+   "name": "Turnip",
+   "slug": "turnip",
+   "file": "2611389227267184-turnip.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/2611389227267184-turnip.webp"
+  },
+  {
+   "name": "Magnet",
+   "slug": "magnet",
+   "file": "3d4f20c131267ab7-magnet.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/3d4f20c131267ab7-magnet.webp"
+  },
+  {
+   "name": "Battery",
+   "slug": "battery",
+   "file": "88f6f181e8485e8e-battery.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/88f6f181e8485e8e-battery.webp"
+  },
+  {
+   "name": "Satellite",
+   "slug": "satellite",
+   "file": "1a18bb42d5aea74f-satellite.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/1a18bb42d5aea74f-satellite.webp"
+  },
+  {
+   "name": "Hot Air Balloon",
+   "slug": "hot-air-balloon",
+   "file": "b1ddabc3784dd04b-hot-air-balloon.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/b1ddabc3784dd04b-hot-air-balloon.webp"
+  },
+  {
+   "name": "Telescope",
+   "slug": "telescope",
+   "file": "8af0746b959ab994-telescope.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/8af0746b959ab994-telescope.webp"
+  },
+  {
+   "name": "Wifi Signal",
+   "slug": "wifi-signal",
+   "file": "248985dcfc63f832-wifi-signal.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/248985dcfc63f832-wifi-signal.webp"
+  },
+  {
+   "name": "Luna Moth",
+   "slug": "luna-moth",
+   "file": "29eb0e30a2456e2d-luna-moth.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/29eb0e30a2456e2d-luna-moth.webp"
+  },
+  {
+   "name": "Platypus",
+   "slug": "platypus-2",
+   "file": "f0e65033f16b5dda-platypus-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/f0e65033f16b5dda-platypus-2.webp"
+  },
+  {
+   "name": "Quokka",
+   "slug": "quokka",
+   "file": "19aa52e5c7ae8a2f-quokka.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/19aa52e5c7ae8a2f-quokka.webp"
+  },
+  {
+   "name": "Dugong",
+   "slug": "dugong",
+   "file": "ad21828211ea7fd6-dugong.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/ad21828211ea7fd6-dugong.webp"
+  },
+  {
+   "name": "Beluga",
+   "slug": "beluga",
+   "file": "2dae1b9eb829ac53-beluga.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/2dae1b9eb829ac53-beluga.webp"
+  },
+  {
+   "name": "Pufferfish",
+   "slug": "pufferfish",
+   "file": "32b868d615e62c71-pufferfish.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/32b868d615e62c71-pufferfish.webp"
+  },
+  {
+   "name": "Cuttlefish",
+   "slug": "cuttlefish",
+   "file": "9c35e8e5f69e3003-cuttlefish.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/9c35e8e5f69e3003-cuttlefish.webp"
+  },
+  {
+   "name": "Gecko",
+   "slug": "gecko-2",
+   "file": "7ba42b5a3d282f6c-gecko-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/7ba42b5a3d282f6c-gecko-2.webp"
+  },
+  {
+   "name": "Iguana",
+   "slug": "iguana",
+   "file": "ec9d80b890fee65f-iguana.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/ec9d80b890fee65f-iguana.webp"
+  },
+  {
+   "name": "Newt",
+   "slug": "newt",
+   "file": "8d1ed4cfc436cb8d-newt.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/8d1ed4cfc436cb8d-newt.webp"
+  },
+  {
+   "name": "Toad",
+   "slug": "toad",
+   "file": "692ad705d58399a0-toad.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/692ad705d58399a0-toad.webp"
+  },
+  {
+   "name": "Cassowary",
+   "slug": "cassowary",
+   "file": "8df99079e61f42ee-cassowary.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/8df99079e61f42ee-cassowary.webp"
+  },
+  {
+   "name": "Toucan",
+   "slug": "toucan-2",
+   "file": "b4555dfb2cd3808f-toucan-2.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/b4555dfb2cd3808f-toucan-2.webp"
+  },
+  {
+   "name": "Quail",
+   "slug": "quail",
+   "file": "b3a8352fddf548a6-quail.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/b3a8352fddf548a6-quail.webp"
+  },
+  {
+   "name": "Hummingbird",
+   "slug": "hummingbird",
+   "file": "0b1d45608961c209-hummingbird.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/0b1d45608961c209-hummingbird.webp"
+  },
+  {
+   "name": "Bumblebee",
+   "slug": "bumblebee",
+   "file": "dfb4d999601197b1-bumblebee.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/dfb4d999601197b1-bumblebee.webp"
+  },
+  {
+   "name": "Dragonfly",
+   "slug": "dragonfly",
+   "file": "c5fe0fe9627e69b8-dragonfly.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/c5fe0fe9627e69b8-dragonfly.webp"
+  },
+  {
+   "name": "Caterpillar",
+   "slug": "caterpillar",
+   "file": "b7b248f5c5f06f52-caterpillar.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/b7b248f5c5f06f52-caterpillar.webp"
+  },
+  {
+   "name": "Cicada",
+   "slug": "cicada",
+   "file": "da4950d118c979cc-cicada.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/da4950d118c979cc-cicada.webp"
+  },
+  {
+   "name": "Acorn",
+   "slug": "acorn",
+   "file": "f216e4f2d5d360fa-acorn.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/f216e4f2d5d360fa-acorn.webp"
+  },
+  {
+   "name": "Aloe Vera",
+   "slug": "aloe-vera",
+   "file": "cd8d0a4e29972994-aloe-vera.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/cd8d0a4e29972994-aloe-vera.webp"
+  },
+  {
+   "name": "Lotus Bud",
+   "slug": "lotus-bud",
+   "file": "0b1f666616cabefa-lotus-bud.webp",
+   "url": "http://127.0.0.1:9005/training-take-out/ui/avatar-library/other/0b1f666616cabefa-lotus-bud.webp"
+  }
+ ]
+}

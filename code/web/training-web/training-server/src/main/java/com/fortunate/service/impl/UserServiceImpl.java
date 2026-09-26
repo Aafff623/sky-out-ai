@@ -13,10 +13,14 @@ import com.fortunate.entity.User;
 import com.fortunate.exception.LoginFailedException;
 import com.fortunate.mapper.UserMapper;
 import com.fortunate.properties.WeChatProperties;
+import com.fortunate.query.UserPageQueryDTO;
+import com.fortunate.result.PageResult;
 import com.fortunate.service.UserService;
 import com.fortunate.utils.HttpClientUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -136,6 +140,19 @@ public class UserServiceImpl implements UserService {
             throw new LoginFailedException(MessageConstant.GET_USER_INFO_FAILED);
         }
         return userMapper.getUserById(userId);
+    }
+
+    /**
+     * 用户分页查询
+     *
+     * @param userPageQueryDTO 用户分页查询参数
+     * @return 分页结果
+     */
+    @Override
+    public PageResult pageQuery(UserPageQueryDTO userPageQueryDTO) {
+        PageHelper.startPage(userPageQueryDTO.getPage(), userPageQueryDTO.getPageSize());
+        Page<User> users = userMapper.pageQuery(userPageQueryDTO);
+        return new PageResult(users.getTotal(), users.getResult());
     }
 
     /**

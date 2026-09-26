@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { IMG_404, IMG_404_CLOUD } from "@/constants/minio";
 
 defineOptions({
   name: "Page404",
@@ -15,20 +16,20 @@ function back() {
 <template>
   <div class="page-container">
     <div class="pic-404">
-      <img class="pic-404__parent" src="@/assets/images/404.png" alt="404" />
+      <img class="pic-404__parent" :src="IMG_404" alt="404" />
       <img
         class="pic-404__child left"
-        src="@/assets/images/404_cloud.png"
+        :src="IMG_404_CLOUD"
         alt="404"
       />
       <img
         class="pic-404__child mid"
-        src="@/assets/images/404_cloud.png"
+        :src="IMG_404_CLOUD"
         alt="404"
       />
       <img
         class="pic-404__child right"
-        src="@/assets/images/404_cloud.png"
+        :src="IMG_404_CLOUD"
         alt="404"
       />
     </div>

@@ -8,7 +8,7 @@
         <view class="avatar-name-wrap" @click.stop="onTargetCompleteUserInfo">
           <view class="user-avatar">
             <avatar-image v-if="userInfo.avatar" :url="userInfo.avatar" />
-            <up-avatar v-else src="/static/default-avatar.png" size="55" />
+            <up-avatar v-else :src="IMG_DEFAULT_AVATAR" size="55" />
           </view>
 
           <!-- 用户名 -->
@@ -19,7 +19,7 @@
       <!-- 未登录 -->
       <view v-else class="not-login">
         <view class="user-avatar" @click="handleLogin">
-          <up-avatar src="/static/default-avatar.png" size="60" />
+          <up-avatar :src="IMG_DEFAULT_AVATAR" size="60" />
 
           <view class="ml-10 f-28" style="margin-left: 10rpx; font-size: 28rpx">
             点击头像登录</view>
@@ -99,6 +99,7 @@
   import { checkLogin } from "@/core/app";
   import { UserVO } from "@/api/user";
   import AvatarImage from "@/components/avatar-image/index.vue";
+  import { IMG_DEFAULT_AVATAR } from "@/constants/minio";
   import { OrderStatus } from "@/enums/OrderEnum"
 
   const userStore = useUserStore();

@@ -133,13 +133,10 @@
 	import { ref, onMounted } from "vue"
 	import CommentAPI, { CommentDto, CommentVO } from "@/api/comment"
 	import { formatTime } from "@/utils/util"
-	import like from "@/static/like.png"
-	import noLike from "@/static/no-like.png"
-	import commentImg from "@/static/comment.png"
+	import { IMG_LIKE as like, IMG_NO_LIKE as noLike, IMG_COMMENT as commentImg, IMG_DELETE as deleteImg, IMG_DEFAULT_AVATAR as defaultAvatar } from "@/constants/minio"
 	import ReplyPopup from "./components/replyPopup.vue"
 	import { UserVO } from "@/api/user"
 	import { useUserStore } from "@/store"
-	import deleteImg from "@/static/delete.png"
 	import CommentRepayAPI, {
 		CommentRepayVO,
 		CommentRepayDTO,
@@ -147,8 +144,6 @@
 		CommentRepayLikeDTO,
 	} from "@/api/commentRepay"
 
-	// 默认头像
-	const defaultAvatar = "@/static/default-avatar.png"
 	const userStore = useUserStore()
 	const userInfo = ref<UserVO>({} as UserVO)
 

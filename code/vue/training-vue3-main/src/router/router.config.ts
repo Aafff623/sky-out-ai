@@ -217,6 +217,25 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
 
   {
+    path: "/wx-user",
+    name: "WxUser",
+    component: Layout,
+    redirect: "/wx-user/index",
+    children: [
+      {
+        path: "index",
+        name: "WxUserIndex",
+        component: () => import("@/views/user/index.vue"),
+        meta: {
+          title: "用户管理",
+          icon: "workbench_user",
+          keepAlive: true,
+        },
+      },
+    ],
+  },
+
+  {
     path: "/customer-service",
     name: "CustomerService",
     component: Layout,

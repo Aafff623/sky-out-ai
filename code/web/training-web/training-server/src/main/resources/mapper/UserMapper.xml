@@ -46,4 +46,18 @@
 			</if>
 		</where>
 	</select>
+
+	<!-- 用户分页查询 -->
+	<select id="pageQuery" resultType="com.fortunate.entity.User">
+		select * from `user`
+		<where>
+			<if test="name != null and name != ''">
+				and `name` like concat('%', #{name}, '%')
+			</if>
+			<if test="phone != null and phone != ''">
+				and `phone` like concat('%', #{phone}, '%')
+			</if>
+		</where>
+		order by `create_time` desc
+	</select>
 </mapper>

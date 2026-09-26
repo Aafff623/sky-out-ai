@@ -3,6 +3,8 @@ package com.fortunate.service;
 import com.fortunate.dto.UserDTO;
 import com.fortunate.dto.UserLoginDTO;
 import com.fortunate.entity.User;
+import com.fortunate.query.UserPageQueryDTO;
+import com.fortunate.result.PageResult;
 
 /**
  * @description
@@ -36,5 +38,13 @@ public interface UserService {
     void updateUserInfoInComment(UserDTO userDTO);
 
     User getUserInfoById(Long userId);
+
+    /**
+     * 用户分页查询
+     *
+     * @param userPageQueryDTO 用户分页查询参数
+     * @return 分页结果
+     */
+    PageResult pageQuery(UserPageQueryDTO userPageQueryDTO);
 
 }

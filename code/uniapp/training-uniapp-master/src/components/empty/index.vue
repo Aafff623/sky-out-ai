@@ -1,7 +1,7 @@
 <template>
 	<view v-if="!isLoading" class="empty-content" :style="customStyle">
 		<view class="empty-icon">
-			<image class="image" src="/static/empty.png" mode="scaleToFill" />
+			<image class="image" :src="IMG_EMPTY" mode="scaleToFill" />
 		</view>
 		<view class="tips">{{ tips }}</view>
 		<slot name="slot"></slot>
@@ -9,6 +9,8 @@
 </template>
 
 <script lang="ts" setup>
+	import { IMG_EMPTY } from "@/constants/minio"
+
 	defineProps({
 		// 正在加载
 		isLoading: {

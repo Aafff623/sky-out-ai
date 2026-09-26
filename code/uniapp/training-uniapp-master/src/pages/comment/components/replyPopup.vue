@@ -215,8 +215,7 @@
 <script setup lang="ts">
 	import { ref, watch, onMounted, onUnmounted } from "vue"
 	import { formatTime } from "@/utils/util"
-	import like from "@/static/like.png"
-	import noLike from "@/static/no-like.png"
+	import { IMG_LIKE as like, IMG_NO_LIKE as noLike, IMG_DEFAULT_AVATAR as defaultAvatar } from "@/constants/minio"
 	import { CommentRepayVO } from "@/api/commentRepay"
 	import emojis from "@/static/emojis.json"
 	import CommentRepayAPI from "@/api/commentRepay"
@@ -239,8 +238,6 @@
 	const replyContent = ref("")
 	//当前回复的评论内容 默认为当前主评论 当用户点击回复其他人时 改为其他人的回复
 	const currentReplyCommentContent = ref<string>("")
-	// 默认头像
-	const defaultAvatar = "@/static/default-avatar.png"
 	// 添加加载状态
 	const loading = ref(false)
 	const noMoreData = computed(() => {

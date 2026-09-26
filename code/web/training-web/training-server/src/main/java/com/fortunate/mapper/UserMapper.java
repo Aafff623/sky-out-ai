@@ -1,6 +1,8 @@
 package com.fortunate.mapper;
 
 import com.fortunate.entity.User;
+import com.fortunate.query.UserPageQueryDTO;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -54,4 +56,11 @@ public interface UserMapper {
    * @return 用户列表
    */
   List<User> findUsersByMap(Map<String, Object> map);
+
+  /**
+   * 用户分页查询
+   * @param userPageQueryDTO 查询条件
+   * @return 用户分页对象
+   */
+  Page<User> pageQuery(UserPageQueryDTO userPageQueryDTO);
 }

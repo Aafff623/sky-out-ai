@@ -11,7 +11,7 @@ import { DeviceEnum } from "@/enums/DeviceEnum";
 import { MessageTypeEnum } from "@/enums/MessageTypeEnum";
 import { StatusEnum } from "@/enums/StatusEnum";
 import { EmployeeEnum } from "@/enums/EmployeeEnum";
-import avatar from "@/assets/avatar.png";
+import { IMG_AVATAR as avatar } from "@/constants/minio";
 
 const userInfo = ref();
 const route = useRoute();

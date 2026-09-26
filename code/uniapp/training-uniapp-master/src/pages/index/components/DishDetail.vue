@@ -80,7 +80,7 @@
 						class="dis-flex flex-y-center mb-10"
 						style="padding: 10rpx">
 						<up-avatar
-							:src="comment.image || '/static/default-avatar.png'"
+							:src="comment.image || IMG_DEFAULT_AVATAR"
 							customStyle="padding-top:10rpx;width: 80rpx; height: 20rpx; margin-right: 10rpx; margin-bottom:20rpx" />
 						<text class="f-24">{{ comment.authorName }}</text>
 					</view>
@@ -109,7 +109,7 @@
 							height: 200rpx;
 							margin: 0 auto 20rpx;
 						"
-						src="/static/no-comment.png"
+						:src="IMG_NO_COMMENT"
 						mode="aspectFit" />
 					<text>暂无评论，快来抢沙发吧！</text>
 				</view>
@@ -303,6 +303,7 @@
 	import { ShoppingCart } from "@/api/shopping-cart"
 	import { getCurrentInstance } from "vue"
 	import DishAPI, { type DishVO } from "@/api/dish"
+	import { IMG_DEFAULT_AVATAR, IMG_NO_COMMENT } from "@/constants/minio"
 	import { checkLogin } from "@/core/app"
 	import { CategoryTypeEnum } from "@/enums/CategoryEnum"
 	import { formatTime } from "@/utils/util"

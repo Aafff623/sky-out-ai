@@ -8,11 +8,13 @@
 			:size="width"
 			:mode="mode"
 			:randomBgColor="randomBgColor"
-			:src="url ? url : '/static/default-avatar.png'"></up-avatar>
+			:src="url ? url : IMG_DEFAULT_AVATAR"></up-avatar>
 	</view>
 </template>
 
 <script lang="ts" setup>
+	import { IMG_DEFAULT_AVATAR } from "@/constants/minio"
+
 	const props = defineProps({
 		url: {
 			type: String,

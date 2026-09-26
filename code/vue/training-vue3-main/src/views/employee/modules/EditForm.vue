@@ -5,7 +5,8 @@ import EmployeeAPI, {
   UserPageVO,
   UserInfo,
 } from "@/api/employee";
-import avatar from "@/assets/avatar.png";
+import { IMG_AVATAR as avatar, PRESET_AVATARS } from "@/constants/minio";
+import AvatarLibraryPicker from "@/components/AvatarLibraryPicker/index.vue";
 import { useAppStore } from "@/store/modules/app";
 import { useUserStore } from "@/store/modules/user";
 import UploadAPI from "@/api/upload";
@@ -32,6 +33,15 @@ const onUploadFile = (uploadFile: any) => {
   imgUrl.value = URL.createObjectURL(uploadFile.raw);
   formData.append("file", uploadFile.raw);
 };
+
+// 选择预设 IP 形象头像：直接使用远程 URL，无需上传
+const onSelectPreset = (url: string) => {
+  imgUrl.value = url;
+  form.avatar = url;
+  formData.delete("file");
+};
+
+const libraryVisible = ref(false);
 
 // 对话框是否可见
 let visible = ref<boolean>(false);
@@ -88,20 +98,19 @@ const handleSubmit = async () => {
     btn.loading = true;
     btn.disabled = true;
 
-    // 检查是否有文件被选择
-    if (!formData.has("file")) {
-      ElMessage.error("请选择一个图片文件");
+    // 有新文件则上传；否则使用已选头像（预设形象或原头像）
+    if (formData.has("file")) {
+      // 调用上传文件接口
+      const uploadRes = await UploadAPI.upload(formData);
+      if (!uploadRes.code) {
+        ElMessage.error("上传失败，请重试");
+        return;
+      }
+      form.avatar = uploadRes.data;
+    } else if (!form.avatar) {
+      ElMessage.error("请选择头像图片或预设形象");
       return;
     }
-
-    // 调用上传文件接口
-    const uploadRes = await UploadAPI.upload(formData);
-    if (!uploadRes.code) {
-      ElMessage.error("上传失败，请重试");
-      return;
-    }
-
-    form.avatar = uploadRes.data;
 
     const res = await EmployeeAPI.update(form);
     if (res.code === 200) {
@@ -223,6 +232,25 @@ defineOptions({
           <img v-if="imgUrl" :src="imgUrl" class="avatar" />
           <img v-else :src="avatar" width="278" />
         </el-upload>
+        <div v-if="PRESET_AVATARS.length" class="preset-avatars">
+          <p class="preset-tip">
+            或从预设形象中选择：
+            <el-link type="primary" :underline="false" @click="libraryVisible = true">
+              打开素材库（200+）
+            </el-link>
+          </p>
+          <div class="preset-list">
+            <img
+              v-for="url in PRESET_AVATARS"
+              :key="url"
+              :src="url"
+              class="preset-item"
+              :class="{ 'preset-active': form.avatar === url }"
+              @click="onSelectPreset(url)"
+            />
+          </div>
+        </div>
+        <AvatarLibraryPicker v-model="libraryVisible" @select="onSelectPreset" />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -245,5 +273,34 @@ defineOptions({
   height: 278px;
   display: block;
   object-fit: cover;
+}
+
+.preset-avatars {
+  margin-top: 12px;
+
+  .preset-tip {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: var(--el-text-color-secondary);
+  }
+
+  .preset-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .preset-item {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    &.preset-active {
+      border-color: var(--el-color-primary);
+    }
+  }
 }
 </style>

@@ -2,6 +2,8 @@
 import type { FormRules, FormInstance } from "element-plus";
 import EmployeeAPI, { type UserForm } from "@/api/employee";
 import { useAppStore } from "@/store/modules/app";
+import AvatarLibraryPicker from "@/components/AvatarLibraryPicker/index.vue";
+import { IMG_AVATAR } from "@/constants/minio";
 
 const appStore = useAppStore();
 
@@ -20,7 +22,16 @@ const form = reactive<UserForm>({
   username: "",
   phone: "",
   sex: 1,
+  avatar: "",
 });
+const libraryVisible = ref(false);
+const imgUrl = ref("");
+
+// 选择素材库形象头像：直接使用远程 URL，无需上传
+const onSelectPreset = (url: string) => {
+  form.avatar = url;
+  imgUrl.value = url;
+};
 const rules = reactive<FormRules<UserForm>>({
   name: [{ required: true, message: "请输入新增员工姓名", trigger: "blur" }],
   username: [
@@ -139,6 +150,17 @@ defineOptions({
           <p>该员工的手机号</p>
         </div>
       </el-form-item>
+
+      <el-form-item label="头像：" prop="avatar">
+        <div class="add-avatar">
+          <img v-if="imgUrl" :src="imgUrl" class="add-avatar-img" />
+          <img v-else :src="IMG_AVATAR" class="add-avatar-img" />
+          <el-button type="primary" plain @click="libraryVisible = true">
+            从素材库选择
+          </el-button>
+        </div>
+        <AvatarLibraryPicker v-model="libraryVisible" @select="onSelectPreset" />
+      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="handleClose()">取消</el-button>
@@ -154,4 +176,17 @@ defineOptions({
   </el-dialog>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.add-avatar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .add-avatar-img {
+    width: 88px;
+    height: 88px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+}
+</style>
