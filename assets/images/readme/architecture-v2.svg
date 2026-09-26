@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">锦食坊 sky-ai architecture</title>
+  <desc id="desc">WeChat Mini Program and Vue merchant admin connect through JWT to a Spring Boot service, which exposes SSE AI chat, tools, RAG, and human customer service, backed by project data stores.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#E8A92F"/></marker>
+    <style>.sans{font-family:Segoe UI,PingFang SC,Arial,sans-serif}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.title{font-size:34px;font-weight:700}.head{font-size:21px;font-weight:700}.body{font-size:16px}.small{font-size:13px}</style>
+  </defs>
+  <rect width="1200" height="700" rx="28" fill="#FFFDF8"/>
+  <text x="600" y="58" text-anchor="middle" class="sans title" fill="#242424">锦食坊 · 系统架构</text>
+  <text x="600" y="90" text-anchor="middle" class="sans body" fill="#6B6B6B">真实请求路径：三端入口 → JWT → Spring Boot → AI / 数据 / 人工客服</text>
+
+  <g transform="translate(48 132)">
+    <rect width="250" height="126" rx="18" fill="#EAF4FF" stroke="#5B9BE6" stroke-width="3"/><text x="24" y="40" class="sans head" fill="#2E6FAE">微信小程序</text><text x="24" y="76" class="sans body" fill="#242424">点餐 · 订单 · 客服</text><text x="24" y="102" class="mono small" fill="#2E6FAE">client / JWT</text>
+  </g>
+  <g transform="translate(48 286)">
+    <rect width="250" height="126" rx="18" fill="#EAF7EE" stroke="#55A873" stroke-width="3"/><text x="24" y="40" class="sans head" fill="#327B4B">Vue 商家端</text><text x="24" y="76" class="sans body" fill="#242424">菜品 · 订单 · 知识库</text><text x="24" y="102" class="mono small" fill="#327B4B">store / JWT</text>
+  </g>
+  <rect x="328" y="214" width="140" height="116" rx="18" fill="#FFF4DF" stroke="#E8A92F" stroke-width="3"/><text x="398" y="258" text-anchor="middle" class="mono head" fill="#B57916">JWT</text><text x="398" y="286" text-anchor="middle" class="sans body" fill="#242424">鉴权入口</text>
+  <path d="M298 195H318M298 349H318" stroke="#E8A92F" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g transform="translate(512 152)">
+    <rect width="318" height="218" rx="20" fill="#F6F0FF" stroke="#9C78D4" stroke-width="3"/><text x="24" y="42" class="sans head" fill="#704EA9">Spring Boot :8848</text><text x="24" y="78" class="mono body" fill="#704EA9">training-web</text>
+    <rect x="24" y="102" width="270" height="82" rx="14" fill="#FFF" stroke="#C7B3E8" stroke-width="2"/><text x="42" y="136" class="mono body" fill="#242424">SSE / REST / WebSocket</text><text x="42" y="164" class="sans body" fill="#6B6B6B">订单、评论、客服与履约</text>
+  </g>
+  <path d="M468 272H500" stroke="#E8A92F" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g transform="translate(882 126)">
+    <rect width="270" height="136" rx="18" fill="#FFF4DF" stroke="#E8A92F" stroke-width="3"/><text x="22" y="40" class="sans head" fill="#B57916">AI 能力</text><text x="22" y="74" class="mono body" fill="#242424">Qwen · LangChain4j</text><text x="22" y="104" class="sans body" fill="#242424">Tools · RAG · SSE chat</text>
+  </g>
+  <g transform="translate(882 290)">
+    <rect width="270" height="136" rx="18" fill="#EAF7EE" stroke="#55A873" stroke-width="3"/><text x="22" y="40" class="sans head" fill="#327B4B">人工客服</text><text x="22" y="74" class="mono body" fill="#242424">WebSocket</text><text x="22" y="104" class="sans body" fill="#242424">AI 无法处理时接管</text>
+  </g>
+  <path d="M830 198H870" stroke="#E8A92F" stroke-width="4" marker-end="url(#arrow)"/><path d="M830 304H870" stroke="#55A873" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g transform="translate(230 492)">
+    <rect width="740" height="122" rx="20" fill="#FFF" stroke="#D9D2C6" stroke-width="3"/><text x="28" y="38" class="sans head" fill="#242424">数据与基础设施</text><text x="28" y="77" class="mono body" fill="#327B4B">MySQL</text><text x="188" y="77" class="mono body" fill="#327B4B">Redis</text><text x="326" y="77" class="mono body" fill="#327B4B">MongoDB</text><text x="504" y="77" class="mono body" fill="#327B4B">MinIO</text><text x="28" y="102" class="sans small" fill="#6B6B6B">local 配置可使用 InMemory 向量存储；具体 profile 以仓库配置为准</text>
+  </g>
+  <path d="M671 370V470" stroke="#9C78D4" stroke-width="4" marker-end="url(#arrow)"/>
+</svg>

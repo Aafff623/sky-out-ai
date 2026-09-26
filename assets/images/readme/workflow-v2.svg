@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">锦食坊 sky-ai order and AI service workflow</title>
+  <desc id="desc">A user browses food, checks out, completes simulated payment, and follows merchant fulfillment; AI recommendation, customer service, and human fallback sit beside the order path.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#E8A92F"/></marker><style>.sans{font-family:Segoe UI,PingFang SC,Arial,sans-serif}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.title{font-size:34px;font-weight:700}.head{font-size:20px;font-weight:700}.body{font-size:16px}.small{font-size:13px}</style></defs>
+  <rect width="1200" height="620" rx="28" fill="#FFFDF8"/>
+  <text x="600" y="58" text-anchor="middle" class="sans title" fill="#242424">锦食坊 · 用户与 AI 流程</text>
+  <text x="600" y="91" text-anchor="middle" class="sans body" fill="#6B6B6B">订单主链保持可解释，AI 在推荐、客服和派单节点提供辅助</text>
+  <g transform="translate(46 142)">
+    <rect width="1108" height="170" rx="22" fill="#EAF4FF" stroke="#5B9BE6" stroke-width="3"/>
+    <text x="28" y="38" class="mono small" fill="#2E6FAE">ORDER PATH · WECHAT MINI PROGRAM</text>
+    <g fill="#FFF" stroke="#6EA7DD" stroke-width="2"><rect x="28" y="66" width="176" height="64" rx="14"/><rect x="236" y="66" width="176" height="64" rx="14"/><rect x="444" y="66" width="176" height="64" rx="14"/><rect x="652" y="66" width="176" height="64" rx="14"/><rect x="860" y="66" width="220" height="64" rx="14"/></g>
+    <text x="116" y="104" text-anchor="middle" class="sans head" fill="#242424">浏览</text><text x="324" y="104" text-anchor="middle" class="sans head" fill="#242424">购物车</text><text x="532" y="104" text-anchor="middle" class="sans head" fill="#242424">结算</text><text x="740" y="104" text-anchor="middle" class="sans head" fill="#242424">模拟支付</text><text x="970" y="104" text-anchor="middle" class="sans head" fill="#242424">商家接单 / 配送</text>
+    <path d="M204 98H226M412 98H434M620 98H642M828 98H850" stroke="#E8A92F" stroke-width="4" marker-end="url(#arrow)"/>
+  </g>
+  <g transform="translate(46 358)">
+    <rect width="530" height="170" rx="22" fill="#FFF4DF" stroke="#E8A92F" stroke-width="3"/><text x="28" y="38" class="mono small" fill="#B57916">AI ASSISTANT · SSE</text><text x="28" y="80" class="sans head" fill="#242424">小锦客服</text><text x="28" y="116" class="mono body" fill="#242424">Question → Qwen → Tools / RAG</text><text x="28" y="144" class="sans body" fill="#6B6B6B">推荐菜品、查询订单、返回结构化结果</text>
+  </g>
+  <g transform="translate(624 358)">
+    <rect width="530" height="170" rx="22" fill="#EAF7EE" stroke="#55A873" stroke-width="3"/><text x="28" y="38" class="mono small" fill="#327B4B">FALLBACK · WEBSOCKET</text><text x="28" y="80" class="sans head" fill="#242424">人工客服兜底</text><text x="28" y="116" class="mono body" fill="#242424">AI cannot resolve → human handoff</text><text x="28" y="144" class="sans body" fill="#6B6B6B">与商家端客服工作台保持同一条会话链路</text>
+  </g>
+  <path d="M576 443H604" stroke="#E8A92F" stroke-width="4" marker-end="url(#arrow)"/>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">锦食坊 sky-ai capability map</title>
+  <desc id="desc">Three real product lanes: customer ordering, AI assistant, and merchant operations, connected by the shared Spring Boot service.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#E8A92F"/></marker>
+    <style>
+      .sans{font-family:Segoe UI,PingFang SC,Arial,sans-serif}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+      .title{font-size:34px;font-weight:700}.head{font-size:23px;font-weight:700}.body{font-size:17px}.small{font-size:14px}
+    </style>
+  </defs>
+  <rect width="1200" height="620" rx="28" fill="#FFFDF8"/>
+  <path d="M70 92C220 76 390 104 550 88S880 78 1130 96" fill="none" stroke="#E8A92F" stroke-width="4" stroke-linecap="round"/>
+  <text x="600" y="64" text-anchor="middle" class="sans title" fill="#242424">锦食坊 · 能力地图</text>
+  <text x="600" y="113" text-anchor="middle" class="sans body" fill="#6B6B6B">三端业务闭环，AI 只在真实的客服、推荐与履约节点介入</text>
+
+  <g transform="translate(54 154)">
+    <rect width="330" height="330" rx="22" fill="#EAF4FF" stroke="#5B9BE6" stroke-width="3"/>
+    <text x="28" y="48" class="sans head" fill="#2E6FAE">用户端 · 微信小程序</text>
+    <text x="28" y="83" class="mono small" fill="#2E6FAE">ORDER LANE</text>
+    <g fill="#FFF" stroke="#6EA7DD" stroke-width="2">
+      <rect x="28" y="112" width="274" height="48" rx="12"/><rect x="28" y="174" width="274" height="48" rx="12"/><rect x="28" y="236" width="274" height="48" rx="12"/>
+    </g>
+    <text x="50" y="143" class="sans body" fill="#242424">浏览 · 推荐菜品</text>
+    <text x="50" y="205" class="sans body" fill="#242424">购物车 · 结算 · 模拟支付</text>
+    <text x="50" y="267" class="sans body" fill="#242424">订单 · 评价 · AI 客服</text>
+  </g>
+
+  <g transform="translate(435 154)">
+    <rect width="330" height="330" rx="22" fill="#FFF4DF" stroke="#E8A92F" stroke-width="3"/>
+    <text x="28" y="48" class="sans head" fill="#B57916">AI 服务 · 小锦</text>
+    <text x="28" y="83" class="mono small" fill="#B57916">ASSISTANT LANE</text>
+    <g fill="#FFF" stroke="#E8C36A" stroke-width="2">
+      <rect x="28" y="112" width="274" height="48" rx="12"/><rect x="28" y="174" width="274" height="48" rx="12"/><rect x="28" y="236" width="274" height="48" rx="12"/>
+    </g>
+    <text x="50" y="143" class="sans body" fill="#242424">SSE 流式对话</text>
+    <text x="50" y="205" class="sans body" fill="#242424">DishRecommendTool · OrderTool</text>
+    <text x="50" y="267" class="sans body" fill="#242424">RAG 检索 · 人工客服兜底</text>
+  </g>
+
+  <g transform="translate(816 154)">
+    <rect width="330" height="330" rx="22" fill="#EAF7EE" stroke="#55A873" stroke-width="3"/>
+    <text x="28" y="48" class="sans head" fill="#327B4B">商家端 · Vue Admin</text>
+    <text x="28" y="83" class="mono small" fill="#327B4B">OPERATIONS LANE</text>
+    <g fill="#FFF" stroke="#75BE8C" stroke-width="2">
+      <rect x="28" y="112" width="274" height="48" rx="12"/><rect x="28" y="174" width="274" height="48" rx="12"/><rect x="28" y="236" width="274" height="48" rx="12"/>
+    </g>
+    <text x="50" y="143" class="sans body" fill="#242424">菜品 · 门店 · 营业数据</text>
+    <text x="50" y="205" class="sans body" fill="#242424">订单接单 · 履约状态</text>
+    <text x="50" y="267" class="sans body" fill="#242424">知识库 · 敏感词 · 人工客服</text>
+  </g>
+
+  <path d="M384 320H425" stroke="#E8A92F" stroke-width="4" marker-end="url(#arrow)"/><path d="M765 320H806" stroke="#E8A92F" stroke-width="4" marker-end="url(#arrow)"/>
+  <rect x="214" y="528" width="772" height="48" rx="18" fill="#242424"/>
+  <text x="600" y="559" text-anchor="middle" class="mono body" fill="#FFFDF8">Spring Boot :8848  ·  JWT  ·  SSE  ·  WebSocket</text>
+</svg>

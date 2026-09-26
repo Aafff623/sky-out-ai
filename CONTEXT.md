@@ -37,7 +37,9 @@
 | MySQL `cq_take_out` | 18 张表（传统 11 + AI 相关 + `shop_info` / `pickup_code` 等）；SQL 在 `code/web/training-web/sql/` |
 | MongoDB `training-comment` | 评论 / 回复等文档 |
 | Redis | 业务缓存（前缀 `CACHE_`）、AI 会话记忆、向量库（do 环境需 Redis Stack；local 无 RediSearch 走内存，重启后端需重新 embed） |
-| MinIO `training-take-out` | 菜品图、知识库文件 |
+| MinIO `training-take-out` | 菜品图、知识库文件、UI 图与头像素材库（桶内：业务图 `2026/MM/dd/`、界面图 `ui/vue` · `ui/uniapp`、预设头像 `ui/avatars`、分类素材库 `ui/avatar-library/{animals,nature,food,objects,symbols,other}` + `index.json` 清单） |
+
+**图片资产策略（2026-09 起，ADR 0001）**：业务图片运行时上传 MinIO，数据库只存 URL；UI 静态图与素材库以 MinIO 为权威存储、仓库 `assets/images/ui/` 保留全量备份（可重灌）；前端图片地址统一出自两端 `src/constants/minio.ts`（`MINIO_BASE` + 常量），禁止再硬编码。头像素材来自 [ipaslogo.com](https://ipaslogo.com) 免费库（可商用）。
 
 **运行时**：默认本机原生中间件（MySQL80 + Scoop Redis/Mongo/MinIO），Spring profile **`local`**，脚本 `deploy/local/up-native.ps1`；profile `do` 为 DigitalOcean 中间件 + SSH 隧道回退方案；`dev` 指向预配虚拟机 `192.168.64.100`（配置文件不入库，需自建）。
 
@@ -58,6 +60,7 @@
 5. **前端硬编码**：商家端 `views/customer-service/` 与小程序 `ai-assistant.vue` / `customer-service.vue` 写死 `http(s)://localhost:8848` / `ws://localhost:8848`，改后端主机需同步。
 6. **遮蔽类**：`training-server/src/main/java/dev/langchain4j/` 为仿官方包名的自定义入库器，搜类时勿与官方混淆，无需求不动。
 7. 用词规范：锦食坊（≠满香宜）、小锦、商家端 / 用户端；技术短名 LangChain4j / Qwen / RAG / SSE / JWT 双 Token。
+8. **图片地址统一出口**：前端新增/修改图片引用一律走 `src/constants/minio.ts`，不得硬编码 MinIO 地址；素材库新增只改 MinIO `index.json`，前端零改动（ADR 0001）。
 
 ## 7. 已知未修复 backlog
 
@@ -70,6 +73,10 @@
 - **P2** `ToolContext` 为全局静态 Map，AI 并发会话的 USER_ID / REQUEST_ID 互相覆盖，存在跨用户上下文串扰。
 - **P2** `AiAssistantServiceImpl.createMockRecommendations` 兜底路径在菜品少于 5 条时数组越界。
 - **P2** 支付为模拟实现（见 §6.4），接真实微信支付前不可上线收费。
+- **P2** 端口冲突：本机 `8848` 被 Nfturbo 项目 Nacos 容器占用，后端临时以 `8849` 运行（商家端 `.env.development` 已同步）；长期方案（换端口 / 错时 / 停容器）待拍板。
+- **P3** 商家端存量 `vue-tsc` 类型错误 40+（遍布 setmeal/workbench 等 15 文件，历次遗留）。
+- **P3** 小程序 `type-check` 工具链损坏（vue-tsc 与 TypeScript 版本不兼容，报 `Search string not found`），构建 `build:mp-weixin` 不受影响。
+- **P3** OSS 历史死链：`order_detail` / `setmeal_dish` / `shopping_cart` 共 145 条 image URL 指向已 404 的 OSS 对象（历史快照，保留未改；新数据写入 MinIO 自愈）。
 
 ## 8. 待确认项
 
@@ -86,5 +93,7 @@
 | 架构决策记录 | `docs/adr/` |
 | 知识备忘 | `docs/knowledge/` |
 | 菜品图片 / 部署截图 / README 配图 | `assets/images/{dishes,deploy,readme}/` |
+| UI 图与头像素材库备份（MinIO 全量镜像） | `assets/images/ui/`（`vue` · `uniapp` · `avatars` · `avatars-library/`） |
+| 素材搬运 / 恢复脚本（不入库） | `temp/restore-dishes.ps1` · `temp/mirror-library.mjs` |
 | 上游压缩包（不入库） | `assets/backup/` |
 | 本地工作区 / 临时文件（不入库） | `.scratch/` · `temp/` |

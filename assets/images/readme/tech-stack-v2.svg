@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">锦食坊 sky-ai technology stack</title>
+  <desc id="desc">Project technology stack grouped into clients, business service, AI integration, and persistence and infrastructure.</desc>
+  <style>.sans{font-family:Segoe UI,PingFang SC,Arial,sans-serif}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.title{font-size:34px;font-weight:700}.head{font-size:22px;font-weight:700}.tag{font-size:17px}</style>
+  <rect width="1200" height="620" rx="28" fill="#FFFDF8"/>
+  <text x="600" y="58" text-anchor="middle" class="sans title" fill="#242424">锦食坊 · 技术栈全景</text>
+  <text x="600" y="92" text-anchor="middle" class="sans" font-size="16" fill="#6B6B6B">只列当前仓库能对上的运行时与集成，不把未来计划画成已实现</text>
+  <g transform="translate(44 132)">
+    <rect width="1112" height="92" rx="18" fill="#EAF4FF" stroke="#5B9BE6" stroke-width="3"/><text x="26" y="55" class="sans head" fill="#2E6FAE">三端入口</text>
+    <g fill="#FFF" stroke="#6EA7DD" stroke-width="2"><rect x="250" y="22" width="230" height="48" rx="12"/><rect x="510" y="22" width="230" height="48" rx="12"/><rect x="770" y="22" width="270" height="48" rx="12"/></g>
+    <text x="274" y="53" class="mono tag" fill="#242424">WeChat Mini Program</text><text x="534" y="53" class="mono tag" fill="#242424">Vue 3 · Vite · Element Plus</text><text x="794" y="53" class="mono tag" fill="#242424">uni-app · Pinia</text>
+  </g>
+  <g transform="translate(44 246)">
+    <rect width="1112" height="92" rx="18" fill="#F6F0FF" stroke="#9C78D4" stroke-width="3"/><text x="26" y="55" class="sans head" fill="#704EA9">业务服务</text>
+    <g fill="#FFF" stroke="#C7B3E8" stroke-width="2"><rect x="250" y="22" width="230" height="48" rx="12"/><rect x="510" y="22" width="230" height="48" rx="12"/><rect x="770" y="22" width="270" height="48" rx="12"/></g>
+    <text x="274" y="53" class="mono tag" fill="#242424">Java 17 · Spring Boot 3.4.5</text><text x="534" y="53" class="mono tag" fill="#242424">MyBatis · JWT</text><text x="794" y="53" class="mono tag" fill="#242424">REST · SSE · WebSocket</text>
+  </g>
+  <g transform="translate(44 360)">
+    <rect width="1112" height="92" rx="18" fill="#FFF4DF" stroke="#E8A92F" stroke-width="3"/><text x="26" y="55" class="sans head" fill="#B57916">AI 能力</text>
+    <g fill="#FFF" stroke="#E8C36A" stroke-width="2"><rect x="250" y="22" width="230" height="48" rx="12"/><rect x="510" y="22" width="230" height="48" rx="12"/><rect x="770" y="22" width="270" height="48" rx="12"/></g>
+    <text x="274" y="53" class="mono tag" fill="#242424">LangChain4j · Qwen</text><text x="534" y="53" class="mono tag" fill="#242424">DishRecommendTool · OrderTool</text><text x="794" y="53" class="mono tag" fill="#242424">RAG · Embedding Store</text>
+  </g>
+  <g transform="translate(44 474)">
+    <rect width="1112" height="92" rx="18" fill="#EAF7EE" stroke="#55A873" stroke-width="3"/><text x="26" y="55" class="sans head" fill="#327B4B">数据 / 基础设施</text>
+    <g fill="#FFF" stroke="#75BE8C" stroke-width="2"><rect x="300" y="22" width="150" height="48" rx="12"/><rect x="470" y="22" width="150" height="48" rx="12"/><rect x="640" y="22" width="170" height="48" rx="12"/><rect x="830" y="22" width="150" height="48" rx="12"/></g>
+    <text x="338" y="53" class="mono tag" fill="#242424">MySQL</text><text x="507" y="53" class="mono tag" fill="#242424">Redis</text><text x="670" y="53" class="mono tag" fill="#242424">MongoDB</text><text x="862" y="53" class="mono tag" fill="#242424">MinIO</text>
+  </g>
+</svg>

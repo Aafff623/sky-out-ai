@@ -2,11 +2,11 @@
 
 # 锦食坊 · sky-ai
 
-*AI-enhanced takeout platform with intelligent assistant XiaoJin*
+*A training project that connects takeout fulfilment with an AI assistant, recommendation, RAG, and human handoff.*
 
-基于苍穹外卖深度重构的培训 / 毕业设计项目：**三端完整可跑**（后端 · 商家端 · 微信小程序），含完整外卖点餐履约链路 + LangChain4j / 通义千问五大 AI 模块（智能客服、菜品推荐、评论扩写、知识库 RAG、敏感词过滤）。
+基于苍穹外卖重构的培训 / 毕业设计项目。它提供用户小程序、商家管理端和 Spring Boot API 三端代码：从点餐履约到 AI 客服「小锦」、推荐、评论辅助、知识库 RAG 与人工客服入口，都在同一条业务链路中。
 
-![Banner](assets/images/readme/banner.png)
+![锦食坊 sky-ai：点餐履约、小锦客服、商家运营与 SSE、Tools、RAG、人工客服能力](assets/images/readme/hero-v2.png)
 
 [![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge)](code/web/training-web)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4-green?style=for-the-badge)](code/web/training-web)
@@ -14,14 +14,14 @@
 [![uni-app](https://img.shields.io/badge/uni--app-WeChat-blue?style=for-the-badge)](code/uniapp/training-uniapp-master)
 [![LangChain4j](https://img.shields.io/badge/LangChain4j-Qwen-red?style=for-the-badge)](docs/苍穹外卖文档/_conv/AI模块设计.md)
 
-[为什么](#为什么需要锦食坊) · [功能](#功能) · [Preview](#preview) · [演示](#演示--showcase) · [快速开始](#快速开始) · [架构](#架构) · [技术栈](#技术栈) · [测试](#测试) · [主链路](#用户主链路) · [目录](#目录结构) · [路线图](#路线图) · [文档](#文档)
+[体验](#演示--showcase) · [能力](#功能) · [快速开始](#快速开始) · [机制与架构](#架构) · [限制](#当前限制) · [测试](#测试) · [文档](#文档)
 
 </div>
 
 ---
 
-> [!TIP]
-> `docs/苍穹外卖文档/` 里的论文和开题报告是 2023 年传统版「满香宜」，没有 AI 功能。实现细节以 `code/` 源码 + [`AI模块设计.md`](docs/苍穹外卖文档/_conv/AI模块设计.md) + 根 [`CONTEXT.md`](CONTEXT.md) 为准。
+> [!IMPORTANT]
+> `docs/苍穹外卖文档/` 中的论文和开题报告描述的是 2023 年传统版「满香宜」，不等同于当前实现。现行能力以 `code/` 源码、[`AI模块设计.md`](docs/苍穹外卖文档/_conv/AI模块设计.md) 和根 [`CONTEXT.md`](CONTEXT.md) 为准。
 
 | 端 | 代码路径 | 默认端口 |
 | --- | --- | --- |
@@ -55,18 +55,18 @@ Merchant Admin (Vue3) ───────JWT token─────────�
                                                   └── Bailian Qwen · Green · WeChat
 ```
 
-小程序请求头带 `authentication`，商家端带 `token`，均走 JWT 校验。
+小程序请求头使用 `authentication`，商家端使用 `token`。客服 HTTP / WebSocket 仍有鉴权例外，见 [当前限制](#当前限制)。
 
 ---
 
 ## 功能
 
-![Features](assets/images/readme/features.png)
+![锦食坊 sky-ai 能力地图：用户端、AI 小锦与商家端三条真实业务线](assets/images/readme/features-v2.svg)
 
 | 领域 | 能力 | 包含内容 | 主要入口 |
 | --- | --- | --- | --- |
 | 外卖 | 点餐履约 | 分类浏览、菜品/套餐、购物车、外卖/堂食切换、支付与订单状态流转 | `code/uniapp/.../pages/index` · `.../order` |
-| 外卖 | 商家运营 | 工作台数据看板、订单管理、菜品/套餐/分类管理、员工权限、统计报表导出 | `code/vue/.../src/views/*` |
+| 外卖 | 商家运营 | 工作台数据看板、订单管理、菜品/套餐/分类管理、员工与小程序用户管理、员工头像可选 IP 素材库（6 分类 200 张）、统计报表导出 | `code/vue/.../src/views/*` |
 | AI | 智能客服 | SSE 流式输出、Redis 记忆窗口 20 条、RAG 检索增强、Dish/Order Tools、转人工兜底 | `ConsultantService` · `pages/message/ai-assistant` |
 | AI | 菜品推荐 | 偏好语义理解 + 关键词/热度双降级；浏览行为上报采集（当前不参与排序） | `/client/ai-assistant/recommend` |
 | AI | 评论助手 | 帮写 / 续写 / 润色 / 精简四种模式；发评后 AI 异步自动回复 | `/client/ai-comment/expand` |
@@ -76,12 +76,6 @@ Merchant Admin (Vue3) ───────JWT token─────────�
 边界说明：天气为提示词口语能力，无实时 Weather Tool；`item_views` 仅采集上报，不参与推荐排序；部分客服页硬编码 `localhost:8848`，改后端主机需同步前端。
 
 领域术语、Agent 门禁与分端 CONTEXT 见文末 [文档](#文档)。
-
----
-
-## Preview
-
-本仓库是可运行的三端完整产品，不单独维护资产 Gallery Preview 站。
 
 ---
 
@@ -183,9 +177,19 @@ npm run dev:mp-weixin
 
 ---
 
+## 当前限制
+
+- `/client/order/payment` 是**模拟支付**，未接入真实微信支付。
+- 客服 HTTP 与 WebSocket 存在当前的鉴权例外；不要把它描述为全链路 JWT 防护。
+- `local` 使用 `InMemoryEmbeddingStore`，后端重启后需要重新 embed 知识库；`do` 才使用 Redis Stack。
+- 天气问答没有独立 Weather Tool 或实时天气 API；`item_views` 只采集浏览行为，不参与当前推荐排序。
+- 某些客服页面仍硬编码 `localhost:8848`，切换后端主机时需要同步处理。
+- 本机 `8848` 被 Nfturbo 项目的 Nacos 容器占用时，后端临时以 `8849` 启动，商家端 `.env.development` 已同步指向 8849；端口方案待定（见 CONTEXT §7）。
+- 小程序真机预览需把 `src/constants/minio.ts` 与后端地址改为电脑局域网 IP，并在开发者工具勾选「不校验合法域名」。
+
 ## 架构
 
-![Architecture](assets/images/readme/architecture.png)
+![锦食坊 sky-ai 系统架构：小程序与商家端经 JWT 进入 Spring Boot，再连接 AI、数据与人工客服](assets/images/readme/architecture-v2.svg)
 
 | 层级 | 职责 | 主要实现 |
 | --- | --- | --- |
@@ -217,7 +221,7 @@ npm run dev:mp-weixin
 
 ## 技术栈
 
-![Tech stack](assets/images/readme/tech-stack.png)
+![锦食坊 sky-ai 技术栈全景：三端入口、业务服务、AI 集成与数据基础设施](assets/images/readme/tech-stack-v2.svg)
 
 | 层级 | 技术选型 |
 | --- | --- |
@@ -225,13 +229,13 @@ npm run dev:mp-weixin
 | Merchant Admin | Vue 3 · TypeScript · Vite 5 · Element Plus · Pinia · ECharts |
 | Mini Program | uni-app · Vue 3 · uview-plus · Pinia（`pinia-plugin-unistorage` 持久化） |
 | Data | MySQL 8.0 · Redis · MongoDB · MinIO |
-| AI | 通义千问 `qwen-plus-latest`（对话）· `text-embedding-v4`（向量嵌入） |
+| AI | 通义千问 `qwen3.7-plus`（对话，可通过环境变量覆盖）· `text-embedding-v4`（向量嵌入） |
 
 ---
 
 ## 测试
 
-后端 [`training-server/src/test`](code/web/training-web/training-server/src/test) 分四层，约 65+ 用例：
+后端 [`training-server/src/test`](code/web/training-web/training-server/src/test) 分四层；当前源码可见 69 个 `@Test` 标记：
 
 | 层级 | 说明 |
 | --- | --- |
@@ -251,7 +255,7 @@ mvn test -pl training-server -am   # 需先起本机中间件
 
 ## 用户主链路
 
-![Workflow](assets/images/readme/workflow.png)
+![锦食坊 sky-ai 用户与 AI 流程：订单主链、SSE 客服与 WebSocket 人工兜底](assets/images/readme/workflow-v2.svg)
 
 ```text
 用户侧：
