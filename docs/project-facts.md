@@ -14,7 +14,7 @@ TTA 治理资产：Agent 硬约束与构建命令见 `AGENTS.md`；领域词汇�
 
 后端 Maven 三模块：`training-common`（工具 / 常量 / `Result`）· `training-pojo`（entity/dto/vo，评论类为 MongoDB `@Document`）· `training-server`（业务，启动类 `TrainingApplication`），包根 `com.fortunate`。
 
-规模快照（2026-10-11 复核）：后端 REST Controller **33 个**（`client` 16 · `store` 15 · `upload` 1 · `health` 1）；`@Test` 标记 69 个；pojo 实体 24 个（4 个 MongoDB 文档）；MySQL 18 表（`sql/cq_take_out.sql`，路径在 `code/web/training-web/sql/`）。
+规模快照（2026-10-11 复核）：后端 REST Controller **33 个**（`client` 16 · `store` 15 · `upload` 1 · `health` 1）；`@Test` 标记 69 个；pojo 实体 24 个（4 个 MongoDB 文档）；MySQL 18 表（`sql/cq_take_out.sql`，路径在 `code/web/training-web/sql/`）。框架版本以 pom **parent `spring-boot-starter-parent` 3.4.5** 为准；注意 `training-server` 的 `spring-boot-maven-plugin` 仍钉 **2.7.3**（上游模板遗留，与 3.4.5 parent 混用，可跑，择机对齐）。
 
 ## 2. 主链路
 
