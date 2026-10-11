@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fortunate.base.BaseIntegrationTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -14,6 +16,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @DisplayName("用户端 - 公开查询")
 class ClientPublicApiTest extends BaseIntegrationTest {
+
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
     @Test
     @DisplayName("GET /client/category/list - 查询分类列表")
@@ -100,6 +105,8 @@ class ClientPublicApiTest extends BaseIntegrationTest {
     @Test
     @DisplayName("GET /client/shop/status - 查询营业状态")
     void shopStatus() throws Exception {
+        // 营业状态读 Redis 缓存（缓存缺失时接口会 NPE，属存量行为）；测试自播种保证确定性
+        redisTemplate.opsForValue().set("SHOP_STATUS", "1");
         MvcResult result = mockMvc.perform(get("/client/shop/status"))
                 .andExpect(status().isOk())
                 .andReturn();

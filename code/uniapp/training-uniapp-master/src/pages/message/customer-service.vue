@@ -176,7 +176,9 @@
 
 	// 连接WebSocket
 	const connectWebSocket = () => {
-		const wsUrl = `ws://localhost:8848/ws/customer-service/${sessionId.value}/user`
+		// 握手鉴权：携带用户端 token（uni.getStorageSync("token")）
+		const token = uni.getStorageSync("token")
+		const wsUrl = `ws://localhost:8848/ws/customer-service/${sessionId.value}/user?token=${token}`
 
 		websocket = uni.connectSocket({
 			url: wsUrl,

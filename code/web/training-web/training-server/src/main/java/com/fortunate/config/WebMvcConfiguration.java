@@ -44,7 +44,6 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     registry.addInterceptor(jwtTokenStoreInterceptor)
             .addPathPatterns("/store/**") // 拦截admin下的所有接口
             .excludePathPatterns("/store/employee/login") // 排除登录接口
-            .excludePathPatterns("/store/customer-service/**") // 排除客服接口（临时）
             .excludePathPatterns("/client/shopInfo");
 
     // 微信小程序用户端拦截器

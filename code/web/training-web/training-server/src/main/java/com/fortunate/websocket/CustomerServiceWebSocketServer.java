@@ -2,10 +2,15 @@ package com.fortunate.websocket;
 
 import com.alibaba.fastjson.JSON;
 import com.fortunate.constant.CustomerServiceConstant;
+import com.fortunate.constant.JwtClaimsConstant;
 import com.fortunate.dto.CustomerServiceMessageDTO;
 import com.fortunate.entity.CustomerServiceMessage;
+import com.fortunate.properties.JwtProperties;
 import com.fortunate.service.CustomerServiceService;
+import com.fortunate.utils.JwtUtil;
+import com.fortunate.vo.CustomerServiceSessionVO;
 //import jakarta.websocket.Session;
+import io.jsonwebtoken.Claims;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
@@ -14,12 +19,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ContextLoader;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 客服WebSocket服务器
+ * 握手鉴权：客户端需在 URL 上携带 ?token=（商家端 token / 用户端 authentication），
+ * 未通过鉴权的连接在 onOpen 阶段直接关闭，不进入会话表。
  */
 @Slf4j
 @Component
@@ -28,15 +37,24 @@ public class CustomerServiceWebSocketServer {
 
     // 存放会话对象 key: sessionId, value: Session
     private static final Map<String, Session> sessionMap = new ConcurrentHashMap<>();
-    
+
     // 存放用户类型 key: sessionId, value: userType (user/staff)
     private static final Map<String, String> userTypeMap = new ConcurrentHashMap<>();
 
+    // 存放客服身份 key: sessionId_userType, value: empId（来自 JWT，非客户端自报）
+    private static final Map<String, Long> staffIdMap = new ConcurrentHashMap<>();
+
     private static CustomerServiceService customerServiceService;
+    private static JwtProperties jwtProperties;
 
     @Autowired
     public void setCustomerServiceService(CustomerServiceService customerServiceService) {
         CustomerServiceWebSocketServer.customerServiceService = customerServiceService;
+    }
+
+    @Autowired
+    public void setJwtProperties(JwtProperties jwtProperties) {
+        CustomerServiceWebSocketServer.jwtProperties = jwtProperties;
     }
 
     /**
@@ -58,16 +76,66 @@ public class CustomerServiceWebSocketServer {
      */
     @OnOpen
     public void onOpen(Session session, @PathParam("sessionId") String sessionId, @PathParam("userType") String userType) {
+        if (!authenticate(session, sessionId, userType)) {
+            log.warn("客服WebSocket鉴权失败，拒绝连接。会话ID：{}，用户类型：{}", sessionId, userType);
+            try {
+                session.close(new CloseReason(CloseReason.CloseCodes.VIOLATED_POLICY, "unauthorized"));
+            } catch (IOException e) {
+                log.error("关闭未授权客服WebSocket连接失败", e);
+            }
+            return;
+        }
         log.info("客服WebSocket连接建立，会话ID：{}，用户类型：{}", sessionId, userType);
         sessionMap.put(sessionId + "_" + userType, session);
         userTypeMap.put(sessionId + "_" + userType, userType);
-        
+
         // 发送连接成功消息
         Map<String, Object> connectMessage = new HashMap<>();
         connectMessage.put("type", "system");
         connectMessage.put("message", "连接成功");
         connectMessage.put("timestamp", System.currentTimeMillis());
         sendMessage(session, JSON.toJSONString(connectMessage));
+    }
+
+    /**
+     * 握手鉴权：校验 token 有效性与会话归属
+     * @param session   WebSocket会话
+     * @param sessionId 客服会话ID
+     * @param userType  user/staff
+     * @return 是否通过
+     */
+    private boolean authenticate(Session session, String sessionId, String userType) {
+        try {
+            List<String> tokens = session.getRequestParameterMap().get("token");
+            if (tokens == null || tokens.isEmpty() || jwtProperties == null) {
+                return false;
+            }
+            String token = tokens.get(0);
+            CustomerServiceSessionVO sessionVO = getCustomerServiceService().getSessionDetail(sessionId);
+            if (sessionVO == null) {
+                return false;
+            }
+            if ("staff".equals(userType)) {
+                Claims claims = JwtUtil.parseJWT(jwtProperties.getStoreSecretKey(), token);
+                Long empId = Long.valueOf(claims.get(JwtClaimsConstant.EMP_ID).toString());
+                // 会话未分配客服时允许接入（随后通过 HTTP 分配），已分配则仅限本人
+                if (sessionVO.getStaffId() != null && !empId.equals(sessionVO.getStaffId())) {
+                    return false;
+                }
+                staffIdMap.put(sessionId + "_" + userType, empId);
+                return true;
+            }
+            if ("user".equals(userType)) {
+                Claims claims = JwtUtil.parseJWT(jwtProperties.getClientSecretKey(), token);
+                Long userId = Long.valueOf(claims.get(JwtClaimsConstant.USER_ID).toString());
+                // 用户只能进入自己的客服会话
+                return userId.equals(sessionVO.getUserId());
+            }
+            return false;
+        } catch (Exception e) {
+            log.warn("客服WebSocket鉴权异常。会话ID：{}，用户类型：{}", sessionId, userType, e);
+            return false;
+        }
     }
 
     /**
@@ -99,8 +167,9 @@ public class CustomerServiceWebSocketServer {
                 // 用户发送消息
                 savedMessage = service.sendMessage(messageDTO);
             } else {
-                // TODO 客服发送消息，这里使用默认客服ID，实际应该从JWT中获取
-                savedMessage = service.sendStaffMessage(messageDTO, 1L);
+                // 客服发送消息，身份取自握手时校验的 JWT（empId）
+                Long empId = staffIdMap.get(sessionId + "_" + userType);
+                savedMessage = service.sendStaffMessage(messageDTO, empId);
             }
             
             // 构建转发消息
@@ -141,6 +210,7 @@ public class CustomerServiceWebSocketServer {
         log.info("客服WebSocket连接关闭，会话ID：{}，用户类型：{}", sessionId, userType);
         sessionMap.remove(key);
         userTypeMap.remove(key);
+        staffIdMap.remove(key);
     }
 
     /**
