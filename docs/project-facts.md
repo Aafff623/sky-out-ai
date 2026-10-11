@@ -63,7 +63,7 @@ TTA 治理资产：Agent 硬约束与构建命令见 `AGENTS.md`；领域词汇�
 
 ## 7. 已知未修复问题（backlog 快照）
 
-按优先级（2026-09 治理盘点确认）。**已于 2026-10-11 全部转正为 GitHub Issues #1–#11（标签 `needs-triage`），任务的认领与状态流转以 tracker 为准（`docs/agents/issue-tracker.md`）；本节仅作历史快照，随修复进度划除。**
+按优先级（2026-09 治理盘点确认）。**已于 2026-10-11 全部转正为 GitHub Issues #1–#11 并完成 triage：#2/#3/#4/#5/#6/#9/#10 → `ready-for-agent`（issue 内含 AI 生成 agent brief），#1/#7/#8/#11 → `ready-for-human`（含不可委托原因）。任务的认领与状态流转以 tracker 为准（`docs/agents/issue-tracker.md`）；本节仅作历史快照，随修复进度划除。**
 
 - **P1** 客服链路整体无鉴权（§5 临时豁免）：HTTP + WS 均可被任意持 sessionId 者冒充 user/staff；需统一接 JWT 与 staff 身份来源。
 - **P1** `/client/order/orderDetail`（`OrderServiceImpl.details`）无订单归属校验——该方法被 store 端共用，需区分端校验后才能收口。
