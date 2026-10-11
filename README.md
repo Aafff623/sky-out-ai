@@ -55,7 +55,7 @@ Merchant Admin (Vue3) ───────JWT token─────────�
                                                   └── Bailian Qwen · Green · WeChat
 ```
 
-小程序请求头使用 `authentication`，商家端使用 `token`。客服 HTTP / WebSocket 仍有鉴权例外，见 [当前限制](#当前限制)。
+小程序请求头使用 `authentication`，商家端使用 `token`。客服 HTTP 与 WebSocket 已全链路 JWT 鉴权（WS 握手经 `?token=`），见 [当前限制](#当前限制)。
 
 ---
 
@@ -179,12 +179,12 @@ npm run dev:mp-weixin
 
 ## 当前限制
 
-- `/client/order/payment` 是**模拟支付**，未接入真实微信支付。
-- 客服 HTTP 与 WebSocket 存在当前的鉴权例外；不要把它描述为全链路 JWT 防护。
+- `/client/order/payment` 是**模拟支付**，未接入真实微信支付（issue #7 待拍板）。
+- 客服 HTTP 与 WebSocket 已全链路 JWT 鉴权：WS 握手校验 `?token=`，user 校验会话归属、staff 身份取自令牌（#1）。
 - `local` 使用 `InMemoryEmbeddingStore`，后端重启后需要重新 embed 知识库；`do` 才使用 Redis Stack。
 - 天气问答没有独立 Weather Tool 或实时天气 API；`item_views` 只采集浏览行为，不参与当前推荐排序。
 - 某些客服页面仍硬编码 `localhost:8848`，切换后端主机时需要同步处理。
-- 本机 `8848` 被 Nfturbo 项目的 Nacos 容器占用时，后端临时以 `8849` 启动，商家端 `.env.development` 已同步指向 8849；端口方案待定（见 [`docs/project-facts.md`](docs/project-facts.md) 已知问题）。
+- 小程序 type-check 工具链已修复（#10），但存量类型错误 927 个（#12），`npm run type-check` 当前退出码非 0；`build:mp-weixin` 不受影响。
 - 小程序真机预览需把 `src/constants/minio.ts` 与后端地址改为电脑局域网 IP，并在开发者工具勾选「不校验合法域名」。
 
 ## 架构
@@ -201,7 +201,7 @@ npm run dev:mp-weixin
 
 ### 关键机制
 
-**双头认证与双面 Controller**。`WebMvcConfiguration` 注册两个 JWT 拦截器：`JwtTokenStoreInterceptor` 读 `token` 头守护 `/store/**`，`JwtTokenClientInterceptor` 读 `authentication` 头守护 `/client/**`，各自维护登录与公开浏览白名单。Controller 同步按受众分区，同一资源（菜品、订单）在两侧各有入口，互不串权限。已知例外：`/store/customer-service/**` 当前临时排除在 JWT 校验之外（WebSocket 通道）。
+**双头认证与双面 Controller**。`WebMvcConfiguration` 注册两个 JWT 拦截器：`JwtTokenStoreInterceptor` 读 `token` 头守护 `/store/**`，`JwtTokenClientInterceptor` 读 `authentication` 头守护 `/client/**`，各自维护登录与公开浏览白名单。Controller 同步按受众分区，同一资源（菜品、订单）在两侧各有入口，互不串权限。客服 HTTP 接口同样受拦截器保护；客服 WebSocket 在握手阶段校验 URL 携带的 `?token=`——user 校验会话归属、staff 身份取自令牌 empId，未授权连接以 1008 关闭（#1）。
 
 **SSE 事件协议与工具结果带外传输**。AI 客服将 `TokenStream` 包装为 Reactor `Flux` 输出三类事件：`DATA(1001)` 流式文本、`PARAM(1003)` 结构化数据、`STOP(1002)` 结束信号。Tools 执行时，菜品等结构化结果不经过模型文本，而是按 `requestId` 写入 `ToolResultHolder`，回答完成时随 `PARAM` 事件推送——前端文本渲染与推荐卡片渲染因此解耦。
 

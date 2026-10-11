@@ -35,4 +35,3 @@ cd code/uniapp/training-uniapp-master && npm run type-check
 - 最小变更，匹配既有风格，不顺手重构；文档与代码冲突时**以代码为准**并回写 `docs/project-facts.md`。
 - `docs/苍穹外卖文档/` 是 2023 传统毕设「满香宜」母版（无 AI），只读保留，不得当现行 API 依据。
 - 未经用户明确要求不 `git commit` / 不 `push`。
-- 已知临时豁免：`/store/customer-service/**` 与客服 WebSocket 暂不鉴权（业务决策，见 `docs/project-facts.md` 已知问题快照）。

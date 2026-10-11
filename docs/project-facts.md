@@ -50,7 +50,7 @@ TTA 治理资产：Agent 硬约束与构建命令见 `AGENTS.md`；领域词汇�
 ## 5. 认证与安全形态
 
 - JWT 双拦截器：商家端头 **`token`** 拦 `/store/**`；用户端头 **`authentication`** 拦 `/client/**`；失败 401。放行：两侧 login、公开分类 / 菜品 / 套餐、`/client/shop/status`、`/client/shopInfo`。
-- **临时豁免（业务决策）**：`/store/customer-service/**` 在拦截器排除列表；客服 WebSocket `/ws/customer-service/{sessionId}/{userType}` 本身无鉴权，`sessionId` / `userType` 由客户端自报，staff 落库暂用固定 ID。
+- **豁免已解除（2026-10-11，issue #1）**：`/store/customer-service/**` 已纳入商家端 JWT 拦截；客服 WebSocket `/ws/customer-service/{sessionId}/{userType}` 握手校验 URL 携带的 `?token=`（user 校验会话归属、staff 取 empId 并用于落库），未授权连接以 1008 关闭。
 - 密钥治理：入库配置一律 `${ENV:}` 占位；`application-dev.yml` / `application-local.yml` / `application-do.yml` 不入库（本地保留可跑，新人仿造）。
 
 ## 6. 领域约束（工程边界）
@@ -61,28 +61,18 @@ TTA 治理资产：Agent 硬约束与构建命令见 `AGENTS.md`；领域词汇�
 4. **前端硬编码**：商家端 `views/customer-service/` 与小程序 `ai-assistant.vue` / `customer-service.vue` 写死 `http(s)://localhost:8848` / `ws://localhost:8848`，改后端主机需同步。
 5. **图片地址统一出口**：前端新增/修改图片引用一律走 `src/constants/minio.ts`，不得硬编码 MinIO 地址；素材库新增只改 MinIO `index.json`，前端零改动（ADR 0001）。
 
-## 7. 已知未修复问题（backlog 快照）
+## 7. 已知未修复问题（backlog）
 
-按优先级（2026-09 治理盘点确认）。**已于 2026-10-11 全部转正为 GitHub Issues #1–#11 并完成 triage：#2/#3/#4/#5/#6/#9/#10 → `ready-for-agent`（issue 内含 AI 生成 agent brief），#1/#7/#8/#11 → `ready-for-human`（含不可委托原因）。任务的认领与状态流转以 tracker 为准（`docs/agents/issue-tracker.md`）；本节仅作历史快照，随修复进度划除。**
+**任务状态以 GitHub Issues 为准（`docs/agents/issue-tracker.md`）。2026-10-11 已修复并关闭：#1 客服鉴权、#2 查单越权、#3 状态机校验、#4 退款条件、#5 工具上下文隔离、#6 兜底越界、#8 端口回滚 8848、#9 商家端类型清零、#10 type-check 工具链、#11 OSS 死链置空。当前仅剩：**
 
-- **P1** 客服链路整体无鉴权（§5 临时豁免）：HTTP + WS 均可被任意持 sessionId 者冒充 user/staff；需统一接 JWT 与 staff 身份来源。
-- **P1** `/client/order/orderDetail`（`OrderServiceImpl.details`）无订单归属校验——该方法被 store 端共用，需区分端校验后才能收口。
-- **P2** `paySuccess` 无前置状态校验（已取消 / 已完成订单可被再次「支付」）；store 端 `confirm` 未校验当前状态。
-- **P2** `rejection` / `cancel` 中 `Orders.PAID.equals(orderDB.getStatus())` 误比较订单状态（原版苍穹外卖遗留，恒 false 死代码）。
-- **P2** `ToolContext` 为全局静态 Map，AI 并发会话的 USER_ID / REQUEST_ID 互相覆盖，存在跨用户上下文串扰。
-- **P2** `AiAssistantServiceImpl.createMockRecommendations` 兜底路径在菜品少于 5 条时数组越界。
-- **P2** 支付为模拟实现（见 §6.3），接真实微信支付前不可上线收费。
-- **P2** 端口冲突：本机 `8848` 被 Nfturbo 项目 Nacos 容器占用，后端临时以 `8849` 运行（商家端 `.env.development` 已同步）；长期方案（换端口 / 错时 / 停容器）待拍板。
-- **P3** 商家端存量 `vue-tsc` 类型错误 40+（遍布 setmeal/workbench 等 15 文件，历次遗留）。
-- **P3** 小程序 `type-check` 工具链损坏（vue-tsc 与 TypeScript 版本不兼容，报 `Search string not found`），构建 `build:mp-weixin` 不受影响。
-- **P3** OSS 历史死链：`order_detail` / `setmeal_dish` / `shopping_cart` 共 145 条 image URL 指向已 404 的 OSS 对象（历史快照，保留未改；新数据写入 MinIO 自愈）。
+- **P2** #7 支付为模拟实现，接真实微信支付前不可上线收费（需商户资质等外部资源，owner 拍板是否接入）。
+- **P3** #12 小程序存量类型错误 927 个（type-check 工具链修复后暴露；修复 vs 放宽路线待拍板）。
 
 ## 8. 待确认项
 
-- 客服鉴权方案（JWT 化后 staff 身份、会话归属校验）与豁免解除时间。
-- 是否接入真实微信支付；若接，`paySuccess` 需补支付回调与幂等。
+- 是否接入真实微信支付（#7）；若接，需补支付回调验签与幂等。
+- 小程序存量类型错误处理路线（#12）：按目录分批修复 vs 放宽部分检查。
 - `dev` profile 的 `application-dev.yml` 需按虚拟机方案自建，是否提供模板。
-- 小程序端改造（硬编码地址、真机验收）暂缓。
 
 ## 9. 资产位置
 
