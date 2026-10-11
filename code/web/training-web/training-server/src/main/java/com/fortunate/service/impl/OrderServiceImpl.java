@@ -7,7 +7,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.fortunate.constant.CachePrefixConstant;
 import com.fortunate.constant.MessageConstant;
 import com.fortunate.context.BaseContext;
-import com.fortunate.context.ToolContext;
 import com.fortunate.dto.*;
 import com.fortunate.entity.*;
 import com.fortunate.exception.AddressBookBusinessException;
@@ -152,6 +151,23 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
+     * 订单详情（客户端入口：校验订单归属）
+     *
+     * @param id     订单id
+     * @param userId 当前登录用户id
+     * @return
+     */
+    @Override
+    public OrderVO details(Long id, Long userId) {
+        Orders order = orderMapper.getOrderById(id);
+        // 归属校验：客户端只能查看自己的订单；不存在或非本人统一按「订单不存在」处理，避免订单枚举探测
+        if (order == null || userId == null || !order.getUserId().equals(userId)) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
+        return this.details(id);
+    }
+
+    /**
      * 确认接单
      *
      * @param id 订单id
@@ -159,6 +175,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void confirm(Long id) {
         Orders orderById = orderMapper.getOrderById(id);
+        // 前置状态校验：仅待接单订单可确认接单
+        if (orderById == null || !Orders.TO_BE_CONFIRMED.equals(orderById.getStatus())) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
         Orders orders = Orders.builder()
                 .id(id)
                 .status(Orders.CONFIRMED) // 将订单状态修改为：已接单
@@ -183,8 +203,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // 查看订单支付状态，如果用户已经支付了订单，商家拒单则需要进行退款操作
-        Integer payStatus = orderDB.getStatus();
-        if (Orders.PAID.equals(payStatus)) {
+        if (Orders.PAID.equals(orderDB.getPayStatus())) {
             log.info("取消订单，申请退款==> {}", "用户已经支付了订单，商家拒单则需要进行退款操作");
         }
         //清除缓存
@@ -216,9 +235,8 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
         }
 
-        // 判断订单状态是否为已支付，已支付的订单取消的话需要进行退款操作
-        Integer payStatus = orderDB.getStatus();
-        if (Orders.PAID.equals(payStatus)) {
+        // 判断订单是否已支付（以支付状态字段为准），已支付的订单取消的话需要进行退款操作
+        if (Orders.PAID.equals(orderDB.getPayStatus())) {
             log.info("取消订单，申请退款==> {}", "订单状态为已支付，已支付的订单取消的话需要进行退款操作");
         }
         //清除缓存
@@ -308,7 +326,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public OrderSubmitVO submitOrder(OrdersSubmitDTO ordersSubmitDTO) {
-        Long userId = BaseContext.getUserId() != null ? BaseContext.getUserId() : (Long) ToolContext.get(ToolContext.USER_ID);
+        Long userId = BaseContext.getUserId();
 
         /* 购物车为空 */
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -503,7 +521,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public PageResult pageQueryUser(int pageNum, int pageSize, Integer status) {
         // 构建缓存键
-        Long userId = BaseContext.getUserId() != null ? BaseContext.getUserId() : (Long) ToolContext.get(ToolContext.USER_ID);
+        Long userId = BaseContext.getUserId();
         String cacheKey = buildUserOrderCacheKey(userId, pageNum, pageSize, status);
         // 尝试从缓存获取结果
         PageResult cachedResult = getCachedPageResult(cacheKey);
@@ -630,7 +648,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // 校验订单归属：用户（或 AI 工具）只能取消自己的订单
-        Long currentUserId = BaseContext.getUserId() != null ? BaseContext.getUserId() : (Long) ToolContext.get(ToolContext.USER_ID);
+        Long currentUserId = BaseContext.getUserId();
         if (currentUserId == null || !orderDB.getUserId().equals(currentUserId)) {
             throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
         }
@@ -713,6 +731,11 @@ public class OrderServiceImpl implements OrderService {
         // 判断订单是否存在
         if (ordersDB == null) {
             throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
+
+        // 前置状态校验：仅待付款订单可支付
+        if (!Orders.PENDING_PAYMENT.equals(ordersDB.getStatus())) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
         }
 
         Integer targetStatus = ordersDB.getOrderType() == 2 ? Orders.DINE_IN_ORDER  // 食堂订单状态

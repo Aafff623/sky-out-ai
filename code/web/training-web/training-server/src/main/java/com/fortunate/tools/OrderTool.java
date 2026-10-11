@@ -1,5 +1,6 @@
 package com.fortunate.tools;
 
+import com.fortunate.context.BaseContext;
 import com.fortunate.context.ToolContext;
 import com.fortunate.dto.OrderCancelDTO;
 import com.fortunate.entity.Orders;
@@ -10,6 +11,7 @@ import com.fortunate.service.OrderService;
 import com.fortunate.vo.OrderVO;
 import dev.langchain4j.agent.tool.P;
 import dev.langchain4j.agent.tool.Tool;
+import dev.langchain4j.service.MemoryId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -25,17 +27,22 @@ public class OrderTool {
     private final OrderService orderService;
 
     @Tool("查询用户最近的5个订单")
-    public List<Orders> getOrdersByUserId() {
-        Long userId = (Long) ToolContext.get(ToolContext.USER_ID);
-        List<Orders> ordersByUserId = orderMapper.getOrdersByUserId(userId, 5);
-        return ordersByUserId;
+    public List<Orders> getOrdersByUserId(@MemoryId String memoryId) {
+        Long userId = (Long) ToolContext.get(memoryId, ToolContext.USER_ID);
+        return orderMapper.getOrdersByUserId(userId, 5);
     }
 
     @Tool("查询用户指定状态的5个订单")
-    public List<OrderVO> getOrdersByUserIdAndStatus(@P(value = "订单状态") Integer status) {
-        PageResult pageResult = orderService.pageQueryUser(1, 5, status);
-        List<OrderVO> records = (List<OrderVO>) pageResult.getRecords();
-        return records ;
+    public List<OrderVO> getOrdersByUserIdAndStatus(@MemoryId String memoryId, @P(value = "订单状态") Integer status) {
+        // 会话作用域里的用户身份透传到当前工具线程，供 Service 层归属校验读取
+        Long userId = (Long) ToolContext.get(memoryId, ToolContext.USER_ID);
+        BaseContext.setUserId(userId);
+        try {
+            PageResult pageResult = orderService.pageQueryUser(1, 5, status);
+            return (List<OrderVO>) pageResult.getRecords();
+        } finally {
+            BaseContext.removeCurrentId();
+        }
     }
 
     /**
@@ -54,14 +61,18 @@ public class OrderTool {
 //    }
 
     @Tool("取消订单")
-    public String cancelOrder(@P(value = "订单ID") Long orderId, @P(value = "取消原因") String reason) {
-        OrderCancelDTO orderCancelDTO = new OrderCancelDTO(orderId, reason);
+    public String cancelOrder(@MemoryId String memoryId, @P(value = "订单ID") Long orderId, @P(value = "取消原因") String reason) {
+        Long userId = (Long) ToolContext.get(memoryId, ToolContext.USER_ID);
+        BaseContext.setUserId(userId);
         try {
+            OrderCancelDTO orderCancelDTO = new OrderCancelDTO(orderId, reason);
             orderService.userCancelById(orderCancelDTO);
             return ORDER_CANCEL_SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
             throw new BaseException(ORDER_CANCEL_FAILED);
+        } finally {
+            BaseContext.removeCurrentId();
         }
     }
 

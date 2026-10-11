@@ -1,5 +1,6 @@
 package com.fortunate.controller.client;
 
+import com.fortunate.context.BaseContext;
 import com.fortunate.dto.OrderCancelDTO;
 import com.fortunate.dto.OrdersPaymentDTO;
 import com.fortunate.dto.OrdersSubmitDTO;
@@ -95,7 +96,7 @@ public class OrderController {
     @GetMapping("/orderDetail")
     @ApiOperation("根据id查询订单详情")
     public Result<OrderVO> details(@RequestParam Long id) {
-        OrderVO orderVO = orderService.details(id);
+        OrderVO orderVO = orderService.details(id, BaseContext.getUserId());
         return Result.success(orderVO);
     }
 

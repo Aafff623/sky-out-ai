@@ -13,6 +13,7 @@ import com.fortunate.tools.result.ToolResultHolder;
 import com.fortunate.vo.DishVO;
 import dev.langchain4j.agent.tool.P;
 import dev.langchain4j.agent.tool.Tool;
+import dev.langchain4j.service.MemoryId;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -44,9 +45,9 @@ public class DishRecommendTool {
 
     //获取前6个菜品
     @Tool("推荐菜品给用户")
-    public List<Dish> getRecommendDishes() {
-        //在每一次请求都会设置一个requestId
-        String requestId = ToolContext.get(ToolContext.REQUEST_ID).toString();
+    public List<Dish> getRecommendDishes(@MemoryId String memoryId) {
+        //在每一次请求都会设置一个requestId（以会话 memoryId 为作用域）
+        String requestId = ToolContext.get(memoryId, ToolContext.REQUEST_ID).toString();
         //获取所有启用的菜品
         List<Dish> allEnabledDishes = dishMapper.getAllEnabledDishes();
         //随机打乱
@@ -72,11 +73,11 @@ public class DishRecommendTool {
      * @return
      */
     @Tool("根据用户偏好推荐菜品")
-    public List<DishVO> getDishesByPreference(@P(value = "用户偏好") String preference) {
-        //在每一次请求都会设置一个requestId
-        String requestId = ToolContext.get(ToolContext.REQUEST_ID).toString();
+    public List<DishVO> getDishesByPreference(@MemoryId String memoryId, @P(value = "用户偏好") String preference) {
+        //在每一次请求都会设置一个requestId（以会话 memoryId 为作用域）
+        String requestId = ToolContext.get(memoryId, ToolContext.REQUEST_ID).toString();
         //获取用户id
-        Long userId = (Long) ToolContext.get(ToolContext.USER_ID);
+        Long userId = (Long) ToolContext.get(memoryId, ToolContext.USER_ID);
         List<Map<String, Object>> smartRecommendations = aiAssistantService.getSmartRecommendations(userId, preference, 1L);
 
         List<DishVO> dishVOS = parseListMapToDishVOs(smartRecommendations, 6);

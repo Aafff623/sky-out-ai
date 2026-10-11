@@ -80,9 +80,9 @@ public class AiAssistantServiceImpl implements AiAssistantService {
             // 生成本次请求id
             var requestId = IdUtil.fastSimpleUUID();
 //            TokenStream stream = consultantService.chat(sessionId, message);
-            // 设置工具上下文
-            ToolContext.put(ToolContext.REQUEST_ID, requestId);
-            ToolContext.put(ToolContext.USER_ID, userId);
+            // 设置工具上下文（以会话 memoryId 为作用域，并发会话互不串扰）
+            ToolContext.put(sessionId, ToolContext.REQUEST_ID, requestId);
+            ToolContext.put(sessionId, ToolContext.USER_ID, userId);
             return Flux.create(sink -> {
                 consultantService.chat(sessionId, message)
                         .onPartialResponse(content -> {
@@ -107,7 +107,7 @@ public class AiAssistantServiceImpl implements AiAssistantService {
                                 sink.next(STOP_EVENT);
                             }
                             //清理工具上下文
-                            ToolContext.clear();
+                            ToolContext.clear(sessionId);
                         })
                         .onToolExecuted(toolExecution -> {
                             String name = toolExecution.request().name();
@@ -128,7 +128,7 @@ public class AiAssistantServiceImpl implements AiAssistantService {
                             sink.complete();
                             //清理工具上下文与工具结果缓存，防止静态 Map 条目泄漏
                             ToolResultHolder.remove(requestId);
-                            ToolContext.clear();
+                            ToolContext.clear(sessionId);
                         })
                         .start();
             });
@@ -383,8 +383,9 @@ public class AiAssistantServiceImpl implements AiAssistantService {
         //根据热度进行排序
         allDishes.sort(Comparator.comparing(Dish::getHotSpot, Comparator.nullsLast(Comparator.reverseOrder())).reversed());
 
-        //最多返回5道菜
-        for (int i = 0; i < 5; i++) {
+        //最多返回5道菜；菜品不足 5 条时按实际数量返回，避免数组越界
+        int limit = Math.min(5, allDishes.size());
+        for (int i = 0; i < limit; i++) {
             Map<String, Object> item = new HashMap<>();
             Dish dish = allDishes.get(i);
             item.put("id", dish.getId());

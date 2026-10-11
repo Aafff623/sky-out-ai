@@ -23,6 +23,14 @@ public interface OrderService {
    * @return 订单详情
    */
   OrderVO details(Long id);
+
+  /**
+   * 根据订单id查询订单详情（客户端入口，校验订单归属）
+   * @param id 订单id
+   * @param userId 当前登录用户id
+   * @return 订单详情
+   */
+  OrderVO details(Long id, Long userId);
   
   /**
    * 商家接单
