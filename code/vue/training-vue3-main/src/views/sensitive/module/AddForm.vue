@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { FormRules, FormInstance } from "element-plus";
-import SensitiveAPI, { type SensitiveForm } from "@/api/sensitive";
+import SensitiveAPI from "@/api/sensitive";
 import { useAppStore } from "@/store/modules/app";
 
 const appStore = useAppStore();
@@ -15,11 +15,12 @@ const btn = reactive({
 // 对话框是否可见
 let visible = ref<boolean>(false);
 const sensitiveFormRef = ref<FormInstance>();
-const form = reactive<SensitiveForm>({
+// 新增表单：单个敏感词输入（接口 addSensitive 的参数名即 sensitive）
+const form = reactive<{ sensitive: string }>({
   sensitive: "",
 });
 
-const rules = reactive<FormRules<SensitiveForm>>({
+const rules = reactive<FormRules<{ sensitive: string }>>({
   sensitive: [{ required: true, message: "请输入新增敏感词", trigger: "blur" }],
 });
 

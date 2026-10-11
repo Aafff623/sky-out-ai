@@ -4,7 +4,8 @@ import CategoryAPI from "@/api/category";
 import * as ElementPlus from "element-plus";
 import { StatusEnum } from "@/enums/StatusEnum";
 
-type ModelType = ExtractParam<typeof SetmealAPI.getPage>;
+// 搜索表单只承载筛选字段，分页参数由列表页注入，故为 Partial
+type ModelType = Partial<ExtractParam<typeof SetmealAPI.getPage>>;
 type CompType = [
   typeof ElementPlus.ElInput,
   typeof ElementPlus.ElSelect,
@@ -82,7 +83,8 @@ onBeforeMount(async () => {
   }));
 });
 
-const handleSearch = (value: FormEventPayload<ModelType>) => {
+// BaseForm 泛型事件负载较宽，用 any 兼容（prop 为 string，无法收窄到 keyof ModelType）
+const handleSearch = (value: FormEventPayload<any>) => {
   emits("search", value);
 };
 </script>

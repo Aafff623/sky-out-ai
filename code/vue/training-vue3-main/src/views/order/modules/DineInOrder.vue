@@ -48,6 +48,6 @@ defineOptions({
   </template>
 
   <template v-else>
-    {{ row[item.prop!] }}
+    {{ row[item.prop! as keyof OrderPageVO] }}
   </template>
 </template>

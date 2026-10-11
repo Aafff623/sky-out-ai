@@ -42,7 +42,7 @@ const table = reactive<TableResultData>({
     },
   ],
 });
-const sensitiveIds = ref<number[]>();
+const sensitiveIds = ref<string>();
 //查询参数
 const queryParams = reactive<QueryParams>({
   page: 1,
@@ -77,10 +77,10 @@ const tableSelectionChange = (selection: Sensitive[]) => {
   console.log("批量删除的id==>", sensitiveIds.value);
 };
 //删除接口
-const handleDelete = (row: Sensitive) => {
+const handleDelete = (row: any) => {
   confirmDelete(
     `删除敏感词【${row.sensitives}】操作，是否继续?`,
-    row.id,
+    row.id as number,
     "删除成功"
   );
 };
@@ -89,13 +89,13 @@ const handleBatchDelete = () => {
   // console.log("批量删除接口==>", selection);
   confirmDelete(
     `批量删除敏感词操作，是否继续?`,
-    sensitiveIds.value,
+    sensitiveIds.value ?? "",
     "批量删除成功"
   );
 };
 const confirmDelete = async (
   message: string,
-  ids: number | number[],
+  ids: number | string,
   successMessage: string
 ) => {
   try {
@@ -105,7 +105,7 @@ const confirmDelete = async (
       type: "warning",
     });
     console.log("ids==>", ids);
-    const { code, msg } = await SensitiveAPI.delete(ids as number[]);
+    const { code, msg } = await SensitiveAPI.delete(ids);
     if (code === 200) {
       ElMessage.success(successMessage);
       handleQuery();
@@ -118,7 +118,7 @@ const confirmDelete = async (
 };
 
 //编辑
-const handleEdit = (row: Sensitive) => {
+const handleEdit = (row: any) => {
   console.log("row==>", row);
   SensitiveEditFormRef.value.show(true, row);
 };

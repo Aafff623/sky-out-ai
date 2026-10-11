@@ -48,8 +48,8 @@ service.interceptors.response.use(
   (response: AxiosResponse) => {
     // 处理 blob 类型数据
     if (response.config.responseType === "blob") {
-      // 检查是否为错误响应（根据content-type判断）
-      if (response.headers["content-type"]?.includes("application/json")) {
+      // 检查是否为错误响应（根据content-type判断；headers 值可能是字符串以外的 Axios 类型，先字符串化）
+      if (String(response.headers["content-type"] ?? "").includes("application/json")) {
         return new Promise((_, reject) => {
           const reader = new FileReader();
           reader.onload = () => {

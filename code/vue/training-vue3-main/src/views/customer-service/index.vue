@@ -133,7 +133,6 @@
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { ElMessage } from "element-plus";
 import { Refresh } from "@element-plus/icons-vue";
-import { log } from "console";
 
 // 响应式数据
 const sessionList = ref<any[]>([]);
@@ -228,7 +227,7 @@ const loadSessionMessages = async (sessionId: string) => {
     if (result.code === 200) {
       // 过滤掉null值并确保数据结构正确
       const messages = Array.isArray(result.data)
-        ? result.data.filter((msg) => msg != null)
+        ? result.data.filter((msg: any) => msg != null)
         : [];
       messageList.value = messages;
       // 立即滚动到底部
@@ -255,7 +254,9 @@ const connectWebSocket = (sessionId: string) => {
     websocket.close();
   }
 
-  const wsUrl = `ws://localhost:8848/ws/customer-service/${sessionId}/staff`;
+  // 握手鉴权：携带商家端 token（localStorage key 见 enums/CacheEnum.ts）
+  const token = localStorage.getItem("token");
+  const wsUrl = `ws://localhost:8848/ws/customer-service/${sessionId}/staff?token=${token}`;
   websocket = new WebSocket(wsUrl);
 
   websocket.onopen = () => {

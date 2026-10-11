@@ -107,7 +107,7 @@ const dishFlavorTable = reactive<TableData<DishFlavor[]>>({
             linkConfig: {
               type: "danger",
             },
-            onClick: (_, $index) => {
+            onClick: (_: any, $index: number) => {
               dishFlavorTable.data.splice($index!, 1);
             },
           },

@@ -55,9 +55,9 @@ class SensitiveAPI {
 
   /**
    * 删除敏感词
-   * @param ids 敏感词ID列表
+   * @param ids 敏感词ID（单个、数组或逗号拼接字符串）
    */
-  static delete(ids: number[]) {
+  static delete(ids: number | string) {
     return request<any, ResponseData>({
       url: `${SENSITIVE_BASE_URL}`,
       method: 'delete',

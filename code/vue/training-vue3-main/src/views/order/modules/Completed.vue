@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { OrderPageVO } from "@/api/order";
-import { ReasonEnum } from "@/enums/OrderEnum";
 
-const props = defineProps({
+defineProps({
   row: {
     required: true,
     type: Object as PropType<OrderPageVO>,
@@ -14,15 +13,10 @@ const props = defineProps({
   },
 });
 
-const record = toRef(props.row);
 const emit = defineEmits(["handleAction", "handleRefresh", "handleReason"]);
 
 const showOrderDetail = (row: OrderPageVO) => {
   emit("handleAction", row);
-};
-
-const onCancel = () => {
-  emit("handleReason", ReasonEnum.CANCEL, record.value);
 };
 
 defineOptions({
@@ -48,5 +42,5 @@ defineOptions({
     </el-link>
   </div>
 
-  <div v-if="item.prop !== undefined">{{ row[item.prop] }}</div>
+  <div v-if="item.prop !== undefined">{{ row[item.prop as keyof OrderPageVO] }}</div>
 </template>

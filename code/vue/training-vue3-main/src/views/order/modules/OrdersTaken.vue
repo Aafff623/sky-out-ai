@@ -80,5 +80,5 @@ defineOptions({
     </el-link>
   </div>
 
-  <div v-if="item.prop !== undefined">{{ row[item.prop] }}</div>
+  <div v-if="item.prop !== undefined">{{ row[item.prop as keyof OrderPageVO] }}</div>
 </template>

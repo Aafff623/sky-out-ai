@@ -125,7 +125,7 @@ const tableData = computed<JTableData>(() => {
               linkConfig: {
                 type: "primary",
               },
-              onClick: (row) => {
+              onClick: (row: any) => {
                 router.push({
                   path: "/order/index",
                   query: {

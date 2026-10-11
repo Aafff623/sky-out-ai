@@ -4,7 +4,6 @@ import { StatusEnum } from "@/enums/StatusEnum";
 
 type JTableData = TableData<SetmealAPI.SetmealVO[]>;
 
-const route = useRoute();
 const JTable = ref<BaseTableType>();
 const tableData = reactive<JTableData>({
   data: [],
@@ -70,19 +69,19 @@ const tableData = reactive<JTableData>({
             linkConfig: {
               type: "primary",
             },
-            onClick: (row) => emits("openEdit", row),
+            onClick: (row: any) => emits("openEdit", row),
           },
           {
             type: "startStop",
-            text: (row) => (row.status === StatusEnum.ENABLE ? "停售" : "启售"),
-            requestUrl: (row) =>
+            text: (row: any) => (row.status === StatusEnum.ENABLE ? "停售" : "启售"),
+            requestUrl: (row: any) =>
               `${SetmealAPI.baseUrls.startOrStop}/${row.status! ^ StatusEnum.ENABLE}`,
             requestMethod: "post",
             linkConfig: {
               type: "warning",
             },
             popupConfirmConfig: {
-              title: (row) =>
+              title: (row: any) =>
                 row.status === StatusEnum.ENABLE
                   ? "确认停售该菜品？"
                   : "确认启售该菜品？",

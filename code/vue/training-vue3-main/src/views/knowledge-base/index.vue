@@ -199,7 +199,7 @@ const handleAdd = () => {
   AddFormRef.value.show(true);
 };
 
-const handleDelete = (row: KnowledgeBase) => {
+const handleDelete = (row: any) => {
   confirmDelete(
     `删除【${row.fileName}】知识库操作，是否继续?`,
     row.id!,
@@ -233,7 +233,7 @@ const confirmDelete = async (
 };
 
 // 下载知识库
-const handleDownload = async (row: KnowledgeBase) => {
+const handleDownload = async (row: any) => {
   ElMessageBox.confirm(`确定要下载${row.fileName}吗？`, "知识库下载", {
     confirmButtonText: "确 定",
     cancelButtonText: "取 消",

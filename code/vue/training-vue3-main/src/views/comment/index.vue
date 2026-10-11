@@ -174,11 +174,11 @@ const confirmDelete = async (
   }
 };
 //删除接口
-const handleDelete = (row: CommentVo) => {
+const handleDelete = (row: any) => {
   confirmDelete(`删除评论操作，是否继续?`, row.id, "删除成功");
 };
 //查看接口
-const handleDetail = (row: CommentVo) => {
+const handleDetail = (row: any) => {
   DetailTreeRef.value?.show(true, row);
 };
 </script>
@@ -215,7 +215,7 @@ const handleDetail = (row: CommentVo) => {
                 v-for="item in dishList"
                 :key="item.id"
                 :label="item.name"
-                :value="item.id"
+                :value="item.id as number"
               />
             </el-select>
           </el-form-item>
@@ -233,7 +233,7 @@ const handleDetail = (row: CommentVo) => {
                 v-for="item in setmealList"
                 :key="item.id"
                 :label="item.name"
-                :value="item.id"
+                :value="item.id as number"
               />
             </el-select>
           </el-form-item>

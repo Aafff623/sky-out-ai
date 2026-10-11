@@ -123,8 +123,8 @@ function onPaginationChange(data: { page: number; limit: number }) {
   updateData();
 }
 
-// 展开某一行
-function expandChange(row: TableIItemType, expandedRows: TableDataType) {
+// 展开某一行（el-table 的 expand-change 存在两种事件签名重载，第二参数用 any 兼容）
+function expandChange(row: TableIItemType, expandedRows: any) {
   // 判断是否只展开一行
   if (props.isExpandSingle) {
     if (expandedRows.length) {

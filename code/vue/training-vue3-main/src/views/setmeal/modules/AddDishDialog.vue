@@ -32,7 +32,7 @@ const emits = defineEmits(["update:modelValue"]);
 const selectedDishList = useVModel(props, "modelValue", emits);
 
 const dishListFilter = computed(() => {
-  if (selectedDishTab.value === "0" || selectedDishTab.value === undefined) {
+  if (selectedDishTab.value === 0 || selectedDishTab.value === undefined) {
     return dishList.value.filter((v) => v.name?.includes(searchKey.value));
   }
   // 先按分类过滤
@@ -47,7 +47,8 @@ const dishListFilter = computed(() => {
 // 菜品分类选项
 const dishCategoryOptions = computed(() => {
   const newCategoryOptions = props.categoryOptions.filter((v) => v.type === 1);
-  return [{ name: "全部", categoryId: null }, ...newCategoryOptions];
+  // 「全部」伪选项固定 id=0，供 tab name 与过滤判断使用
+  return [{ id: 0, name: "全部", categoryId: null }, ...newCategoryOptions];
 });
 
 const addDishBodyStyle = computed<CSSProperties>(() => {
@@ -117,8 +118,9 @@ const handleRemoveDish = (setmealDish: SetmealDish) => {
 // 切换菜品分类
 const handleDishTabChange = (categoryId: ElementPlus.TabPaneName) => {
   dishList.value = [];
+  const id = Number(categoryId);
   getDishList({
-    categoryId: (categoryId as number) != 0 ? categoryId : undefined,
+    categoryId: id !== 0 ? id : undefined,
   });
 };
 

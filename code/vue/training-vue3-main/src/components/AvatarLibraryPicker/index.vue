@@ -41,7 +41,7 @@ defineOptions({
 <template>
   <el-dialog v-model="visible" title="形象素材库" width="680px" destroy-on-close>
     <el-tabs v-model="activeCat">
-      <el-tab-pane v-for="(items, cat) in library" :key="cat" :label="CAT_LABELS[cat] || cat" :name="cat" />
+      <el-tab-pane v-for="(_, cat) in library" :key="cat" :label="CAT_LABELS[cat] || cat" :name="cat" />
     </el-tabs>
     <div v-loading="loading" class="grid">
       <img

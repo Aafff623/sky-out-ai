@@ -217,7 +217,7 @@ const dishTableData = reactive<JTableType>({
             linkConfig: {
               type: "danger",
             },
-            onClick: (row) => {
+            onClick: (row: any) => {
               dishTableData.data = dishTableData.data?.filter(
                 (v) => v.dishId !== row.dishId
               );
