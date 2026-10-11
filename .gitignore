@@ -61,6 +61,9 @@ credentials*.csv
 temp/
 logs/
 
+# TTA 本地 MCP 约定（不入库；.agents/skills/ 如有真实项目技能仍可跟踪）
+.agents/mcp.json
+
 # 含连接信息的本地 profile 配置（本地保留可跑，不入库；新人按需仿造）
 code/web/training-web/training-server/src/main/resources/application-local.yml
 code/web/training-web/training-server/src/main/resources/application-do.yml

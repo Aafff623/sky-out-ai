@@ -1,6 +1,6 @@
 # AGENTS.md — 锦食坊（sky-ai）Agent 硬约束
 
-「锦食坊」是基于苍穹外卖重构的培训 / 毕业设计三端 AI 外卖平台。领域事实与 backlog 见 `CONTEXT.md`；人读说明见 `README.md`。
+「锦食坊」是基于苍穹外卖重构的培训 / 毕业设计三端 AI 外卖平台。分工：`CONTEXT.md` 领域词汇表 · `docs/project-facts.md` 已验证工程事实与已知问题 · `docs/adr/` 决策记录 · `docs/agents/` Matt 工程技能配置（tracker / 领域 / triage）· `README.md` 人读说明。任务与 backlog 流转走 GitHub Issues（`docs/agents/issue-tracker.md`）。
 
 ## 三端地图
 
@@ -32,7 +32,7 @@ cd code/uniapp/training-uniapp-master && npm run type-check
 
 ## 改动边界
 
-- 最小变更，匹配既有风格，不顺手重构；文档与代码冲突时**以代码为准**并回写 CONTEXT。
+- 最小变更，匹配既有风格，不顺手重构；文档与代码冲突时**以代码为准**并回写 `docs/project-facts.md`。
 - `docs/苍穹外卖文档/` 是 2023 传统毕设「满香宜」母版（无 AI），只读保留，不得当现行 API 依据。
 - 未经用户明确要求不 `git commit` / 不 `push`。
-- 已知临时豁免：`/store/customer-service/**` 与客服 WebSocket 暂不鉴权（业务决策，见 CONTEXT backlog）。
+- 已知临时豁免：`/store/customer-service/**` 与客服 WebSocket 暂不鉴权（业务决策，见 `docs/project-facts.md` 已知问题快照）。

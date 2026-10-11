@@ -21,7 +21,7 @@
 ---
 
 > [!IMPORTANT]
-> `docs/苍穹外卖文档/` 中的论文和开题报告描述的是 2023 年传统版「满香宜」，不等同于当前实现。现行能力以 `code/` 源码、[`AI模块设计.md`](docs/苍穹外卖文档/_conv/AI模块设计.md) 和根 [`CONTEXT.md`](CONTEXT.md) 为准。
+> `docs/苍穹外卖文档/` 中的论文和开题报告描述的是 2023 年传统版「满香宜」，不等同于当前实现。现行能力以 `code/` 源码为准，工程事实见 [`docs/project-facts.md`](docs/project-facts.md)，领域词汇见 [`CONTEXT.md`](CONTEXT.md)，另见 [`AI模块设计.md`](docs/苍穹外卖文档/_conv/AI模块设计.md)。
 
 | 端 | 代码路径 | 默认端口 |
 | --- | --- | --- |
@@ -36,7 +36,7 @@
 - 客服只能人工值班，夜间咨询没人管
 - 推荐靠静态列表，说不清「为什么推荐这道菜」
 - 评论短、运营难沉淀；内容安全缺少可配置的词库
-- 毕设论文和代码脱节，接手的人找不到单一事实源——本仓以 [`CONTEXT.md`](CONTEXT.md) 为单一事实源
+- 毕设论文和代码脱节，接手的人找不到单一事实源——本仓以 `docs/project-facts.md`（工程事实）+ `CONTEXT.md`（领域词汇）为单一事实源
 
 锦食坊的解法：
 
@@ -75,7 +75,7 @@ Merchant Admin (Vue3) ───────JWT token─────────�
 
 边界说明：天气为提示词口语能力，无实时 Weather Tool；`item_views` 仅采集上报，不参与推荐排序；部分客服页硬编码 `localhost:8848`，改后端主机需同步前端。
 
-领域术语、Agent 门禁与分端 CONTEXT 见文末 [文档](#文档)。
+领域术语见文末 [文档](#文档)。
 
 ---
 
@@ -184,7 +184,7 @@ npm run dev:mp-weixin
 - `local` 使用 `InMemoryEmbeddingStore`，后端重启后需要重新 embed 知识库；`do` 才使用 Redis Stack。
 - 天气问答没有独立 Weather Tool 或实时天气 API；`item_views` 只采集浏览行为，不参与当前推荐排序。
 - 某些客服页面仍硬编码 `localhost:8848`，切换后端主机时需要同步处理。
-- 本机 `8848` 被 Nfturbo 项目的 Nacos 容器占用时，后端临时以 `8849` 启动，商家端 `.env.development` 已同步指向 8849；端口方案待定（见 CONTEXT §7）。
+- 本机 `8848` 被 Nfturbo 项目的 Nacos 容器占用时，后端临时以 `8849` 启动，商家端 `.env.development` 已同步指向 8849；端口方案待定（见 [`docs/project-facts.md`](docs/project-facts.md) 已知问题）。
 - 小程序真机预览需把 `src/constants/minio.ts` 与后端地址改为电脑局域网 IP，并在开发者工具勾选「不校验合法域名」。
 
 ## 架构
@@ -195,7 +195,7 @@ npm run dev:mp-weixin
 | --- | --- | --- |
 | Clients | 用户点餐 / 商家运营 | `training-uniapp-master`（微信小程序）· `training-vue3-main`（Vue3 管理端） |
 | Access | JWT 双头认证、SSE 流式、WebSocket、RESTful | `authentication` / `token` 头 · `/ws/customer-service/**` |
-| Application | 外卖业务逻辑 + AI 编排 | `training-server`（32 个 REST Controller：`client` 16 · `store` 14 · `upload` / `health` 各 1）· `LangChain4jConfiguration` |
+| Application | 外卖业务逻辑 + AI 编排 | `training-server`（33 个 REST Controller：`client` 16 · `store` 15 · `upload` / `health` 各 1）· `LangChain4jConfiguration` |
 | Data | 关系数据 / 文档 / 缓存向量 / 对象存储 | MySQL 18 表（传统 11 + AI 5 + 履约辅助 2）· MongoDB 评论文档 · Redis · MinIO |
 | External | 大模型与内容审核、微信登录 | 阿里云百炼 Qwen · Green · WeChat |
 
@@ -296,7 +296,7 @@ sky-ai/
 | --- | --- | --- |
 | ✅ | 三端可跑 + `local` 本机中间件 | `deploy/local`；profile `local` |
 | ✅ | project-init 治理骨架 | `CONTEXT` / `AGENTS` / ADR |
-| ✅ | AI 叙事与代码对齐 | `_conv/AI模块设计.md`；已知边界写进 CONTEXT |
+| ✅ | AI 叙事与代码对齐 | `_conv/AI模块设计.md`；已知边界写进 project-facts |
 | ✅ | README / 配图 / Showcase 骨架 | 说明图 + 真机截图已落盘，后续只修漂移 |
 | ⬜ | 首个业务 theme | PRD Gate 批准前不写功能代码 |
 | ⬜ | `AI模块设计.md` 实测占位补齐 | 截图「待补充」、测试结果「待验证」 |
@@ -311,13 +311,16 @@ sky-ai/
 
 | 文档 | 说明 |
 | --- | --- |
-| [CONTEXT.md](CONTEXT.md) | 领域事实、架构、AI 模块与已知 backlog 单一事实源 |
+| [CONTEXT.md](CONTEXT.md) | 领域词汇表（glossary）：只管「怎么称呼」，不管「怎么实现」 |
+| [docs/project-facts.md](docs/project-facts.md) | 已验证工程事实、已知问题快照与资产位置 |
 | [AGENTS.md](AGENTS.md) | Agent 硬约束、构建验证命令与约定 |
-| [deploy/local/README.md](deploy/local/README.md) | 本机中间件启动与 `local` profile 说明 |
+| [docs/agents/](docs/agents/) | Matt 工程技能配置：issue tracker / 领域文档消费规则 / triage 标签 |
 | [docs/adr/](docs/adr/) | 架构决策记录 |
+| [deploy/local/README.md](deploy/local/README.md) | 本机中间件启动与 `local` profile 说明 |
 | [AI模块设计.md](docs/苍穹外卖文档/_conv/AI模块设计.md) | AI 功能论文补充稿（需求 / 总体设计 / 详细设计 / 测试） |
 | [assets/README.md](assets/README.md) | 媒体资产目录约定与迁移说明 |
 | [assets/images/readme/](assets/images/readme/) | README 配图与 Showcase 截图 |
+| [GitHub Wiki](https://github.com/Aafff623/sky-out-ai/wiki) | 使用者 / 接手者手册（怎么跑、怎么演示、AI 边界）；治理与领域 SSOT 仍在本仓文档，Wiki 只外链 |
 
 ---
 
