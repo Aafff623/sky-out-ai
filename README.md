@@ -21,7 +21,7 @@
 ---
 
 > [!IMPORTANT]
-> `docs/苍穹外卖文档/` 中的论文和开题报告描述的是 2023 年传统版「满香宜」，不等同于当前实现。现行能力以 `code/` 源码为准，工程事实见 [`docs/project-facts.md`](docs/project-facts.md)，领域词汇见 [`CONTEXT.md`](CONTEXT.md)，另见 [`AI模块设计.md`](docs/苍穹外卖文档/_conv/AI模块设计.md)。
+> `docs/苍穹外卖文档/` 中的论文和开题报告描述的是 2023 年传统版「满香宜」，不等同于当前实现。现行能力以 `code/` 源码为准，工程事实见 [`docs/project-facts.md`](docs/project-facts.md)，领域词汇见 [`GLOSSARY.md`](GLOSSARY.md)，另见 [`AI模块设计.md`](docs/苍穹外卖文档/_conv/AI模块设计.md)。
 
 | 端 | 代码路径 | 默认端口 |
 | --- | --- | --- |
@@ -36,7 +36,7 @@
 - 客服只能人工值班，夜间咨询没人管
 - 推荐靠静态列表，说不清「为什么推荐这道菜」
 - 评论短、运营难沉淀；内容安全缺少可配置的词库
-- 毕设论文和代码脱节，接手的人找不到单一事实源——本仓以 `docs/project-facts.md`（工程事实）+ `CONTEXT.md`（领域词汇）为单一事实源
+- 毕设论文和代码脱节，接手的人找不到单一事实源——本仓以 `docs/project-facts.md`（工程事实）+ `GLOSSARY.md`（领域词汇）为单一事实源
 
 锦食坊的解法：
 
@@ -122,7 +122,7 @@ Merchant Admin (Vue3) ───────JWT token─────────�
 
 ### 环境变量
 
-部署前在系统或 IDE 中配置以下变量（**只写名称，勿提交明文值**；完整说明见 [`CONTEXT.md`](CONTEXT.md)）：
+部署前在系统或 IDE 中配置以下变量（**只写名称，勿提交明文值**；变量清单与约定见 [`AGENTS.md`](AGENTS.md)）：
 
 | 变量名 | 用途 |
 | --- | --- |
@@ -272,7 +272,7 @@ mvn test -pl training-server -am   # 需先起本机中间件
 
 ```text
 sky-ai/
-├── AGENTS.md · CLAUDE.md · CONTEXT.md · README.md
+├── AGENTS.md · CLAUDE.md · GLOSSARY.md · README.md
 ├── code/
 │   ├── web/training-web/          # 后端 Spring Boot（端口 8848；Maven 三模块 common / pojo / server）
 │   ├── vue/training-vue3-main/    # 商家管理端（端口 9527）
@@ -295,7 +295,7 @@ sky-ai/
 | 状态 | 事项 | 备注 |
 | --- | --- | --- |
 | ✅ | 三端可跑 + `local` 本机中间件 | `deploy/local`；profile `local` |
-| ✅ | project-init 治理骨架 | `CONTEXT` / `AGENTS` / ADR |
+| ✅ | project-init 治理骨架 | `GLOSSARY` / `AGENTS` / ADR |
 | ✅ | AI 叙事与代码对齐 | `_conv/AI模块设计.md`；已知边界写进 project-facts |
 | ✅ | README / 配图 / Showcase 骨架 | 说明图 + 真机截图已落盘，后续只修漂移 |
 | ⬜ | 首个业务 theme | PRD Gate 批准前不写功能代码 |
@@ -307,11 +307,11 @@ sky-ai/
 
 ## 文档
 
-推荐阅读顺序：`README` → `CONTEXT` → `AGENTS` → `code/`。
+推荐阅读顺序：`README` → `GLOSSARY` → `AGENTS` → `code/`。
 
 | 文档 | 说明 |
 | --- | --- |
-| [CONTEXT.md](CONTEXT.md) | 领域词汇表（glossary）：只管「怎么称呼」，不管「怎么实现」 |
+| [GLOSSARY.md](GLOSSARY.md) | 领域词汇表（glossary）：只管「怎么称呼」，不管「怎么实现」 |
 | [docs/project-facts.md](docs/project-facts.md) | 已验证工程事实、已知问题快照与资产位置 |
 | [AGENTS.md](AGENTS.md) | Agent 硬约束、构建验证命令与约定 |
 | [docs/agents/](docs/agents/) | Matt 工程技能配置：issue tracker / 领域文档消费规则 / triage 标签 |

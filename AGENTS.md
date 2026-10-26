@@ -1,6 +1,6 @@
 # AGENTS.md — 锦食坊（sky-ai）Agent 硬约束
 
-「锦食坊」是基于苍穹外卖重构的培训 / 毕业设计三端 AI 外卖平台。分工：`CONTEXT.md` 领域词汇表 · `docs/project-facts.md` 已验证工程事实与已知问题 · `docs/adr/` 决策记录 · `docs/agents/` Matt 工程技能配置（tracker / 领域 / triage）· `README.md` 人读说明。任务与 backlog 流转走 GitHub Issues（`docs/agents/issue-tracker.md`）。
+「锦食坊」是基于苍穹外卖重构的培训 / 毕业设计三端 AI 外卖平台。分工：`GLOSSARY.md` 领域词汇表 · `docs/project-facts.md` 已验证工程事实与已知问题 · `docs/adr/` 决策记录 · `docs/agents/` Matt 工程技能配置（tracker / 领域 / triage）· `README.md` 人读说明。任务与 backlog 流转走 GitHub Issues（`docs/agents/issue-tracker.md`）。
 
 ## 三端地图
 

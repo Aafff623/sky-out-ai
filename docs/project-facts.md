@@ -1,6 +1,6 @@
 # project-facts.md — 锦食坊（sky-ai）已验证工程事实
 
-TTA 治理资产：Agent 硬约束与构建命令见 `AGENTS.md`；领域词汇见 `CONTEXT.md`；任务与 backlog 流转见 `docs/agents/issue-tracker.md`（GitHub Issues）；人读说明见 `README.md`。文档与代码冲突时**以代码为准**并回写本文件。
+TTA 治理资产：Agent 硬约束与构建命令见 `AGENTS.md`；领域词汇见 `GLOSSARY.md`；任务与 backlog 流转见 `docs/agents/issue-tracker.md`（GitHub Issues）；人读说明见 `README.md`。文档与代码冲突时**以代码为准**并回写本文件。
 
 ## 1. 项目定位与三端
 
@@ -78,7 +78,7 @@ TTA 治理资产：Agent 硬约束与构建命令见 `AGENTS.md`；领域词汇�
 
 | 资产 | 路径 |
 |---|---|
-| 领域词汇表 | `CONTEXT.md` |
+| 领域词汇表 | `GLOSSARY.md` |
 | Agent 硬约束 / 构建命令 | `AGENTS.md` |
 | Matt 工程技能配置（tracker / 领域 / triage） | `docs/agents/` |
 | 架构决策记录 | `docs/adr/` |
